@@ -51,9 +51,9 @@ jobs:
       - run: vendor/bin/phpunit
 
       # E2E test with dusk. Comment in these run if you use it.
-      # - run: chromedriver --whitelisted-ips > /dev/null 2>&1 &
-      # - run: php artisan serve > /dev/null 2>&1 &
-      # - run: php artisan dusk
+      - run: chromedriver --whitelisted-ips > /dev/null 2>&1 &
+      - run: php artisan serve > /dev/null 2>&1 &
+      - run: php artisan dusk
 
       # Archive Artifacts
       - name: Archive screenshots
