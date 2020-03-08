@@ -1,0 +1,70 @@
+name: laravel-tweet-ddd
+on: [push]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    container:
+      image: 708u/laravel-alpine:7.4.3-node-browser
+      env:
+        APP_ENV: testing
+        APP_URL: http://localhost
+        DB_CONNECTION: mysql
+        DB_HOST: mysql
+        CACHE_DRIVER: redis
+        QUEUE_CONNECTION: redis
+        SESSION_DRIVER: redis
+        REDIS_HOST: redis
+        DUSK_BASE_URL: http://localhost:8000
+        CHROME_DRIVER_HOST: http://localhost:9515
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_DATABASE: laravel_tweet_ddd
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_ROOT_HOST: "%"
+      redis:
+        image: redis:5.0.7-alpine
+    steps:
+      - uses: actions/checkout@v2
+      - run: cp .env.example .env
+
+      # Install dependencies
+      - name: Cache composer vendor
+        uses: actions/cache@v1
+        with:
+          path: vendor
+          key: ${{ runner.os }}-vendor-${{ hashFiles('**/composer.lock') }}
+      - run: composer install
+      - name: Cache node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+      - run: yarn
+      - run: yarn prod
+      - run: php artisan key:generate
+
+      # Unit test
+      - run: php artisan migrate
+      - run: vendor/bin/phpunit
+
+      # E2E test with dusk. Comment in these run if you use it.
+      # - run: chromedriver --whitelisted-ips > /dev/null 2>&1 &
+      # - run: php artisan serve > /dev/null 2>&1 &
+      # - run: php artisan dusk
+
+      # Archive Artifacts
+      - name: Archive screenshots
+        uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: e2e-screenshots
+          path: tests/Browser/screenshots
+      - name: Archive laravel log
+        uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: laravel-log
+          path: storage/logs

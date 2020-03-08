@@ -1,0 +1,89 @@
+version: "3.7"
+
+x-environment: &app
+  image: 708u/laravel-alpine:7.4.3-for-develop
+  working_dir: "/app"
+  environment:
+    - DB_CONNECTION=mysql
+    - DB_HOST=mysql
+    - CACHE_DRIVER=redis
+    - QUEUE_CONNECTION=redis
+    - SESSION_DRIVER=redis
+    - REDIS_HOST=redis
+  volumes:
+    - "./:/app:cached"
+    - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+  tty: true
+
+x-environment: &node
+  image: node:13.8.0-alpine
+  working_dir: "/app"
+  volumes:
+    - "./:/app:cached"
+  tty: true
+
+services:
+  app:
+    <<: *app
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+
+  queue_worker:
+    <<: *app
+    depends_on:
+      - redis
+    command: php artisan queue:work
+
+  node:
+    <<: *node
+
+  asset_watcher:
+    <<: *node
+    # For BrowserSync
+    ports:
+      - "3000:3000"
+    command: "yarn watch-poll"
+
+  nginx:
+    image: nginx:1.17.8-alpine
+    volumes:
+      - "./docker/nginx/nginx.conf:/etc/nginx/nginx.conf"
+      - "./public:/app/public"
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+    tty: true
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root}
+      MYSQL_DATABASE: ${DB_DATABASE:-laravel_tweet_ddd}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-root}
+    ports:
+      - "3306:3306"
+    volumes:
+      - "mysql_store:/var/lib/mysql"
+      - "./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf"
+      # Create testing DB
+      # - "./docker/mysql/init/create-testing-db.sql:/docker-entrypoint-initdb.d/create-testing-db.sql"
+
+  redis:
+    image: redis:5.0.7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - "redis_store:/data"
+    tty: true
+
+  selenium:
+    image: selenium/standalone-chrome
+    ports:
+      - "4444:4444"
+
+volumes:
+  mysql_store:
+  redis_store:
