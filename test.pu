@@ -1,0 +1,36 @@
+```uml
+@startuml
+package "Domain" <<Rectangle>> {
+    UnitOwner --> EstateAuthenticationQuery
+    EstateAuthenticationQuery <|. EloquentUnitOwnerAutenticationQuery
+    EloquentUnitOwnerAutenticationQuery *. UnitOwnerUsers
+}
+
+package "Laravel-permission" {
+    UnitOwnerUsers <|-- LaravelPermission
+}
+
+class UnitOwner {
+    + hasPermission(Identifer $userId, Identifier $estateId, string permission)
+}
+
+interface EstateAuthenticationQuery {
+    + hasPermission(Identifer $userId, Identifier $estateId, string permission): bool
+}
+
+class EloquentUnitOwnerAutenticationQuery {
+    - $eloquentUnitOwnerUser
+    + hasPermission(): bool
+}
+
+class UnitOwnerUsers {
+    - hasRole
+}
+
+class LaravelPermission {
+    - hasRole
+}
+
+
+@enduml
+```
