@@ -11,9 +11,10 @@ class AboutPageTest extends DuskTestCase
     /**
      * A Dusk test example.
      *
+     * @group static
      * @return void
      */
-    public function testExample()
+    public function testVisitAboutPage()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/about')
