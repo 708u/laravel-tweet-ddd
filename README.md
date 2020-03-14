@@ -34,10 +34,10 @@ git clone git@github.com:naoyaUda/laravel-tweet-ddd.git
 - install
 
 ```bash
-// コンテナのビルド、依存パッケージのインストール、DBの初期化を行う
+# コンテナのビルド、依存パッケージのインストール、DBの初期化を行う
 make install
 
-// permission変更
+# permission変更
 chown -R 777 storage
 chown -R 777 bootstrap/cache
 ```
