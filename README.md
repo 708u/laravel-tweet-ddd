@@ -44,4 +44,8 @@ chown -R 777 bootstrap/cache
 
 ## How to
 
-- 各種操作コマンドはMakefileに記述しています。
+- 各種操作コマンドはMakefileに記述しています。以下コマンドですべてのターゲットを確認できます。
+
+```bash
+make help
+```

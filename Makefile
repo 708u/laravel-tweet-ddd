@@ -2,10 +2,6 @@
 export UID = $(shell id -u)
 export GID = $(shell id -g)
 
-.PHONY: help
-help: ## Display this help screen
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
-
 .PHONY: up
 up: ## docker-compose up -d
 	docker-compose up -d
@@ -125,3 +121,7 @@ chown: ## chown app dirctory (for lunux distribution user).
 .PHONY: writable
 writable: ## chmod storage and bootstrap/cache dirctory.
 	docker-compose exec app chmod -R 777 storage/ && chmod -R 777 bootstrap/cache
+
+.PHONY: help
+help: ## Display this help screen
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
