@@ -41,3 +41,7 @@ make install
 chown -R 777 storage
 chown -R 777 bootstrap/cache
 ```
+
+## How to
+
+- 各種操作コマンドはMakefileに記述しています。
