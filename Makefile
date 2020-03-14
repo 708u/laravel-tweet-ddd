@@ -64,6 +64,11 @@ update:
 app:
 	docker-compose exec -u $(UID):$(GID) app bash
 
+# Attach an app container as root.
+.PHONY: app-root
+app-root:
+	docker-compose exec app bash
+
 # Attach a node container.
 .PHONY: node
 node:
