@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Browser\Frontend;
+namespace Tests\Browser\Frontend\Statics;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
-class AboutPageTest extends DuskTestCase
+class HelpPageTest extends DuskTestCase
 {
     /**
      * A Dusk test example.
@@ -14,11 +14,11 @@ class AboutPageTest extends DuskTestCase
      * @group static
      * @return void
      */
-    public function testVisitAboutPage()
+    public function testVisitHelpPage()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/about')
-                    ->assertTitle('About');
+            $browser->visit('/help')
+                    ->assertTitle('Help');
         });
     }
 }
