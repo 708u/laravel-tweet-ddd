@@ -23,6 +23,7 @@ Route::name('static.')->group(function () {
 
 Route::name('auth.')->namespace('Auth')->group(function () {
     Route::get('/login', 'ShowLoginFormAction')->name('login');
+    Route::post('/login', 'LoginAction');
 });
 
 Route::name('user.')->namespace('User')->group(function () {
