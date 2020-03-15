@@ -15,11 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::name('frontend.')->namespace('Frontend')->group(function () {
-    Route::name('static.')->group(function () {
-        Route::view('/', 'frontend.static.home')->name('home')->middleware('guest');
-        Route::view('/about', 'frontend.static.about')->name('about');
-        Route::view('/help', 'frontend.static.help')->name('help');
-    });
 
     Route::name('auth.')->namespace('Auth')->group(function() {
         Route::get('/login', 'LoginController@showLoginForm')->name('login');
