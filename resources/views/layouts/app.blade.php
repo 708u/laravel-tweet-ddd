@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <x-partial.shim/>
     @yield('head')
     @yield('title')
 </head>
 <body>
-    <x-navbar/>
+    <x-partial.header/>
     @yield('content')
     @yield('foot')
+    <x-partial.footer/>
 
     <script src="{{ mix('/js/app.js') }}"></script>
 </body>

@@ -14,12 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::name('frontend.')->namespace('frontend')->group(function () {
     Route::name('static.')->group(function () {
+        Route::view('/', 'frontend.static.home')->name('home');
         Route::view('/about', 'frontend.static.about')->name('about');
         Route::view('/help', 'frontend.static.help')->name('help');
     });
