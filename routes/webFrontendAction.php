@@ -21,6 +21,12 @@ Route::name('static.')->group(function () {
     Route::view('/help', 'frontend.static.help')->name('help');
 });
 
+Route::name('auth.')->namespace('Auth')->group(function () {
+    Route::get('/login', 'ShowLoginFormAction')->name('login');
+    Route::post('/login', 'LoginAction');
+    Route::post('/logout', 'LogoutAction')->name('logout');
+});
+
 Route::name('user.')->namespace('User')->group(function () {
     Route::get('/home', 'ShowHomeAction')->name('home');
 });

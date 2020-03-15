@@ -18,7 +18,8 @@ class LoginPageTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/login')
-                ->assertSee('Login');
+                ->assertSee('Login')
+                ->assertRouteIs('frontend.auth.login');
         });
     }
 }
