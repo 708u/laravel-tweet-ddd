@@ -30,8 +30,13 @@ class SignUpTest extends DuskTestCase
                 ->type('password_confirmation', $password)
                 ->press('Register')
                 ->assertRouteIs('frontend.user.home')
-                ->assertAuthenticated();
+                ->assertAuthenticated()
+                ->visit('/signup')
+                ->assertRouteIs('frontend.user.home') // redirect home if already signed up
+                ->visit('/login')
+                ->assertRouteIs('frontend.user.home'); // also redirect home if already signed up
         });
+
         $this->assertDatabaseHas(
             'users',
             [
