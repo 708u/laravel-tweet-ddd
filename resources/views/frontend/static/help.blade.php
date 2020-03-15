@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Help')
+@section('title')
+<x-partial.title title='Help'/>
+@endsection
 
 @section('content')
 <h1 class="text-center">Help</h1>
