@@ -14,11 +14,11 @@ class RegisterTest extends DuskTestCase
      * @group auth
      * @return void
      */
-    public function testVisitRegisterPage()
+    public function testVisitSignUpPage()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/register')
-                ->assertSee('Register');
+            $browser->visit('/signup')
+                ->assertRouteIs('frontend.auth.signup');
         });
     }
 }

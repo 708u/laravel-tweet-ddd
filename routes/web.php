@@ -23,6 +23,7 @@ Route::name('frontend.')->namespace('Frontend')->group(function () {
 
     Route::name('auth.')->namespace('Auth')->group(function() {
         Route::get('/login', 'LoginController@showLoginForm')->name('login');
+        Route::get('/signup', 'RegisterController@showRegistrationForm')->name('signup');
     });
 });
 
