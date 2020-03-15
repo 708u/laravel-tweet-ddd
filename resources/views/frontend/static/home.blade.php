@@ -11,6 +11,8 @@
     <p class="text-center">
         Laravelでtwitter風アプリケーションをドメイン駆動設計で開発するプロジェクト
     </p>
-    <button class="btn btn-outline-primary mx-auto d-block">Sign Up here</button>
+    <a href="{{ route('frontend.auth.signup') }}">
+        <button class="btn btn-outline-primary mx-auto d-block">Sign Up here</button>
+    </a>
 </div>
 @endsection
