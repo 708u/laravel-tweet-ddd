@@ -28,8 +28,6 @@ Route::name('frontend.')->namespace('Frontend')->group(function () {
         Route::get('/signup', 'RegisterController@showRegistrationForm')->name('signup');
         Route::post('/signup', 'RegisterController@register');
     });
-
-    Route::get('/home', 'HomeController@index')->name('user.home');
 });
 
 // Auth::routes();
