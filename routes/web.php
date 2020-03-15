@@ -14,11 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::name('frontend.')->namespace('Frontend')->group(function () {
-
-    Route::name('auth.')->namespace('Auth')->group(function() {
-        Route::post('/signup', 'RegisterController@register');
-    });
-});
-
 // Auth::routes();
