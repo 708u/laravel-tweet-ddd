@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\Frontend;
+namespace Tests\Browser\Frontend\Statics;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;

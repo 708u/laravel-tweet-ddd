@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 Route::view('/about', 'frontend.static.about');
+Route::view('/help', 'frontend.static.help');
 
 Auth::routes();
 
