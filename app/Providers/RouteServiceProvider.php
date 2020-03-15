@@ -46,7 +46,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        //
+        $this->mapWebFrontendActionRoutes();
     }
 
     /**
@@ -76,5 +76,21 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware('api')
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
+    }
+
+    /**
+     * Define the "webFrontAction" routes for the application.
+     * This route define for single actions.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapWebFrontendActionRoutes()
+    {
+        Route::middleware('web')
+            ->namespace('App\Http\Actions\Frontend')
+            ->name('frontend.')
+            ->group(base_path('routes/webFrontendAction.php'));
     }
 }
