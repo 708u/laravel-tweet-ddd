@@ -21,7 +21,7 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_DATABASE: laravel_tweet_ddd
+          MYSQL_DATABASE: laravel_tweet_ddd_testing
           MYSQL_ROOT_PASSWORD: root
           MYSQL_ROOT_HOST: "%"
       redis:
