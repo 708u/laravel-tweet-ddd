@@ -19,6 +19,7 @@ mix.js('resources/js/app.js', 'public/js')
             target: "http://nginx"
         },
         files: [
+            "./app/View/Components/**/*.php",
             "./resources/**/*.blade.php",
             "./public/**/*"
         ],
