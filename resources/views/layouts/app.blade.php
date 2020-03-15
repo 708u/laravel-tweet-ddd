@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @yield('head')
-    <title>@yield('title')</title>
+    @yield('title')
 </head>
 <body>
     <x-navbar/>

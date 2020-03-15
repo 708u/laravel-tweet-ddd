@@ -18,7 +18,8 @@ class AboutTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/about')
-                    ->assertTitle('About');
+                    ->assertRouteIs('frontend.static.about')
+                    ->assertTitle('About | ' . config('app.name'));
         });
     }
 }

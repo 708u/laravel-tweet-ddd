@@ -37,7 +37,7 @@ jobs:
           cache-name: cache-composer-vendor
         with:
           path: vendor
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-${{ env.cache-name }}-v1-${{ hashFiles('**/composer.lock') }}
       - run: composer install
       - name: Cache node_modules
         uses: actions/cache@v1
@@ -45,7 +45,7 @@ jobs:
           cache-name: cache-node-modules
         with:
           path: node_modules
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-${{ env.cache-name }}-v1-${{ hashFiles('**/yarn.lock') }}
       - run: yarn
       - run: yarn prod
       - run: php artisan key:generate

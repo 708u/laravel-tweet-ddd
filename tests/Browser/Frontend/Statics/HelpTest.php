@@ -18,7 +18,8 @@ class HelpTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/help')
-                    ->assertTitle('Help');
+                    ->assertRouteIs('frontend.static.help')
+                    ->assertTitle('Help | ' . config('app.name'));
         });
     }
 }
