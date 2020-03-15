@@ -13,6 +13,20 @@ class StaticPageTest extends DuskTestCase
      * @group static
      * @return void
      */
+    public function testVisitHomePage()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/')
+                ->assertRouteIs('frontend.static.home')
+                ->assertTitle('Home | ' . config('app.name'));
+        });
+    }
+
+    /**
+     *
+     * @group static
+     * @return void
+     */
     public function testVisitAboutPage()
     {
         $this->browse(function (Browser $browser) {
