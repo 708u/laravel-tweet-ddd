@@ -11,6 +11,6 @@
     <p class="text-center">
         Laravelでtwitter風アプリケーションをドメイン駆動設計で開発するプロジェクト
     </p>
-    <button class="btn btn-outline-primary">Sign Up here</button>
+    <button class="btn btn-outline-primary mx-auto d-block">Sign Up here</button>
 </div>
 @endsection
