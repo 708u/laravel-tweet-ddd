@@ -11,6 +11,7 @@ jobs:
         APP_URL: http://localhost
         DB_CONNECTION: mysql
         DB_HOST: mysql
+        DB_DATABASE: laravel_tweet_ddd_testing
         CACHE_DRIVER: redis
         QUEUE_CONNECTION: redis
         SESSION_DRIVER: redis
