@@ -69,7 +69,7 @@ services:
       - "mysql_store:/var/lib/mysql"
       - "./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf"
       # Create testing DB
-      # - "./docker/mysql/init/create-testing-db.sql:/docker-entrypoint-initdb.d/create-testing-db.sql"
+      - "./docker/mysql/init/create-testing-db.sql:/docker-entrypoint-initdb.d/create-testing-db.sql"
 
   redis:
     image: redis:5.0.7-alpine

@@ -11,6 +11,7 @@ jobs:
         APP_URL: http://localhost
         DB_CONNECTION: mysql
         DB_HOST: mysql
+        DB_DATABASE: laravel_tweet_ddd_testing
         CACHE_DRIVER: redis
         QUEUE_CONNECTION: redis
         SESSION_DRIVER: redis
@@ -21,7 +22,7 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_DATABASE: laravel_tweet_ddd
+          MYSQL_DATABASE: laravel_tweet_ddd_testing
           MYSQL_ROOT_PASSWORD: root
           MYSQL_ROOT_HOST: "%"
       redis:

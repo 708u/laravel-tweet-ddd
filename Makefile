@@ -112,7 +112,7 @@ test: ## Run tests.
 
 .PHONY: dusk
 dusk: ## Run dusk tests
-	docker-compose exec app php artisan dusk
+	docker-compose exec app php artisan dusk --env=testing
 
 .PHONY: chown
 chown: ## chown app dirctory (for lunux distribution user).
