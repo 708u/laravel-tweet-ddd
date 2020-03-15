@@ -1,24 +1,24 @@
 <?php
 
-namespace Tests\Browser\Frontend\Statics;
+namespace Tests\Browser\Frontend\Auth;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
-class HelpPageTest extends DuskTestCase
+class RegisterTest extends DuskTestCase
 {
     /**
      * A Dusk test example.
      *
-     * @group static
+     * @group auth
      * @return void
      */
-    public function testVisitHelpPage()
+    public function testVisitRegisterPage()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/help')
-                    ->assertTitle('Help');
+            $browser->visit('/register')
+                ->assertSee('Register');
         });
     }
 }
