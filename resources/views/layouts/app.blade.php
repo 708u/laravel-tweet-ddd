@@ -10,7 +10,7 @@
     @yield('title')
 </head>
 <body>
-    <x-navbar/>
+    <x-partial.header/>
     @yield('content')
     @yield('foot')
 
