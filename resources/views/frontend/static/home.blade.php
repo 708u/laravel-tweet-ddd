@@ -5,9 +5,9 @@
 @endsection
 
 @section('content')
-<div class="center jumbotron">
-    <h1 class="text-center">Welocome to Laravel tweet
-    </h1>
+<div class="center jumbotron jumbotron-fluid">
+    <h1 class="text-center">Welocome to Laravel tweet</h1>
+    <hr class="my-4">
     <p class="text-center">
         Laravelでtwitter風アプリケーションをドメイン駆動設計で開発するプロジェクト
     </p>
