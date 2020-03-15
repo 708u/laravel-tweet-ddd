@@ -18,7 +18,7 @@ class StaticPageTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
                 ->assertRouteIs('frontend.static.home')
-                ->assertTitle('Home | ' . config('app.name'));
+                ->assertTitle($this->getTitle('Home'));
         });
     }
 
@@ -32,7 +32,7 @@ class StaticPageTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/about')
                 ->assertRouteIs('frontend.static.about')
-                ->assertTitle('About | ' . config('app.name'));
+                ->assertTitle($this->getTitle('About'));
         });
     }
 
@@ -46,7 +46,19 @@ class StaticPageTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/help')
                 ->assertRouteIs('frontend.static.help')
-                ->assertTitle('Help | ' . config('app.name'));
+                ->assertTitle($this->getTitle('Help'));
         });
+    }
+
+    /**
+     * get title string
+     *
+     * @param string $title
+     * @return string
+     */
+    private function getTitle(string $title): string
+    {
+        $appName = config('app.name');
+        return "$title | $appName";
     }
 }
