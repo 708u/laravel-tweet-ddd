@@ -13,6 +13,7 @@
     <x-partial.header/>
     @yield('content')
     @yield('foot')
+    <x-partial.footer/>
 
     <script src="{{ mix('/js/app.js') }}"></script>
 </body>
