@@ -2,12 +2,13 @@
 
 namespace App\Http\Actions\Frontend\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-class LoginAction
+class LoginAction extends Controller
 {
     use AuthenticatesUsers, ThrottlesLogins;
 
