@@ -1,0 +1,10 @@
+@extends('layouts.app')
+
+@section('title')
+{{-- content here --}}
+<x-partial.title title='Something'/>
+@endsection
+
+@section('content')
+{{-- content here --}}
+@endsection
