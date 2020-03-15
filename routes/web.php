@@ -18,8 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('/about', 'frontend.static.about');
-Route::view('/help', 'frontend.static.help');
+Route::name('frontend.')->namespace('frontend')->group(function () {
+    Route::name('static.')->group(function () {
+        Route::view('/about', 'frontend.static.about')->name('about');
+        Route::view('/help', 'frontend.static.help')->name('help');
+    });
+});
 
 Auth::routes();
 
