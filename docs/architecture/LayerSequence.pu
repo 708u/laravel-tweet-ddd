@@ -1,0 +1,13 @@
+@startuml
+View -> Action: Send Parameters From UI
+Action -> Usecase: Request Usecase Execution
+Usecase -> Entity: Execute Usecase With Domain knowledge
+
+Entity -> Repository: Persist Entity
+Entity <-- Repository: Return Persist Response
+Usecase <-- Entity: Return Usecase Execution Response
+Usecase -> DomainEvent: Fire Async DomainEvent if neccessary(ex: send mail)
+
+Action <-- Usecase: Return Usecase Execution Response
+View <-- Action: Return Presenter like ViewModel
+@enduml
