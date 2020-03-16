@@ -14,12 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::name('frontend.')->namespace('Frontend')->group(function () {
-
-    Route::name('auth.')->namespace('Auth')->group(function() {
-        Route::get('/signup', 'RegisterController@showRegistrationForm')->name('signup');
-        Route::post('/signup', 'RegisterController@register');
-    });
-});
-
 // Auth::routes();
