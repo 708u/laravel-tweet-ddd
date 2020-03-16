@@ -24,6 +24,9 @@
 
 ## Architecture
 
+- Layered Architecture
+    - [LayerSequence](https://user-images.githubusercontent.com/43739514/76717837-2f912800-6778-11ea-919a-813123bb0a7d.png)
+
 - ADR
     - [Link](http://pmjones.io/adr/)
 
