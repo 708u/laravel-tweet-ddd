@@ -2,7 +2,7 @@
 
 namespace App\Http\Actions\Frontend\Auth;
 
-use App\User;
+use App\Eloquent\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
@@ -69,7 +69,7 @@ class SignUpAction extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Eloquent\User
      */
     protected function create(array $data)
     {
