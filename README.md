@@ -42,7 +42,9 @@
 │   └── LaravelTweet // Core Domain
 │       ├── Model // Domain Model layer
 │       │   ├── Entity
-│       │   └── ValueObject
+│       │   ├── ValueObject
+│       │   └── DTO
+│       ├── Query // Belongs to ApplicationService, Abstract CQRS Query, not included concrete implementation
 │       ├── Repository // Belongs to ApplicationService layer, not included concrete implementation
 │       │   └── Contract
 │       └── UseCase // Belongs to ApplicationService layer, Accomplish use-case
@@ -50,6 +52,7 @@
 |   ├── Uuid
 |   ├── Transaction
 │   └── LaravelTweet // Core Domain Implementation
+│       ├── Query // Concrete CQRS Query
 |       └── Repository // Concrete Repository
 |           └── Eloquent
 ├── app // Laravel app
