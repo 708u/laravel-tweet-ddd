@@ -18,6 +18,7 @@
     },
     "require-dev": {
         "facade/ignition": "^2.0",
+        "friendsofphp/php-cs-fixer": "^2.16",
         "fzaninotto/faker": "^1.9.1",
         "laravel/dusk": "^5.9",
         "laravel/telescope": "^3.1",
