@@ -1,13 +1,30 @@
-@startuml
-View -> Action: Send Parameters From UI
-Action -> Usecase: Request Usecase Execution
-Usecase -> Entity: Execute Usecase With Domain knowledge
+@startuml Create New Entity Sequence
+UI_View -> UI_Action: Send Parameters From View
+activate UI_Action
 
-Entity -> Repository: Persist Entity
-Entity <-- Repository: Return Persist Response
-Usecase <-- Entity: Return Usecase Execution Response
-Usecase -> DomainEvent: Fire Async DomainEvent if neccessary(ex: send mail)
+UI_Action -> ApplicationService_Usecase: Request Usecase Execution
 
-Action <-- Usecase: Return Usecase Execution Response
-View <-- Action: Return Presenter like ViewModel
+activate ApplicationService_Usecase
+ApplicationService_Usecase -> ApplicationService_Repository: Execute Usecase With Domain knowledge
+
+activate ApplicationService_Repository
+ApplicationService_Repository -> DomainModel_Entity: Create Entity
+DomainModel_Entity -> ApplicationService_Repository: Return Entity
+ ApplicationService_Repository -> Infrastructure_RDBMS: Persist Entity
+
+activate Infrastructure_RDBMS
+ApplicationService_Repository <- Infrastructure_RDBMS: Return Persistance Response
+deactivate Infrastructure_RDBMS
+
+ApplicationService_Usecase <-- ApplicationService_Repository: Return Usecase Execution Response
+deactivate ApplicationService_Repository
+
+ApplicationService_Usecase -> DomainEvent: Fire Async DomainEvent if neccessary(ex: send mail)
+
+UI_Action <-- ApplicationService_Usecase: Return Usecase Execution Response
+deactivate ApplicationService_Usecase
+
+UI_View <-- UI_Action: Return Presenter like Responder
+deactivate UI_Action
+
 @enduml
