@@ -27,7 +27,7 @@
 ### Onion Architecture
 
 - Workflow sequence
-![LayerSequence](https://user-images.githubusercontent.com/43739514/76717837-2f912800-6778-11ea-919a-813123bb0a7d.png)
+![LayerSequence](https://user-images.githubusercontent.com/43739514/76810548-db4a7e80-6831-11ea-9fed-71350d1e0140.png)
 
 ### ADR
 
