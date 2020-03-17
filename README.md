@@ -24,8 +24,100 @@
 
 ## Architecture
 
-- ADR
-    - [Link](http://pmjones.io/adr/)
+### Onion Architecture
+
+#### Workflow sequence
+
+- e.g. Create New Entity
+
+![LayerSequence](https://user-images.githubusercontent.com/43739514/76810548-db4a7e80-6831-11ea-9fed-71350d1e0140.png)
+
+### Directory tree
+
+```text
+├── Domain // Pure Domain Knowledge
+│   ├── Base // Base Abstract Classes
+│   ├── Application // Application Utility services
+│   │   └── Contract
+|   |       ├── Uuid
+|   |       └── Transaction
+│   └── LaravelTweet // Core Domain
+│       ├── Model // Domain Model layer
+│       │   ├── Entity
+│       │   ├── ValueObject
+│       │   └── DTO
+│       ├── Query // Belongs to ApplicationService, Abstract CQRS Query, not included concrete implementation
+│       ├── Repository // Belongs to ApplicationService layer, not included concrete implementation
+│       │   └── Contract
+│       └── UseCase // Belongs to ApplicationService layer, Accomplish use-case
+|── Infrastructure // Concrete Implementations. Should implement ApplicationService interface e.g RDBMS, HTTP Clients...
+│   ├── Application // Concrete Utility Application services
+|   |   ├── Uuid
+|   |   └── Transaction
+│   └── LaravelTweet // Core Domain Implementation
+│       ├── Query // Concrete CQRS Query
+|       └── Repository // Concrete Repository
+|           └── Eloquent
+├── app // Laravel app
+│   ├── Console
+│   ├── Eloquent
+│   ├── Exceptions
+│   ├── Http
+│   │   ├── Actions // For ADR pattern
+│   │   │   ├── Frontend
+│   │   │   └── Backend
+│   │   └── Middleware
+│   ├── Providers
+│   └── View
+│       └── Components
+│           └── Partial
+├── bootstrap
+│   └── cache
+├── config
+├── database
+│   ├── factories
+│   ├── migrations
+│   └── seeds
+├── docker // configs with using docker-compose
+│   ├── mysql
+│   │   └── init
+│   ├── nginx
+│   └── php
+├── docs
+│   └── architecture
+├── public
+├── resources
+│   ├── js
+│   │   └── components
+│   ├── lang
+│   │   └── en
+│   ├── sass
+│   └── views
+│       ├── components
+│       │   └── partial
+│       ├── frontend
+│       ├── backend
+│       └── layouts
+├── routes
+├── storage
+│   ├── app
+│   │   └── public
+│   ├── framework
+│   └── logs
+└── tests
+    ├── Browser // for E2E
+    │   ├── Frontend
+    │   ├── Backend
+    │   ├── Pages
+    │   ├── console
+    │   └── screenshots
+    ├── Feature
+    └── Unit
+```
+
+### ADR
+
+- [Link](http://pmjones.io/adr/)
 
 ## Installation
 
