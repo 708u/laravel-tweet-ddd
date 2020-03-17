@@ -39,12 +39,6 @@
 │   ├── Base // Base Abstract Classes
 │   ├── Application // Application Utility services
 │   │   └── Contract
-|   ├── Infrastructure // Concrete Implementations. Should implement ApplicationService interface e.g RDBMS, HTTP Clients...
-|   │   ├── Uuid
-|   │   ├── Transaction
-│   |   └── LaravelTweet // Core Domain Implementation
-|   │       └── Repository // Concrete Repository
-|   │           └── Eloquent
 │   └── LaravelTweet // Core Domain
 │       ├── Model // Domain Model layer
 │       │   ├── Entity
@@ -52,6 +46,12 @@
 │       ├── Repository // Belongs to ApplicationService layer, not included concrete implementation
 │       │   └── Contract
 │       └── UseCase // Belongs to ApplicationService layer, Accomplish use-case
+|── Infrastructure // Concrete Implementations. Should implement ApplicationService interface e.g RDBMS, HTTP Clients...
+|   ├── Uuid
+|   ├── Transaction
+│   └── LaravelTweet // Core Domain Implementation
+|       └── Repository // Concrete Repository
+|           └── Eloquent
 ├── app // Laravel app
 │   ├── Console
 │   ├── Eloquent
