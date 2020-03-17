@@ -114,6 +114,10 @@ test: ## Run tests.
 dusk: ## Run dusk tests
 	docker-compose exec app php artisan dusk --env=testing
 
+.PHONY: format
+format: ## Format All php files
+	docker-compose exec app ./vendor/bin/php-cs-fixer fix --config=./.php_cs.dist -v
+
 .PHONY: chown
 chown: ## chown app dirctory (for lunux distribution user).
 	sudo chown -R $(UID):$(GID) ../$(shell basename `pwd`)

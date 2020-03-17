@@ -4,9 +4,9 @@ namespace App\Http\Actions\Frontend\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Http\Request;
 
 class LoginAction extends Controller
 {
@@ -55,4 +55,3 @@ class LoginAction extends Controller
         return $this->sendFailedLoginResponse($request);
     }
 }
-

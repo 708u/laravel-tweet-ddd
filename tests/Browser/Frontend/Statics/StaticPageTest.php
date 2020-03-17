@@ -7,6 +7,9 @@ use Tests\DuskTestCase;
 use Tests\Browser\Helper\TestHelper;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
+/**
+ * @internal
+ */
 class StaticPageTest extends DuskTestCase
 {
     use TestHelper;

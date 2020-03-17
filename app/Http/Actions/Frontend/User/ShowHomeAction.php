@@ -2,7 +2,6 @@
 
 namespace App\Http\Actions\Frontend\User;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ShowHomeAction extends Controller
