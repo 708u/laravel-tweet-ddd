@@ -48,6 +48,10 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-${{ env.cache-name }}-v1-${{ hashFiles('**/yarn.lock') }}
+
+      # Format Check
+      - run: ./vendor/bin/php-cs-fixer fix --config=./.php_cs.dist -v
+
       - run: yarn
       - run: yarn prod
       - run: php artisan key:generate
