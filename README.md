@@ -29,6 +29,77 @@
 - Workflow sequence
 ![LayerSequence](https://user-images.githubusercontent.com/43739514/76810548-db4a7e80-6831-11ea-9fed-71350d1e0140.png)
 
+### Directory tree
+
+```text
+├── Domain
+│   ├── Base
+│   └── LaravelTweet
+│       ├── Entity
+│       ├── Infrastructure
+│       │   ├── Util
+│       │   └── Repository
+│       │       └── Eloquent
+│       ├── Repository
+│       │   └── Contract
+│       └── UseCase
+├── app
+│   ├── Console
+│   ├── Eloquent
+│   ├── Exceptions
+│   ├── Http
+│   │   ├── Actions
+│   │   │   ├── Frontend
+│   │   │   └── Backend
+│   │   └── Middleware
+│   ├── Providers
+│   └── View
+│       └── Components
+│           └── Partial
+├── bootstrap
+│   └── cache
+├── config
+├── database
+│   ├── factories
+│   ├── migrations
+│   └── seeds
+├── docker
+│   ├── mysql
+│   │   └── init
+│   ├── nginx
+│   └── php
+├── docs
+│   └── architecture
+├── public
+├── resources
+│   ├── js
+│   │   └── components
+│   ├── lang
+│   │   └── en
+│   ├── sass
+│   └── views
+│       ├── components
+│       │   └── partial
+│       ├── frontend
+│       ├── backend
+│       └── layouts
+├── routes
+├── storage
+│   ├── app
+│   │   └── public
+│   ├── framework
+│   └── logs
+└── tests
+    ├── Browser
+    │   ├── Frontend
+    │   ├── Backend
+    │   ├── Pages
+    │   ├── console
+    │   └── screenshots
+    ├── Feature
+    └── Unit
+```
+
 ### ADR
 
 - [Link](http://pmjones.io/adr/)
