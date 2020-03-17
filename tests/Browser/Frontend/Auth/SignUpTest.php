@@ -2,10 +2,13 @@
 
 namespace Tests\Browser\Frontend\Auth;
 
-use Tests\DuskTestCase;
-use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Laravel\Dusk\Browser;
+use Tests\DuskTestCase;
 
+/**
+ * @internal
+ */
 class SignUpTest extends DuskTestCase
 {
     use DatabaseMigrations;
@@ -40,8 +43,8 @@ class SignUpTest extends DuskTestCase
         $this->assertDatabaseHas(
             'users',
             [
-                'name' => $name,
-                'email' => $email
+                'name'  => $name,
+                'email' => $email,
             ]
         );
     }

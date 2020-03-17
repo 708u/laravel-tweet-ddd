@@ -3,9 +3,9 @@
 namespace App\Http\Actions\Frontend\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LogoutAction extends Controller
 {
@@ -34,4 +34,3 @@ class LogoutAction extends Controller
             : redirect('/');
     }
 }
-
