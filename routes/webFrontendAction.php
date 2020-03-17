@@ -31,5 +31,5 @@ Route::name('auth.')->namespace('Auth')->group(function () {
 
 Route::name('user.')->namespace('User')->middleware('auth')->group(function () {
     Route::get('/home', 'ShowHomeAction')->name('home');
-    Route::get('/users/{id}', 'ShowUserAction')->name('home');
+    Route::get('/users/{id}', 'ShowUserAction')->name('show');
 });
