@@ -2,12 +2,15 @@
 
 namespace Tests\Browser\Frontend\Statics;
 
+use Browser\Helper\TestHelper;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
 class StaticPageTest extends DuskTestCase
 {
+    use TestHelper;
+
     /**
      *
      * @group static
@@ -54,17 +57,5 @@ class StaticPageTest extends DuskTestCase
                 ->assertRouteIs('frontend.static.help')
                 ->assertTitle($this->getTitle('Help'));
         });
-    }
-
-    /**
-     * get title string
-     *
-     * @param string $title
-     * @return string
-     */
-    private function getTitle(string $title): string
-    {
-        $appName = config('app.name');
-        return "$title | $appName";
     }
 }
