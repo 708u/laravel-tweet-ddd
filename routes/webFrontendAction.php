@@ -29,6 +29,7 @@ Route::name('auth.')->namespace('Auth')->group(function () {
     Route::post('/logout', 'LogoutAction')->name('logout');
 });
 
-Route::name('user.')->namespace('User')->group(function () {
+Route::name('user.')->namespace('User')->middleware('auth')->group(function () {
     Route::get('/home', 'ShowHomeAction')->name('home');
+    Route::get('/users/{id}', 'ShowUserAction')->name('home');
 });
