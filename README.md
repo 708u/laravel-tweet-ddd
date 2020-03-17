@@ -32,18 +32,24 @@
 ### Directory tree
 
 ```text
-├── Domain
-│   ├── Base
-│   └── LaravelTweet
-│       ├── Entity
-│       ├── Infrastructure
-│       │   ├── Util
-│       │   └── Repository
-│       │       └── Eloquent
-│       ├── Repository
+├── Domain // Pure Domain Knowledge
+│   ├── Base // Base Abstract Classes
+│   ├── Application // Application Utility services
+│   │   └── Contract
+|   ├── Infrastructure // Concrete Implementations. Should implement ApplicationService interface e.g RDBMS, HTTP Clients...
+|   │   ├── Uuid
+|   │   ├── Transaction
+│   |   └── LaravelTweet // Core Domain Implementation
+|   │       └── Repository // Concrete Repository
+|   │           └── Eloquent
+│   └── LaravelTweet // Core Domain
+│       ├── Model // Domain Model layer
+│       │   ├── Entity
+│       │   └── ValueObject
+│       ├── Repository // Belongs to ApplicationService layer, not included concrete implementation
 │       │   └── Contract
-│       └── UseCase
-├── app
+│       └── UseCase // Belongs to ApplicationService layer, Accomplish use-case
+├── app // Laravel app
 │   ├── Console
 │   ├── Eloquent
 │   ├── Exceptions
@@ -63,7 +69,7 @@
 │   ├── factories
 │   ├── migrations
 │   └── seeds
-├── docker
+├── docker // configs with using docker-compose
 │   ├── mysql
 │   │   └── init
 │   ├── nginx
@@ -90,7 +96,7 @@
 │   ├── framework
 │   └── logs
 └── tests
-    ├── Browser
+    ├── Browser // for E2E
     │   ├── Frontend
     │   ├── Backend
     │   ├── Pages
