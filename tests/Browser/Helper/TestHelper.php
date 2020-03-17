@@ -1,6 +1,6 @@
 <?php
 
-namespace Browser\Helper;
+namespace Tests\Browser\Helper;
 
 trait TestHelper
 {

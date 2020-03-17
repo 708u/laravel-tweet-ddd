@@ -2,10 +2,10 @@
 
 namespace Tests\Browser\Frontend\Statics;
 
-use Browser\Helper\TestHelper;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
+use Tests\Browser\Helper\TestHelper;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class StaticPageTest extends DuskTestCase
 {
