@@ -57,7 +57,7 @@
 │   ├── Eloquent
 │   ├── Exceptions
 │   ├── Http
-│   │   ├── Actions
+│   │   ├── Actions // For ADR pattern
 │   │   │   ├── Frontend
 │   │   │   └── Backend
 │   │   └── Middleware
