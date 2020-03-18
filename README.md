@@ -29,7 +29,7 @@
 #### Architecture Overview
 
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/43739514/76864285-30bf7380-68a4-11ea-8003-76ee28a99a1e.png">
+    <img width="55%" src="https://user-images.githubusercontent.com/43739514/76864285-30bf7380-68a4-11ea-8003-76ee28a99a1e.png">
 </p>
 
 #### Workflow sequence
