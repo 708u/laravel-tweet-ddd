@@ -16,7 +16,8 @@ class UserTest extends DuskTestCase
     use DatabaseMigrations, TestHelper;
 
     /**
-     * A Dusk test example.
+     * User page test
+     * @group user
      *
      * @return void
      */
