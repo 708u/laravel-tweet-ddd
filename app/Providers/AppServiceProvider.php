@@ -8,8 +8,8 @@ use Infrastructure\Application\Uuid\UuidGenerator;
 
 class AppServiceProvider extends ServiceProvider
 {
-    public $bindings = [
-        UuidGeneratable::class => UuidGenerator::class
+    public array $bindings = [
+        UuidGeneratable::class => UuidGenerator::class,
     ];
 
     /**
