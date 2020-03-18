@@ -3,11 +3,14 @@
 namespace Tests\Browser\Frontend\User;
 
 use App\Eloquent\User;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Laravel\Dusk\Browser;
 use Tests\Browser\Helper\TestHelper;
 use Tests\DuskTestCase;
-use Laravel\Dusk\Browser;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
+/**
+ * @internal
+ */
 class UserTest extends DuskTestCase
 {
     use DatabaseMigrations, TestHelper;
@@ -20,7 +23,6 @@ class UserTest extends DuskTestCase
     public function testVisitShowingUser()
     {
         $this->browse(function (Browser $browser) {
-
             $browser->loginAs($user = factory(User::class)->create())
                     ->visit('/users/' . $user->id)
                     ->assertTitle($this->getTitle('User Profile'));

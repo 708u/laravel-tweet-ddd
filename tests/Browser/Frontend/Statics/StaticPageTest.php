@@ -3,9 +3,8 @@
 namespace Tests\Browser\Frontend\Statics;
 
 use Laravel\Dusk\Browser;
-use Tests\DuskTestCase;
 use Tests\Browser\Helper\TestHelper;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\DuskTestCase;
 
 /**
  * @internal
