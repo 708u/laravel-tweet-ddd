@@ -16,7 +16,7 @@ class ShowUserAction extends Controller
         //
     }
 
-    public function __invoke(int $id)
+    public function __invoke(string $uuid)
     {
         return view('frontend.user.show');
     }
