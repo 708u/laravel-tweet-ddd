@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\domain\Model\ValueObject\Base;
 
-use Domain\Model\ValueObject\Base\Identifier;
 use DomainException;
+use Tests\Helper\Domain\Model\ValueObject\Base\AbstractIdentifierMock;
 use Tests\TestCase;
 
 /**
@@ -24,8 +24,8 @@ class IdentifierTest extends TestCase
      */
     public function testCanDetermineEquals()
     {
-        $identifier = $this->createAnonymousIdentifier($this->plainIdentifier);
-        $identifier2 = $this->createAnonymousIdentifier($this->plainIdentifier);
+        $identifier = new AbstractIdentifierMock($this->plainIdentifier);
+        $identifier2 = new AbstractIdentifierMock($this->plainIdentifier);
 
         $this->assertTrue($identifier->equals($identifier2));
     }
@@ -41,18 +41,6 @@ class IdentifierTest extends TestCase
         $this->expectException(DomainException::class);
 
         // Should throw exception because of foobar.
-        $this->createAnonymousIdentifier('foobar');
-    }
-
-    /**
-     * Create fake Identifier for testing.
-     *
-     * @param string $uuid
-     * @return Identifier
-     */
-    private function createAnonymousIdentifier(string $uuid): Identifier
-    {
-        return new class($uuid) extends Identifier {
-        };
+        new AbstractIdentifierMock('foobar');
     }
 }

@@ -5,6 +5,7 @@ namespace Tests\Unit\domain\Model\Entity\Base;
 use Domain\Model\Entity\Base\Entity;
 use Domain\Model\ValueObject\Base\Identifier;
 use Tests\Helper\Domain\Model\Entity\Base\TestEntity;
+use Tests\Helper\Domain\Model\ValueObject\Base\AbstractIdentifierMock;
 use Tests\TestCase;
 
 /**
@@ -23,7 +24,7 @@ class EntityTest extends TestCase
         parent::setUp();
 
         // Create anonymous entity for testing
-        $this->identifier = $this->createAnonymousIdentifier($this->plainIdentifier);
+        $this->identifier = new AbstractIdentifierMock($this->plainIdentifier);
         $this->entity = new TestEntity($this->identifier);
     }
 
@@ -35,21 +36,9 @@ class EntityTest extends TestCase
     {
         $this->assertTrue($this->entity->equals($this->identifier));
         // Determine if when Created Identifier has another instance-id
-        $this->assertTrue($this->entity->equals($this->createAnonymousIdentifier($this->plainIdentifier)));
+        $this->assertTrue($this->entity->equals(new AbstractIdentifierMock($this->plainIdentifier)));
 
-        $anotherIdentifier = $this->createAnonymousIdentifier('901e6a68-fbea-415b-af75-76bbed08fdb1');
+        $anotherIdentifier = new AbstractIdentifierMock('901e6a68-fbea-415b-af75-76bbed08fdb1');
         $this->assertFalse($this->entity->equals($anotherIdentifier));
-    }
-
-    /**
-     * Create fake Identifier for testing.
-     *
-     * @param string $uuid
-     * @return Identifier
-     */
-    private function createAnonymousIdentifier(string $uuid): Identifier
-    {
-        return new class($uuid) extends Identifier {
-        };
     }
 }
