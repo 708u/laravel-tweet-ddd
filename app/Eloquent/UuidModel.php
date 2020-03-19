@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 abstract class UuidModel extends Model
 {
-    protected string $primaryKey = 'uuid';
+    protected $primaryKey = 'uuid';
 
-    protected string $keyType = 'string';
+    protected $keyType = 'string';
 
-    public bool $incrementing = false;
+    public $incrementing = false;
 }
