@@ -36,7 +36,7 @@ class IdentifierTest extends TestCase
      *
      * @return void
      */
-    public function testShouldThrowExceptionIfInvalidArgumentGigen()
+    public function testShouldThrowExceptionIfInvalidArgumentGiven()
     {
         $this->expectException(DomainException::class);
 
