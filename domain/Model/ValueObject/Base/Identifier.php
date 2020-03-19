@@ -11,10 +11,7 @@ abstract class Identifier
 
     public function __construct(string $identifier)
     {
-        throw_unless(
-            resolve(UuidGeneratable::class)->isUuid($identifier),
-            new DomainException("The argument of $identifier is NOT UUID.")
-        );
+        $this->validate($identifier);
         $this->identifier = $identifier;
     }
 
@@ -42,5 +39,19 @@ abstract class Identifier
     public function toString(): string
     {
         return $this->identifier;
+    }
+
+    /**
+     * Determine if parameters is correct formant based on Application Core.
+     *
+     * @throws DomainException
+     * @return void
+     */
+    private function validate(string $identifier): void
+    {
+        throw_unless(
+            resolve(UuidGeneratable::class)->isUuid($identifier),
+            new DomainException("The argument of $identifier is NOT UUID.")
+        );
     }
 }
