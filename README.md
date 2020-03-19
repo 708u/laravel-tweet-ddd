@@ -40,7 +40,7 @@
 ### Directory tree
 
 ```text
-├── Domain // Pure Domain Knowledge
+├── domain // Pure Domain Knowledge
 │   ├── Base // Base Abstract Classes
 │   ├── Application // Application Utility services
 │   │   └── Contract
@@ -55,7 +55,7 @@
 │       ├── Repository // Belongs to ApplicationService layer, not included concrete implementation
 │       │   └── Contract
 │       └── UseCase // Belongs to ApplicationService layer, Accomplish use-case
-|── Infrastructure // Concrete Implementations. Should implement ApplicationService interface e.g RDBMS, HTTP Clients...
+|── infrastructure // Concrete Implementations. Should implement ApplicationService interface e.g RDBMS, HTTP Clients...
 │   ├── Application // Concrete Utility Application services
 |   |   ├── Uuid
 |   |   └── Transaction
