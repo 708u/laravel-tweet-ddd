@@ -2,10 +2,13 @@
 
 namespace Tests\Unit\domain\Model\ValueObject\Base;
 
-use Tests\TestCase;
 use Domain\Model\ValueObject\Base\Identifier;
 use DomainException;
+use Tests\TestCase;
 
+/**
+ * @internal
+ */
 class IdentifierTest extends TestCase
 {
     private string $plainIdentifier = '901e66be-91ec-499e-b91a-70260f3c7ba6';
@@ -28,11 +31,11 @@ class IdentifierTest extends TestCase
     }
 
     /**
-    * @test
-    * @group value-object
-    *
-    * @return void
-    */
+     * @test
+     * @group value-object
+     *
+     * @return void
+     */
     public function testShouldThrowExceptionIfInvalidArgumentGigen()
     {
         $this->expectException(DomainException::class);
