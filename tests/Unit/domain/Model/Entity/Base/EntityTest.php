@@ -4,7 +4,7 @@ namespace Tests\Unit\domain\Model\Entity\Base;
 
 use Domain\Model\Entity\Base\Entity;
 use Domain\Model\ValueObject\Base\Identifier;
-use Tests\Helper\Domain\Model\Entity\Base\TestEntity;
+use Tests\Helper\Domain\Model\Entity\Base\AbstractEntityMock;
 use Tests\Helper\Domain\Model\ValueObject\Base\AbstractIdentifierMock;
 use Tests\TestCase;
 
@@ -25,7 +25,7 @@ class EntityTest extends TestCase
 
         // Create anonymous entity for testing
         $this->identifier = new AbstractIdentifierMock($this->plainIdentifier);
-        $this->entity = new TestEntity($this->identifier);
+        $this->entity = new AbstractEntityMock($this->identifier);
     }
 
     /**
