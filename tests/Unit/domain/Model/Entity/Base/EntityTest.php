@@ -2,10 +2,13 @@
 
 namespace Tests\Unit\domain\Model\Entity\Base;
 
-use Tests\TestCase;
 use Domain\Model\Entity\Base\Entity;
 use Domain\Model\ValueObject\Base\Identifier;
+use Tests\TestCase;
 
+/**
+ * @internal
+ */
 class EntityTest extends TestCase
 {
     private string $plainIdentifier = '901e66be-91ec-499e-b91a-70260f3c7ba6';
@@ -50,6 +53,7 @@ class EntityTest extends TestCase
      */
     private function createAnonymousIdentifier(string $uuid): Identifier
     {
-        return new class ($uuid) extends Identifier {};
+        return new class($uuid) extends Identifier {
+        };
     }
 }
