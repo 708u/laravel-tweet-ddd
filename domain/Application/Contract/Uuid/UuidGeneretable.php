@@ -9,5 +9,13 @@ interface UuidGeneratable
      *
      * @return string
      */
-    public function generate(): string;
+    public function nextIdentifier(): string;
+
+    /**
+     * determine if value is uuid.
+     *
+     * @param string $str
+     * @return bool
+     */
+    public function isUuid(string $str): bool;
 }
