@@ -25,7 +25,7 @@ class UserTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($user = factory(User::class)->create())
-                    ->visit('/users/' . $user->id)
+                    ->visit('/users/' . $user->uuid)
                     ->assertTitle($this->getTitle('User Profile'));
         });
     }
