@@ -12,8 +12,19 @@ class UuidGenerator implements UuidGeneratable
      *
      * @return string
      */
-    public function generate(): string
+    public function nextIdentifier(): string
     {
         return (string) Str::orderedUuid();
+    }
+
+    /**
+     * determine if value is uuid.
+     *
+     * @param string $str
+     * @return bool
+     */
+    public function isUuid(string $str): bool
+    {
+        return Str::isUuid($str);
     }
 }

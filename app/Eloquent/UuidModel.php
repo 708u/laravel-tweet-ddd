@@ -18,7 +18,7 @@ abstract class UuidModel extends Model
         parent::boot();
 
         static::creating(function ($m) {
-            $m->{$m->getKeyName()} = app(UuidGeneratable::class)->generate();
+            $m->{$m->getKeyName()} = app(UuidGeneratable::class)->nextIdentifier();
         });
     }
 }
