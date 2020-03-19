@@ -4,6 +4,7 @@ namespace Tests\Unit\domain\Model\Entity\Base;
 
 use Domain\Model\Entity\Base\Entity;
 use Domain\Model\ValueObject\Base\Identifier;
+use Tests\Helper\Domain\Model\Entity\Base\TestEntity;
 use Tests\TestCase;
 
 /**
@@ -23,12 +24,7 @@ class EntityTest extends TestCase
 
         // Create anonymous entity for testing
         $this->identifier = $this->createAnonymousIdentifier($this->plainIdentifier);
-        $this->entity = new class($this->identifier) extends Entity {
-            public function __construct(Identifier $identifier)
-            {
-                $this->identifier = $identifier;
-            }
-        };
+        $this->entity = new TestEntity($this->identifier);
     }
 
     /**
