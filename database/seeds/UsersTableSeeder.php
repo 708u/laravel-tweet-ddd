@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
     {
         factory(User::class)->create([
             'uuid'  => app(UuidGeneratable::class)->generate(),
-            'email' => 'foo@example.com'
+            'email' => 'foo@example.com',
         ]);
     }
 }
