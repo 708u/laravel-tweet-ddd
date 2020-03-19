@@ -2,6 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 use App\Eloquent\User;
+use Domain\Application\Contract\Uuid\UuidGeneratable;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -18,6 +19,7 @@ use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
+        'uuid'              => resolve(UuidGeneratable::class)->generate(),
         'name'              => $faker->name,
         'email'             => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
