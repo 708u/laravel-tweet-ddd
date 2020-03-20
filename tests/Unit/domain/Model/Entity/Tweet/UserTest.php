@@ -2,13 +2,14 @@
 
 namespace Tests\Unit\domain\Model\Entity\Tweet;
 
-use Tests\TestCase;
-use Domain\Model\Entity\Tweet\User;
 use Domain\Application\Contract\Uuid\UuidGeneratable;
+use Domain\Model\Entity\Tweet\User;
 use Domain\Model\ValueObject\Tweet\Identifier\UserId;
+use Tests\TestCase;
 
-
-
+/**
+ * @internal
+ */
 class UserTest extends TestCase
 {
     /**
@@ -19,7 +20,7 @@ class UserTest extends TestCase
     public function testCreate()
     {
         $userId = new UserId(resolve(UuidGeneratable::class)->nextIdentifier());
-        $user = new User($userId);
+        $user = new User($userId, 'foo', 'foo@foo.com', 'password');
         $this->assertNotEmpty($user);
     }
 }
