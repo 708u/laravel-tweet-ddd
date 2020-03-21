@@ -19,7 +19,7 @@ class Password
     {
         throw_if(
             strlen($password) < self::AT_LEAST_PASSWORD_LENGTH,
-            new InvalidArgumentException("Password char at least longer than 8.")
+            new InvalidArgumentException('Password char at least longer than 8.')
         );
 
         return new self($password);
