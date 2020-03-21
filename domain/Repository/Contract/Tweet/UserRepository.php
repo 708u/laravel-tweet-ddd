@@ -17,7 +17,8 @@ interface UserRepository
     /**
      * Find user entity.
      *
+     * @param string $userId
      * @return User
      */
-    public function find(): User;
+    public function find(string $userId): User;
 }

@@ -3,7 +3,6 @@
 namespace Domain\UseCase\Tweet;
 
 use Domain\Model\DTO\Tweet\UserDTO;
-use Domain\Model\ValueObject\Tweet\Identifier\UserId;
 use Domain\Repository\Contract\Tweet\UserRepository;
 
 class ShowUserUseCase
@@ -23,6 +22,6 @@ class ShowUserUseCase
      */
     public function execute(string $identifier): UserDTO
     {
-        return $this->user->find(new UserId($identifier))->toDto();
+        return $this->user->find($identifier)->toDto();
     }
 }
