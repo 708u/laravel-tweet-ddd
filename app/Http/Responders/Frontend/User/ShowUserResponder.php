@@ -3,9 +3,9 @@
 namespace App\Http\Responders\Frontend\User;
 
 use Domain\Model\DTO\Tweet\UserDTO;
+use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Response;
 use Illuminate\View\Factory as ViewFactory;
-use Illuminate\Contracts\Support\Responsable;
 
 class ShowUserResponder implements Responsable
 {
@@ -28,7 +28,7 @@ class ShowUserResponder implements Responsable
     {
         return new Response(
             $this->view->make('frontend.user.show')->with([
-                'user' => $this->user
+                'user' => $this->user,
             ])
         );
     }
