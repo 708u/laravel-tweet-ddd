@@ -4,25 +4,25 @@ namespace Domain\Model\ValueObject\Tweet\Password;
 
 use InvalidArgumentException;
 
-class Password
+class HashedPassword
 {
-    private string $password;
+    private string $hashedPassword;
 
     private const HASHED_PASSWORD_LENGTH = 60;
 
-    private function __construct(string $password)
+    private function __construct(string $hashedPassword)
     {
-        $this->password = $password;
+        $this->hashedPassword = $hashedPassword;
     }
 
-    public static function factory(string $password): self
+    public static function factory(string $hashedPassword): self
     {
         throw_unless(
-            strlen($password) === self::HASHED_PASSWORD_LENGTH,
+            strlen($hashedPassword) === self::HASHED_PASSWORD_LENGTH,
             new InvalidArgumentException('Hashed Password length should 60 chars.')
         );
 
-        return new self($password);
+        return new self($hashedPassword);
     }
 
     /**
@@ -32,6 +32,6 @@ class Password
      */
     public function hashedPassword(): string
     {
-        return $this->password;
+        return $this->hashedPassword;
     }
 }

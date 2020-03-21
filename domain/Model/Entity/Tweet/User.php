@@ -5,23 +5,23 @@ namespace Domain\Model\Entity\Tweet;
 use Domain\Model\Entity\Base\Entity;
 use Domain\Model\ValueObject\Tweet\Email\Email;
 use Domain\Model\ValueObject\Tweet\Identifier\UserId;
-use Domain\Model\ValueObject\Tweet\Password\Password;
+use Domain\Model\ValueObject\Tweet\Password\HashedPassword;
 
 class User extends Entity
 {
-    public function __construct(UserId $userId, string $userName, Email $email, Password $password)
+    public function __construct(UserId $userId, string $userName, Email $email, HashedPassword $hashedPassword)
     {
         $this->identifier = $userId;
         $this->userName = $userName;
         $this->email = $email;
-        $this->password = $password;
+        $this->hashedPassword = $hashedPassword;
     }
 
     private string $userName;
 
     private Email $email;
 
-    private password $password;
+    private HashedPassword $hashedPassword;
 
     public function userName(): string
     {
@@ -35,6 +35,6 @@ class User extends Entity
 
     public function hashedPassword(): string
     {
-        return $this->password->hashedPassword();
+        return $this->hashedPassword->hashedPassword();
     }
 }
