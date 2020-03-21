@@ -19,7 +19,7 @@ class ShowUserResponder implements Responsable
     }
 
     /**
-     * Undocumented function
+     * Create response
      *
      * @param [type] $request
      * @return Response
