@@ -3,6 +3,7 @@
 namespace App\Http\Actions\Frontend\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Responders\Frontend\User\ShowUserResponder;
 use Domain\UseCase\Tweet\ShowUserUseCase;
 
 class ShowUserAction extends Controller
@@ -14,14 +15,15 @@ class ShowUserAction extends Controller
      *
      * @return void
      */
-    public function __construct(ShowUserUseCase $useCase)
+    public function __construct(ShowUserUseCase $useCase, ShowUserResponder $responder)
     {
         $this->useCase = $useCase;
+        $this->responder = $responder;
     }
 
     public function __invoke(string $uuid)
     {
-        $user = $this->useCase->execute($uuid);
-        return view('frontend.user.show', ['user' => $user]);
+        return $this->responder
+            ->setUser($this->useCase->execute($uuid));
     }
 }
