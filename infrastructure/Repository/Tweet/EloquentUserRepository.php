@@ -25,6 +25,7 @@ class EloquentUserRepository implements UserRepository
     {
         $this->eloquentUser->create([
             'uuid'     => $user->identifierAsString(),
+            'name'     => $user->userName(),
             'email'    => $user->email(),
             'password' => $user->hashedPassword(),
         ]);
