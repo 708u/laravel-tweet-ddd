@@ -19,7 +19,7 @@ class HashedPassword
     {
         throw_unless(
             strlen($hashedPassword) === self::HASHED_PASSWORD_LENGTH,
-            new InvalidArgumentException('Hashed Password length should 60 chars.')
+            new InvalidArgumentException('Hashed Password length should be 60 chars.')
         );
 
         return new self($hashedPassword);

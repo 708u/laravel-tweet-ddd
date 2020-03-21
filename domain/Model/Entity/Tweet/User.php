@@ -23,16 +23,31 @@ class User extends Entity
 
     private HashedPassword $hashedPassword;
 
+    /**
+     * Get username.
+     *
+     * @return string
+     */
     public function userName(): string
     {
         return $this->userName;
     }
 
+    /**
+     * Get email.
+     *
+     * @return string
+     */
     public function email(): string
     {
         return $this->email->email();
     }
 
+    /**
+     * Get hashed password.
+     *
+     * @return string
+     */
     public function hashedPassword(): string
     {
         return $this->hashedPassword->hashedPassword();
