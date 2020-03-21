@@ -2,8 +2,8 @@
 
 namespace Infrastructure\Application\Hash;
 
-use Illuminate\Support\Facades\Hash;
 use Domain\Application\Contract\Hash\Hashable;
+use Illuminate\Support\Facades\Hash;
 
 class Hasher implements Hashable
 {

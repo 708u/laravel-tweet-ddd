@@ -32,4 +32,9 @@ class User extends Entity
     {
         return $this->email->email();
     }
+
+    public function hashedPassword(): string
+    {
+        return $this->password->hashedPassword();
+    }
 }

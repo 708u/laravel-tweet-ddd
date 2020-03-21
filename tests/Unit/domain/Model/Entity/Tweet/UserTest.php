@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\domain\Model\Entity\Tweet;
 
+use Domain\Application\Contract\Hash\Hashable;
 use Domain\Application\Contract\Uuid\UuidGeneratable;
 use Domain\Model\Entity\Tweet\User;
 use Domain\Model\ValueObject\Tweet\Email\Email;
@@ -22,7 +23,8 @@ class UserTest extends TestCase
     public function testCreate()
     {
         $userId = new UserId(resolve(UuidGeneratable::class)->nextIdentifier());
-        $user = new User($userId, 'foo', Email::factory('foo@foo.com'), Password::factory('password'));
+        $password = Password::factory(resolve(Hashable::class)->make('password'));
+        $user = new User($userId, 'foo', Email::factory('foo@foo.com'), $password);
         $this->assertNotEmpty($user);
     }
 }
