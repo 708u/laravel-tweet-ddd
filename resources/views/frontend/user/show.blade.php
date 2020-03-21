@@ -5,5 +5,10 @@
 @endsection
 
 @section('content')
-{{-- content here --}}
+<div>
+    {{ $user->userName }}
+</div>
+<div>
+    {{ $user->email }}
+</div>
 @endsection

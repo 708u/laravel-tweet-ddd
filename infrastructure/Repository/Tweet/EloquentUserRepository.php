@@ -55,10 +55,10 @@ class EloquentUserRepository implements UserRepository
     private function generateUserFromEloquent(EloquentUser $user): User
     {
         return new User(
-            new UserId($user->id),
-            $user->userName(),
-            Email::factory($user->email()),
-            new HashedPassword($user->hashedPassword()),
+            new UserId($user->uuid),
+            $user->name,
+            Email::factory($user->email),
+            HashedPassword::factory($user->password),
         );
     }
 }
