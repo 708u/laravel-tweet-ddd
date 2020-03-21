@@ -2,6 +2,7 @@
 
 namespace Domain\Model\Entity\Tweet;
 
+use Domain\Model\DTO\Tweet\UserDTO;
 use Domain\Model\Entity\Base\Entity;
 use Domain\Model\ValueObject\Tweet\Email\Email;
 use Domain\Model\ValueObject\Tweet\Identifier\UserId;
@@ -22,6 +23,16 @@ class User extends Entity
     private Email $email;
 
     private HashedPassword $hashedPassword;
+
+    /**
+     * Convert entity to DTO.
+     *
+     * @return UserDTO
+     */
+    public function toDTO(): UserDTO
+    {
+        return new UserDTO($this->identifierAsString(), $this->userName(), $this->email());
+    }
 
     /**
      * Get username.
