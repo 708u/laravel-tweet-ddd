@@ -13,4 +13,12 @@ interface UserRepository
      * @return void
      */
     public function create(User $user): void;
+
+    /**
+     * Find user entity.
+     *
+     * @param string $userId
+     * @return User
+     */
+    public function find(string $userId): User;
 }

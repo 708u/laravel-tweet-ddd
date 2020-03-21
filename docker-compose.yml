@@ -19,7 +19,7 @@ x-environment: &node
   image: node:13.8.0-alpine
   working_dir: "/app"
   volumes:
-    - "./:/app:cached"
+    - "./:/app"
   tty: true
 
 services:
