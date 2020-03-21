@@ -173,6 +173,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        // Bind repositories.
+        App\Providers\RepositoryServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
     ],
