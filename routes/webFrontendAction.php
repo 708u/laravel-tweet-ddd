@@ -34,7 +34,7 @@ Route::name('user.')->namespace('User')->middleware('auth')->group(function () {
     Route::prefix('/users')->group(function () {
         Route::prefix('/{uuid}')->group(function () {
             Route::get('/', 'ShowUserAction')->name('show');
-            Route::get('/edit', 'EditUserAction')->name('edit');
+            Route::get('/edit', 'ShowEditingUserAction')->name('edit');
         });
     });
 });
