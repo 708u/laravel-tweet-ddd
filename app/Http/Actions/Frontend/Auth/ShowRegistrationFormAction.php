@@ -3,16 +3,20 @@
 namespace App\Http\Actions\Frontend\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Responders\Frontend\Auth\ShowRegistrationFormResponder;
 
 class ShowRegistrationFormAction extends Controller
 {
-    public function __construct()
+    private ShowRegistrationFormResponder $responder;
+
+    public function __construct(ShowRegistrationFormResponder $responder)
     {
+        $this->responder = $responder;
         $this->middleware('guest');
     }
 
     public function __invoke()
     {
-        return view('frontend.auth.register');
+        return $this->responder;
     }
 }
