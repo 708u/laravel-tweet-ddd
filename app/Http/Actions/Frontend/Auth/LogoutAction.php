@@ -31,6 +31,6 @@ class LogoutAction extends Controller
 
         return $request->wantsJson()
             ? new Response('', 204)
-            : redirect('/');
+            : redirect()->route('frontend.auth.login');
     }
 }
