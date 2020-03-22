@@ -44,6 +44,7 @@ class LoginAction extends Controller
         }
 
         if ($this->attemptLogin($request)) {
+            $request->session()->flash('alert-success', 'You are logged in!');
             return $this->sendLoginResponse($request);
         }
 
