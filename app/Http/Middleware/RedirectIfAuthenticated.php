@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,8 +18,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            $uuid = Auth::id();
-            return redirect(RouteServiceProvider::HOME . "/$uuid");
+            return redirect()->route('frontend.user.show', ['uuid' => Auth::id()]);
         }
 
         return $next($request);

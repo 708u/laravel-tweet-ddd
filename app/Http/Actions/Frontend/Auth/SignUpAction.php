@@ -49,7 +49,7 @@ class SignUpAction extends Controller
 
         return $request->wantsJson()
             ? new Response('', 201)
-            : redirect($this->redirectPath() . "/$user->uuid");
+            : redirect()->route('frontend.user.show', ['uuid' => $user->uuid]);
     }
 
     /**
