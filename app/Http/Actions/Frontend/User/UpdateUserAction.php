@@ -26,6 +26,13 @@ class UpdateUserAction extends Controller
 
     public function __invoke(UpdateUserRequest $request)
     {
-        $this->useCase->execute($request->uuid);
+        $user = $this->useCase->execute(
+            $request->uuid,
+            $request->name,
+            $request->email,
+            $request->password
+        );
+
+        return $this->responder->setUser($user);
     }
 }
