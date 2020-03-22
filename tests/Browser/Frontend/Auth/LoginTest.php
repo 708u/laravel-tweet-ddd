@@ -33,7 +33,9 @@ class LoginPageTest extends DuskTestCase
                 ->type('password', $plainPassword)
                 ->press('Login')
                 ->assertRouteIs('frontend.user.show', $user->uuid)
-                ->assertSee('You are logged in!');
+                ->assertSee($flashMessage = 'You are logged in!') // flash message
+                ->refresh()
+                ->assertDontSee($flashMessage);
         });
     }
 }
