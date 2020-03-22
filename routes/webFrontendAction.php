@@ -35,7 +35,7 @@ Route::name('user.')->namespace('User')->middleware('auth')->group(function () {
         Route::prefix('/{uuid}')->group(function () {
             Route::get('/', 'ShowUserAction')->name('show');
             Route::get('/edit', 'EditUserAction')->name('edit');
-            Route::post('/edit', 'UpdateUserAction')->name('update');
+            Route::put('/', 'UpdateUserAction')->name('update');
         });
     });
 });

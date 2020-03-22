@@ -7,6 +7,7 @@
             <x-slot name="formAction">
                 {{ route('frontend.auth.signup') }}
             </x-slot>
+            <x-slot name="httpMethod"></x-slot>
         </x-frontend.user.profile>
     </div>
 </div>

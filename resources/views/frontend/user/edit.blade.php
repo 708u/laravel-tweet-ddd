@@ -11,7 +11,10 @@
     <div class="row justify-content-center">
         <x-frontend.user.profile profileCardName="Edit" actionButton="Save Changes">
             <x-slot name="formAction">
-                {{ route('frontend.user.edit', ['uuid' => $uuid]) }}
+                {{ route('frontend.user.update', ['uuid' => $uuid]) }}
+            </x-slot>
+            <x-slot name="httpMethod">
+                @method('PUT')
             </x-slot>
         </x-frontend.user.profile>
     </div>
