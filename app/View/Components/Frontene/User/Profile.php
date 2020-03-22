@@ -10,15 +10,21 @@ class Profile extends Component
 
     public string $actionButton;
 
+    public string $userName;
+
+    public string $email;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(string $profileCardName, string $actionButton)
+    public function __construct(string $profileCardName, string $actionButton, string $userName, string $email)
     {
         $this->profileCardName = $profileCardName;
         $this->actionButton = $actionButton;
+        $this->userName = $userName;
+        $this->email = $email;
     }
 
     /**
