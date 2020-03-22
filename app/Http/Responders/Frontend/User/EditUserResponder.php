@@ -29,6 +29,7 @@ class EditUserResponder implements Responsable
         return new Response(
             $this->view->make('frontend.user.edit')->with([
                 'user' => $this->user,
+                'uuid' => $this->user->identifier,
             ])
         );
     }

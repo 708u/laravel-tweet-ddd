@@ -6,14 +6,20 @@ use Illuminate\View\Component;
 
 class Profile extends Component
 {
+    public string $profileCardName;
+
+    public string $actionButton;
+
+    public
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(string $profileCardName, string $actionButton)
     {
-        //
+        $this->profileCardName = $profileCardName;
+        $this->actionButton = $actionButton;
     }
 
     /**
@@ -23,6 +29,6 @@ class Profile extends Component
      */
     public function render()
     {
-        return view('components.frontend.user.profile');
+        return view('components.frontend.user.profile', ['form' => $this->form]);
     }
 }
