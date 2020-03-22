@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Responders\Frontend\User\EditUserResponder;
 use Domain\UseCase\Tweet\ShowUserUseCase;
 
-class ShowEditingUserAction extends Controller
+class EditUserAction extends Controller
 {
     private ShowUserUseCase $useCase;
 
