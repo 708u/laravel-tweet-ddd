@@ -1,3 +1,7 @@
-<div>
-    <!-- Happiness is not something readymade. It comes from your own actions. - Dalai Lama -->
-</div>
+@foreach ($alertTags as $alert)
+    @if ($message = session($alert))
+        <div class="alert {{ $alert }}" role="alert">
+            {{ $message }}
+        </div>
+    @endif
+@endforeach

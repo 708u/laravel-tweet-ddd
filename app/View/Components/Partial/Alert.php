@@ -25,4 +25,16 @@ class Alert extends Component
     {
         return view('components.partial.alert');
     }
+
+    /**
+     * Return Bootstrap alert tags
+     *
+     * @return array
+     */
+    public function alertTags(): array
+    {
+        return [
+           'alert-primary', 'alert-secondary', 'alert-success', 'alert-danger', 'alert-info', 'alert-light', 'alert-dark'
+        ];
+    }
 }
