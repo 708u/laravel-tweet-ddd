@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginAction extends Controller
 {
@@ -54,5 +55,16 @@ class LoginAction extends Controller
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
+    }
+
+    /**
+     * Redirect path
+     *
+     * @return void
+     */
+    protected function redirectTo()
+    {
+        $uuid = Auth::id();
+        return $this->redirectTo . "/$uuid";
     }
 }
