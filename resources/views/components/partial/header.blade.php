@@ -33,6 +33,13 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">
+                                Profile
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                Settings
+                            </a>
+                            <hr>
                             <a class="dropdown-item" href="{{ route('frontend.auth.logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">

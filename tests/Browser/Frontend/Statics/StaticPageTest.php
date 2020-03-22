@@ -23,11 +23,7 @@ class StaticPageTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
                 ->assertRouteIs('frontend.static.home')
-                ->assertTitle($this->getTitle('Home'))
-                ->assertSeeLink('Home')
-                ->assertSeeLink('Help')
-                ->assertSeeLink('Login')
-                ->assertSeeLink('About');
+                ->assertTitle($this->getTitle('Home'));
         });
     }
 
