@@ -42,7 +42,7 @@ class LoginPageTest extends DuskTestCase
                 ->assertDontSee($flashMessage)
                 ->click('#navbarDropdown')
                 ->assertSeeLink('Profile') // Can see dropdown menu after logged in.
-                ->assertSeeLink('Setting')
+                ->assertSeeLink('Settings')
                 ->assertSeeLink('Logout');
         });
     }
