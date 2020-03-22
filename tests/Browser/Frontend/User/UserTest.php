@@ -29,4 +29,20 @@ class UserTest extends DuskTestCase
                     ->assertTitle($this->getTitle('User Profile'));
         });
     }
+
+    /**
+     * @group user
+     *
+     * @return void
+     */
+    public function testCanEditOwnProfile()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs($user = factory(User::class)->create())
+                    ->visit('/users/' . $user->uuid . '/edit')
+                    ->assertRouteIs('frontend.user.edit', ['uuid' => $user->uuid])
+                    ->assertTitle($this->getTitle('Edit Profile'))
+                    ->assertSee('Update your profile');
+        });
+    }
 }
