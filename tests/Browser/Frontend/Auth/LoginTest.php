@@ -44,7 +44,7 @@ class LoginPageTest extends DuskTestCase
                 ->assertSeeLink('Profile') // Can see dropdown menu after logged in.
                 ->assertSeeLink('Settings')
                 ->assertSeeLink('Logout')
-                ->clickLink("Logout")
+                ->clickLink('Logout')
                 ->assertRouteIs('frontend.auth.login')
                 ->assertGuest(); // Determine if User has already logged out.
         });
