@@ -3,8 +3,8 @@
 namespace App\Http\Actions\Frontend\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Responders\Frontend\User\EditUserResponder;
-use Domain\UseCase\Tweet\ShowUserUseCase;
 use Domain\UseCase\Tweet\UpdateUserUseCase;
 
 class UpdateUserAction extends Controller
@@ -24,8 +24,8 @@ class UpdateUserAction extends Controller
         $this->responder = $responder;
     }
 
-    public function __invoke(string $uuid)
+    public function __invoke(UpdateUserRequest $request)
     {
-        $this->useCase->execute($uuid);
+        $this->useCase->execute($request->uuid);
     }
 }
