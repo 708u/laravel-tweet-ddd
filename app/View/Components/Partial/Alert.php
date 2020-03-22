@@ -34,7 +34,7 @@ class Alert extends Component
     public function alertTags(): array
     {
         return [
-           'alert-primary', 'alert-secondary', 'alert-success', 'alert-danger', 'alert-info', 'alert-light', 'alert-dark'
+            'alert-primary', 'alert-secondary', 'alert-success', 'alert-danger', 'alert-info', 'alert-light', 'alert-dark',
         ];
     }
 }
