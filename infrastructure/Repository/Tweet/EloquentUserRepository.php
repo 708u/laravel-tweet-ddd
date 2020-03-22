@@ -42,7 +42,7 @@ class EloquentUserRepository implements UserRepository
      */
     public function find(string $userId): User
     {
-        $user = $this->eloquentUser->find($userId);
+        $user = $this->eloquentUser->findOrFail($userId);
         return $this->generateUserFromEloquent($user);
     }
 
