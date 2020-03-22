@@ -53,7 +53,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-outline-primary">
                                     {{ __('Login') }}
                                 </button>
 
@@ -65,6 +65,13 @@
                             </div>
                         </div>
                     </form>
+                    <div class="card-body ">
+                        <div class="col-md-8">
+                            <p>
+                                New User ? <a href="{{ route('frontend.auth.signup') }}">Sign up now!</a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
