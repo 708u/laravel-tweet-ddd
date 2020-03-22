@@ -9,6 +9,7 @@ class Profile extends Component
     public string $profileCardName;
 
     public string $actionButton;
+
     /**
      * Create a new component instance.
      *
