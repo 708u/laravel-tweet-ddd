@@ -3,7 +3,7 @@
         <hr>
         <div class="nav navbar row">
             <small>
-                Created from <a class="text-secondary" href="https://github.com/naoyaUda">708u</a>
+                Created by <a class="text-secondary" href="https://github.com/naoyaUda">708u</a>
             </small>
             <nav class="navbar navbar-expand-md sticky-top navbar-light bg-light">
                 <ul class="navbar-nav ml-auto">
