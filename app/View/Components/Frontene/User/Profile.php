@@ -9,8 +9,6 @@ class Profile extends Component
     public string $profileCardName;
 
     public string $actionButton;
-
-    public
     /**
      * Create a new component instance.
      *
@@ -29,6 +27,6 @@ class Profile extends Component
      */
     public function render()
     {
-        return view('components.frontend.user.profile', ['form' => $this->form]);
+        return view('components.frontend.user.profile');
     }
 }
