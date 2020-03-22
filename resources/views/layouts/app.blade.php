@@ -11,6 +11,7 @@
 </head>
 <body>
     <x-partial.header/>
+    <x-partial.alert/>
     @yield('content')
     @yield('foot')
     <x-partial.footer/>
