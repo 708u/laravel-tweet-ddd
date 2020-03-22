@@ -31,8 +31,8 @@ Route::name('auth.')->namespace('Auth')->group(function () {
 
 Route::name('user.')->namespace('User')->middleware('auth')->group(function () {
     Route::get('/home', 'ShowHomeAction')->name('home');
-    Route::prefix('/users')->group(function() {
-        Route::prefix('/{uuid}')->group(function() {
+    Route::prefix('/users')->group(function () {
+        Route::prefix('/{uuid}')->group(function () {
             Route::get('/', 'ShowUserAction')->name('show');
             Route::get('/edit', 'EditUserAction')->name('edit');
         });
