@@ -67,7 +67,7 @@ class UserTest extends DuskTestCase
      *
      * @return void
      */
-    public function testCannotAccessUserEditPageIfYourDontHaveUuidUsedInUrl()
+    public function testCannotAccessUserEditPageIfUserGiveUrlInvalidUuid()
     {
         $this->browse(function (Browser $browser) {
             $anotherUser = factory(User::class)->create();
