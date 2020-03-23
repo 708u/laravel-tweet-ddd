@@ -21,7 +21,7 @@ class UpdateUserActionTest extends TestCase
             ->put('/users/' . $user->uuid)
             ->assertStatus(302);
 
-        $this->actingAs($user = factory(User::class)->create())
+        $this->actingAs($user)
             ->put('/users/12345')
             ->assertStatus(403);
     }
