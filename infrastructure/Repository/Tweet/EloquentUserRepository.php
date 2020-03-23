@@ -35,6 +35,22 @@ class EloquentUserRepository implements UserRepository
     }
 
     /**
+     * Save user entity.
+     *
+     * @param User $user
+     * @return void
+     */
+    public function save(User $user): void
+    {
+        $this->eloquentUser->findOrFail($user->identifierAsString())
+            ->fill([
+                'name'     => $user->userName(),
+                'email'    => $user->email(),
+                'password' => $user->hashedPassword(),
+            ])->save();
+    }
+
+    /**
      * Find user entity.
      *
      * @param string $userId

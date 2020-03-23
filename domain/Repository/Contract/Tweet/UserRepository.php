@@ -15,6 +15,14 @@ interface UserRepository
     public function create(User $user): void;
 
     /**
+     * Save user entity.
+     *
+     * @param User $user
+     * @return void
+     */
+    public function save(User $user): void;
+
+    /**
      * Find user entity.
      *
      * @param string $userId

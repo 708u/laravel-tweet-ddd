@@ -63,4 +63,40 @@ class User extends Entity
     {
         return $this->hashedPassword->hashedPassword();
     }
+
+    /**
+     * Change username.
+     *
+     * @param string $userName
+     * @return self
+     */
+    public function changeName(string $userName): self
+    {
+        $this->userName = $userName;
+        return clone $this;
+    }
+
+    /**
+     * Change Email.
+     *
+     * @param Email $email
+     * @return self
+     */
+    public function changeEmail(Email $email): self
+    {
+        $this->email = $email;
+        return clone $this;
+    }
+
+    /**
+     * Change password
+     *
+     * @param HashedPassword $password
+     * @return self
+     */
+    public function changeHashedPassword(HashedPassword $password): self
+    {
+        $this->hashedPassword = $password;
+        return clone $this;
+    }
 }
