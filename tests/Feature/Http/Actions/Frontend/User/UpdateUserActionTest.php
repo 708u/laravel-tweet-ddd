@@ -3,6 +3,7 @@
 namespace Tests\Feature\Http\Actions\Frontend\User;
 
 use App\Eloquent\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 /**
@@ -10,6 +11,8 @@ use Tests\TestCase;
  */
 class UpdateUserActionTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * @group user
      *
@@ -21,8 +24,9 @@ class UpdateUserActionTest extends TestCase
             ->put('/users/' . $user->uuid)
             ->assertStatus(302);
 
+        $anotherUser = factory(User::class)->create();
         $this->actingAs($user)
-            ->put('/users/12345')
+            ->put('/users/' . $anotherUser->uuid)
             ->assertForbidden();
     }
 }
