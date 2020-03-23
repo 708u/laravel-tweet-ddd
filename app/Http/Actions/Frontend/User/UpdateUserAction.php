@@ -20,6 +20,7 @@ class UpdateUserAction extends Controller
      */
     public function __construct(UpdateUserUseCase $useCase, UpdateUserResponder $responder)
     {
+        $this->middleware('RedirectIfAuthUserDosentHaveGivenUuid');
         $this->useCase = $useCase;
         $this->responder = $responder;
     }
