@@ -61,4 +61,20 @@ class UserTest extends DuskTestCase
                     ->assertRouteIs('frontend.user.show', ['uuid' => $user->uuid]);
         });
     }
+
+    /**
+     * @group user
+     *
+     * @return void
+     */
+    public function testCannotAccessUserEditPageIfUserGiveUrlInvalidUuid()
+    {
+        $this->browse(function (Browser $browser) {
+            $anotherUser = factory(User::class)->create();
+            $browser->loginAs(factory(User::class)->create())
+                    ->visit('/users/' . $anotherUser->uuid . '/edit')
+                    ->assertTitle('Forbidden')
+                    ->assertSee('403');
+        });
+    }
 }

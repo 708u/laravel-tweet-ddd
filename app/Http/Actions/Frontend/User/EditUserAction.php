@@ -19,6 +19,7 @@ class EditUserAction extends Controller
      */
     public function __construct(ShowUserUseCase $useCase, EditUserResponder $responder)
     {
+        $this->middleware('RedirectIfAuthUserDosentHaveGivenUuid');
         $this->useCase = $useCase;
         $this->responder = $responder;
     }
