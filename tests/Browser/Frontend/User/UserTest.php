@@ -42,7 +42,23 @@ class UserTest extends DuskTestCase
                     ->visit('/users/' . $user->uuid . '/edit')
                     ->assertRouteIs('frontend.user.edit', ['uuid' => $user->uuid])
                     ->assertTitle($this->getTitle('Edit Profile'))
-                    ->assertSee('Update your profile');
+                    ->assertSee('Update your profile')
+                    ->assertInputValue('name', $user->name) // Form has default value of own params
+                    ->assertInputValue('email', $user->email)
+                    ->type('name', $newName = 'foobar')
+                    ->type('email', $newEmail = 'foobar@example.com')
+                    ->type('password', $newPassword = 'aaaaaaaa')
+                    ->type('password_confirmation', $newPassword)
+                    ->press('Save Changes')
+                    ->assertRouteIs('frontend.user.edit', ['uuid' => $user->uuid]) // Determine page redirected
+                    ->assertInputValue('name', $newName) // Input Value changed to new name and email
+                    ->assertInputValue('email', $newEmail)
+                    ->logout()
+                    ->visit('/login')
+                    ->type('email', $newEmail) // Determine if user can login with using new email and password
+                    ->type('password', $newPassword)
+                    ->press('Login')
+                    ->assertRouteIs('frontend.user.show', ['uuid' => $user->uuid]);
         });
     }
 }
