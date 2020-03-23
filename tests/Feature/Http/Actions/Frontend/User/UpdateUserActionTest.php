@@ -23,6 +23,6 @@ class UpdateUserActionTest extends TestCase
 
         $this->actingAs($user)
             ->put('/users/12345')
-            ->assertStatus(403);
+            ->assertForbidden();
     }
 }
