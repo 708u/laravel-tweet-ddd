@@ -1,7 +1,6 @@
 <?php
 
 use App\Eloquent\User;
-use Domain\Application\Contract\Uuid\UuidGeneratable;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
