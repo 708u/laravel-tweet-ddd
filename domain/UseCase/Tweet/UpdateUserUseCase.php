@@ -3,7 +3,6 @@
 namespace Domain\UseCase\Tweet;
 
 use Domain\Application\Contract\Hash\Hashable;
-use Domain\Model\DTO\Tweet\UserDTO;
 use Domain\Model\ValueObject\Tweet\Email\Email;
 use Domain\Model\ValueObject\Tweet\Password\HashedPassword;
 use Domain\Repository\Contract\Tweet\UserRepository;
@@ -21,12 +20,12 @@ class UpdateUserUseCase
     }
 
     /**
-     * Find User to show its details.
+     * Update user profile.
      *
      * @param string $identifier
-     * @return UserDTO
+     * @return void
      */
-    public function execute(string $identifier, string $userName, string $email, string $password): UserDTO
+    public function execute(string $identifier, string $userName, string $email, string $password): void
     {
         $user = $this->user->find($identifier)
             ->changeName($userName)
@@ -34,7 +33,5 @@ class UpdateUserUseCase
             ->changeHashedPassword(HashedPassword::factory($this->hash->make($password)));
 
         $this->user->save($user);
-
-        return $user->toDTO();
     }
 }

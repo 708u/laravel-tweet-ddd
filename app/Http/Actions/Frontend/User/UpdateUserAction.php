@@ -4,21 +4,21 @@ namespace App\Http\Actions\Frontend\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserRequest;
-use App\Http\Responders\Frontend\User\EditUserResponder;
+use App\Http\Responders\Frontend\User\UpdateUserResponder;
 use Domain\UseCase\Tweet\UpdateUserUseCase;
 
 class UpdateUserAction extends Controller
 {
     private UpdateUserUseCase $useCase;
 
-    private EditUserResponder $responder;
+    private UpdateUserResponder $responder;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(UpdateUserUseCase $useCase, EditUserResponder $responder)
+    public function __construct(UpdateUserUseCase $useCase, UpdateUserResponder $responder)
     {
         $this->useCase = $useCase;
         $this->responder = $responder;
@@ -26,13 +26,13 @@ class UpdateUserAction extends Controller
 
     public function __invoke(UpdateUserRequest $request)
     {
-        $user = $this->useCase->execute(
+        $this->useCase->execute(
             $request->uuid,
             $request->name,
             $request->email,
             $request->password
         );
 
-        return $this->responder->setUser($user);
+        return $this->responder->toResponse();
     }
 }
