@@ -70,8 +70,9 @@ class UserTest extends DuskTestCase
     public function testCannotAccessUserEditPageIfYourDontHaveUuidUsedInUrl()
     {
         $this->browse(function (Browser $browser) {
+            $anotherUser = factory(User::class)->create();
             $browser->loginAs(factory(User::class)->create())
-                    ->visit('/users/' . 'aaaaaaaa' . '/edit')
+                    ->visit('/users/' . $anotherUser->uuid . '/edit')
                     ->assertTitle('Forbidden')
                     ->assertSee('403');
         });
