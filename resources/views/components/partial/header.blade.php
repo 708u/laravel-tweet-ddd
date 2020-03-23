@@ -33,6 +33,9 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('frontend.user.index')}}">
+                                Users
+                            </a>
                             <a class="dropdown-item" href="{{ route('frontend.user.edit', ['uuid' => Auth::user()->uuid]) }}">
                                 Profile
                             </a>
