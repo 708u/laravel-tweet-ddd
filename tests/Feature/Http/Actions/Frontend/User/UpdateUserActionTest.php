@@ -2,9 +2,12 @@
 
 namespace Tests\Feature\Http\Actions\Frontend\User;
 
-use Tests\TestCase;
 use App\Eloquent\User;
+use Tests\TestCase;
 
+/**
+ * @internal
+ */
 class UpdateUserActionTest extends TestCase
 {
     /**
