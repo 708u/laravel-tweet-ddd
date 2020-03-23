@@ -2,7 +2,6 @@
 
 namespace App\Http\Responders\Frontend\User;
 
-use Domain\Model\DTO\Tweet\UserDTO;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
