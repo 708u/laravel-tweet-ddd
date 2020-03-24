@@ -38,7 +38,7 @@ class IndexUserResponder implements Responsable
         $paginatedUsers = app()->makeWith(LengthAwarePaginator::class, [
             'items'   => $this->users->forPage($page, $this->perPage),
             'total'   => $this->users->count(),
-            'perPage' => $this->perPage
+            'perPage' => $this->perPage,
         ]);
 
         return new Response(

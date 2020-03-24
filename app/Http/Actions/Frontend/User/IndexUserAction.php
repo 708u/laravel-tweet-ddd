@@ -3,10 +3,8 @@
 namespace App\Http\Actions\Frontend\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Responders\Frontend\User\EditUserResponder;
 use App\Http\Responders\Frontend\User\IndexUserResponder;
 use Domain\UseCase\Tweet\IndexUserUseCase;
-use Domain\UseCase\Tweet\ShowUserUseCase;
 
 class IndexUserAction extends Controller
 {

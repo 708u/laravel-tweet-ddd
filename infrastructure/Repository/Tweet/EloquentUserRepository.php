@@ -71,7 +71,7 @@ class EloquentUserRepository implements UserRepository
     public function findAll(): Collection
     {
         return $this->eloquentUser->all()
-            ->map(function($user) {
+            ->map(function ($user) {
                 return $this->generateUserFromEloquent($user);
             });
     }

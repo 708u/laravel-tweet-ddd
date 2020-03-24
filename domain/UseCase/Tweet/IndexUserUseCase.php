@@ -25,7 +25,7 @@ class IndexUserUseCase
     {
         return $this->user
             ->findAll()
-            ->map(function($user) {
+            ->map(function ($user) {
                 return $user->toDTO();
             });
     }
