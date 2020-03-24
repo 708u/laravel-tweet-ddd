@@ -8,6 +8,7 @@ use Domain\Model\ValueObject\Tweet\Email\Email;
 use Domain\Model\ValueObject\Tweet\Identifier\UserId;
 use Domain\Model\ValueObject\Tweet\Password\HashedPassword;
 use Domain\Repository\Contract\Tweet\UserRepository;
+use Illuminate\Support\Collection;
 
 class EloquentUserRepository implements UserRepository
 {
@@ -60,6 +61,19 @@ class EloquentUserRepository implements UserRepository
     {
         $user = $this->eloquentUser->findOrFail($userId);
         return $this->generateUserFromEloquent($user);
+    }
+
+    /**
+     * Find all user entity.
+     *
+     * @return Collection
+     */
+    public function findAll(): Collection
+    {
+        return $this->eloquentUser->all()
+            ->map(function ($user) {
+                return $this->generateUserFromEloquent($user);
+            });
     }
 
     /**

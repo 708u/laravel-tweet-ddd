@@ -35,6 +35,45 @@ class UserTest extends DuskTestCase
      *
      * @return void
      */
+    public function testVisitShowingUserViaIndex()
+    {
+        factory(User::class, 28)->create();
+
+        $this->browse(function (Browser $browser) {
+            $anotherUser = factory(User::class)->create(); // for visiting profile
+
+            $browser->loginAs(factory(User::class)->create())
+                    ->visit('/users')
+                    ->assertTitle($this->getTitle('All Users'))
+                    ->assertSeeLink($anotherUser->name)
+                    ->clickLink($anotherUser->name)
+                    ->assertRouteIs('frontend.user.show', ['uuid' => $anotherUser->uuid]);
+        });
+    }
+
+    /**
+     * User index test
+     * @group user
+     *
+     * @return void
+     */
+    public function testVisitIndexUser()
+    {
+        factory(User::class, 100)->create();
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs(factory(User::class)->create())
+                    ->visit('/users')
+                    ->assertTitle($this->getTitle('All Users'))
+                    ->clickLink($paginationLink = 2)
+                    ->assertQueryStringHas('page', $paginationLink);
+        });
+    }
+
+    /**
+     * @group user
+     *
+     * @return void
+     */
     public function testCanEditOwnProfile()
     {
         $this->browse(function (Browser $browser) {

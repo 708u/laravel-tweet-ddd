@@ -3,6 +3,7 @@
 namespace Domain\Repository\Contract\Tweet;
 
 use Domain\Model\Entity\Tweet\User;
+use Illuminate\Support\Collection;
 
 interface UserRepository
 {
@@ -29,4 +30,11 @@ interface UserRepository
      * @return User
      */
     public function find(string $userId): User;
+
+    /**
+     * Find all user entity.
+     *
+     * @return Collection
+     */
+    public function findAll(): Collection;
 }
