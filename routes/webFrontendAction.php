@@ -29,7 +29,7 @@ Route::name('auth.')->namespace('Auth')->group(function () {
     Route::post('/logout', 'LogoutAction')->name('logout');
 });
 
-Route::name('user.')->namespace('User')->middleware('auth')->group(function () {
+Route::name('user.')->namespace('User')->middleware('verified')->group(function () {
     Route::get('/home', 'ShowHomeAction')->name('home');
     Route::prefix('/users')->group(function () {
         Route::get('/', 'IndexUserAction')->name('index');
