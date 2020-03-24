@@ -29,6 +29,10 @@ Route::name('auth.')->namespace('Auth')->group(function () {
     Route::post('/logout', 'LogoutAction')->name('logout');
 });
 
+Route::name('verification.')->namespace('Verify')->group(function () {
+    Route::get('email/verify', 'ShowVerifyNoticeAction')->name('notice');
+});
+
 Route::name('user.')->namespace('User')->middleware('verified')->group(function () {
     Route::get('/home', 'ShowHomeAction')->name('home');
     Route::prefix('/users')->group(function () {
