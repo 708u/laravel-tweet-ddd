@@ -2,7 +2,6 @@
 
 namespace Domain\UseCase\Tweet;
 
-use Domain\Model\DTO\Tweet\UserDTO;
 use Domain\Repository\Contract\Tweet\UserRepository;
 use Illuminate\Support\Collection;
 
@@ -19,7 +18,7 @@ class IndexUserUseCase
      * Find User to show its details.
      *
      * @param string $identifier
-     * @return UserDTO
+     * @return Collection
      */
     public function execute(): Collection
     {
