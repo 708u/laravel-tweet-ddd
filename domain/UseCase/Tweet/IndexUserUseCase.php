@@ -19,7 +19,7 @@ class IndexUserUseCase
      * Find User to show its details.
      *
      * @param string $identifier
-     * @return UserDTO
+     * @return Collection
      */
     public function execute(): Collection
     {
