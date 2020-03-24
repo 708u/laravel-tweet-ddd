@@ -31,6 +31,24 @@ class UserTest extends DuskTestCase
     }
 
     /**
+     * User index test
+     * @group user
+     *
+     * @return void
+     */
+    public function testVisitIndexUser()
+    {
+        factory(User::class, 100)->create();
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs(factory(User::class)->create())
+                    ->visit('/users')
+                    ->assertTitle($this->getTitle('All Users'))
+                    ->clickLink($paginationLink = 2)
+                    ->assertQueryStringHas('page', $paginationLink);
+        });
+    }
+
+    /**
      * @group user
      *
      * @return void
