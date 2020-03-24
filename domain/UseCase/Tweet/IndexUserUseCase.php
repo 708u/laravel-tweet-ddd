@@ -2,7 +2,6 @@
 
 namespace Domain\UseCase\Tweet;
 
-use Domain\Model\DTO\Tweet\UserDTO;
 use Domain\Repository\Contract\Tweet\UserRepository;
 use Illuminate\Support\Collection;
 
