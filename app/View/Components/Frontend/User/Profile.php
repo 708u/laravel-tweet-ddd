@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Frontene\User;
+namespace App\View\Components\Frontend\User;
 
 use Illuminate\View\Component;
 
