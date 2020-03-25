@@ -2,11 +2,17 @@
 
 namespace App\Http\Actions\Frontend\Verify;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class ResendVerificationAction
+class ResendVerificationAction extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('throttle:6,1');
+    }
+
     /**
      * Resend the email verification notification.
      *

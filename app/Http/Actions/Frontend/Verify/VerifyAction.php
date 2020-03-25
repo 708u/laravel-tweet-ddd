@@ -2,15 +2,22 @@
 
 namespace App\Http\Actions\Frontend\Verify;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\RedirectsUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class VerifyAction
+class VerifyAction extends Controller
 {
     use RedirectsUsers;
+
+    public function __construct()
+    {
+        $this->middleware('signed');
+        $this->middleware('throttle:6,1');
+    }
 
     /**
      * Mark the authenticated user's email address as verified.
