@@ -46,7 +46,7 @@ class VerifyEmail extends Notification
             return call_user_func(static::$toMailCallback, $notifiable, $verificationUrl);
         }
 
-        return (new MailMessage)
+        return (new MailMessage())
             ->subject(Lang::get('Verify Email Address'))
             ->line(Lang::get('Please click the button below to verify your email address.'))
             ->action(Lang::get('Verify Email Address'), $verificationUrl)
@@ -65,7 +65,7 @@ class VerifyEmail extends Notification
             'frontend.verification.verify',
             Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)),
             [
-                'id' => $notifiable->getKey(),
+                'id'   => $notifiable->getKey(),
                 'hash' => sha1($notifiable->getEmailForVerification()),
             ]
         );

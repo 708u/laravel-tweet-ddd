@@ -29,7 +29,7 @@ class User extends UuidModel implements
      */
     public function sendEmailVerificationNotification()
     {
-        $this->notify(new VerifyEmail);
+        $this->notify(new VerifyEmail());
     }
 
     /**
