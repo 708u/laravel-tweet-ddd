@@ -32,6 +32,7 @@ Route::name('auth.')->namespace('Auth')->group(function () {
 Route::name('verification.')->namespace('Verify')->group(function () {
     Route::get('email/verify', 'ShowVerifyNoticeAction')->name('notice');
     Route::get('email/verify/{uuid}/{hash}', 'VerifyAction')->name('verify');
+    Route::post('email/resend', 'ResendVerificationAction')->name('resend');
 });
 
 Route::name('user.')->namespace('User')->middleware('verified')->group(function () {
