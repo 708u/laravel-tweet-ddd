@@ -19,6 +19,6 @@ class ShowVerifyNoticeAction
     {
         return $request->user()->hasVerifiedEmail()
                         ? redirect($this->redirectPath())
-                        : view('frontend.verify.notice');
+                        : view('frontend.verification.notice');
     }
 }
