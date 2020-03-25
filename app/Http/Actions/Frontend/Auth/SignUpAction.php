@@ -48,8 +48,7 @@ class SignUpAction extends Controller
         return $request->wantsJson()
             ? new Response('', 201)
             : redirect()
-                ->route('frontend.user.show', ['uuid' => $user->uuid])
-                ->with('alert-primary', 'Welcome! Your Account Successfully Created!');
+                ->route('frontend.user.show', ['uuid' => $user->uuid]);
     }
 
     /**
