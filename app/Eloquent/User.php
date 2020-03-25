@@ -2,6 +2,7 @@
 
 namespace App\Eloquent;
 
+use App\Notifications\VerifyEmail;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -19,6 +20,17 @@ class User extends UuidModel implements
     MustVerifyEmailContract
 {
     use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, Notifiable;
+
+    /**
+     * Send the email verification notification.
+     *
+     * NOTE: override on MustVerifyEmail traits method. because we should change Email route.
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmail);
+    }
 
     /**
      * The attributes that are mass assignable.
