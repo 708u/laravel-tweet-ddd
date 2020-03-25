@@ -29,10 +29,12 @@ Route::name('auth.')->namespace('Auth')->group(function () {
     Route::post('/logout', 'LogoutAction')->name('logout');
 });
 
-Route::name('verification.')->namespace('Verify')->group(function () {
-    Route::get('email/verify', 'ShowVerifyNoticeAction')->name('notice');
-    Route::get('email/verify/{uuid}/{hash}', 'VerifyAction')->name('verify');
-    Route::post('email/resend', 'ResendVerificationAction')->name('resend');
+Route::name('verification.')->namespace('Verify')->prefix('email')->middleware('auth')->group(function () {
+    Route::post('/resend', 'ResendVerificationAction')->name('resend');
+    Route::prefix('verify')->group(function () {
+        Route::get('/', 'ShowVerifyNoticeAction')->name('notice');
+        Route::get('/{uuid}/{hash}', 'VerifyAction')->name('verify');
+    });
 });
 
 Route::name('user.')->namespace('User')->middleware('verified')->group(function () {
