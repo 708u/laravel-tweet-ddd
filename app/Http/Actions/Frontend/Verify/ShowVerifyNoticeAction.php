@@ -2,12 +2,18 @@
 
 namespace App\Http\Actions\Frontend\Verify;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Http\Request;
 
-class ShowVerifyNoticeAction
+class ShowVerifyNoticeAction extends Controller
 {
     use VerifiesEmails;
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Show the email verification notice.
