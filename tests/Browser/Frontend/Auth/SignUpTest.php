@@ -26,7 +26,6 @@ class SignUpTest extends DuskTestCase
         $email = 'foobar@example.com';
         $password = '123456789';
         $this->browse(function (Browser $browser) use ($name, $email, $password) {
-            $flashMessage = 'Welcome! Your Account Successfully Created!';
             $browser->visit('/signup')
                 ->assertRouteIs('frontend.auth.signup')
                 ->type('name', $name)
@@ -34,9 +33,15 @@ class SignUpTest extends DuskTestCase
                 ->type('password', $password)
                 ->type('password_confirmation', $password)
                 ->press('Register')
-                ->assertRouteIs('frontend.user.show', $uuid = User::first()->uuid) // FIXME: should remove dependencies
+                ->assertRouteIs('frontend.verification.notice')
+                ->assertAuthenticated();
+
+            $flashMessage = 'Welcome! Your Account Successfully Confirmed!';
+            $uuid = User::first()->uuid; // FIXME: should remove dependencies
+
+            $browser->visit('email/verify/' . $uuid .'/' . sha1($email))
+                ->assertRouteIs('frontend.user.show', $uuid)
                 ->assertSee($flashMessage) // welcome flash message
-                ->assertAuthenticated()
                 ->visit('/signup')
                 ->assertRouteIs('frontend.user.show', $uuid) // redirect user page if already signed up
                 ->assertDontSee($flashMessage) // flash message disappeared

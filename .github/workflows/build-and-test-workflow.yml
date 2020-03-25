@@ -15,6 +15,11 @@ jobs:
         CACHE_DRIVER: redis
         QUEUE_CONNECTION: redis
         SESSION_DRIVER: redis
+        MAIL_DRIVER: log
+        MAIL_HOST: smtp.mailtrap.io
+        MAIL_PORT: 2525
+        MAIL_FROM_ADDRESS: from@example.com
+        MAIL_FROM_NAME: Laravel-tweet
         REDIS_HOST: redis
         DUSK_BASE_URL: http://localhost:8000
         CHROME_DRIVER_HOST: http://localhost:9515
@@ -55,6 +60,9 @@ jobs:
       - run: yarn
       - run: yarn prod
       - run: php artisan key:generate
+
+      # cache config
+      - run: php artisan config:cache
 
       # Unit test
       - run: php artisan migrate
