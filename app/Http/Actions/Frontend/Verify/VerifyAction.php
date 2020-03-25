@@ -22,7 +22,7 @@ class VerifyAction
      */
     public function __invoke(Request $request)
     {
-        if (! hash_equals((string) $request->route('id'), (string) $request->user()->getKey())) {
+        if (! hash_equals((string) $request->route('uuid'), (string) $request->user()->getKey())) {
             throw new AuthorizationException();
         }
 
@@ -30,10 +30,12 @@ class VerifyAction
             throw new AuthorizationException();
         }
 
+        $uuid = $request->user()->uuid;
+
         if ($request->user()->hasVerifiedEmail()) {
             return $request->wantsJson()
                         ? new Response('', 204)
-                        : redirect($this->redirectPath());
+                        : redirect()->route('frontend.user.show', ['uuid' => $uuid]);
         }
 
         if ($request->user()->markEmailAsVerified()) {
@@ -46,7 +48,9 @@ class VerifyAction
 
         return $request->wantsJson()
                     ? new Response('', 204)
-                    : redirect($this->redirectPath())->with('verified', true);
+                    : redirect()->route('frontend.user.show', ['uuid' => $uuid])
+                        ->with('verified', true)
+                        ->with('alert-primary', 'Welcome! Your Account Successfully Confirmed!');
     }
 
     /**
