@@ -17,7 +17,7 @@ jobs:
         SESSION_DRIVER: redis
         MAIL_DRIVER: log
         MAIL_HOST: smtp.mailtrap.io
-        MAIL_POR: 2525
+        MAIL_PORT: 2525
         MAIL_FROM_ADDRESS: from@example.com
         MAIL_FROM_NAME: Laravel-tweet
         REDIS_HOST: redis
