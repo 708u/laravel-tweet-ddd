@@ -58,5 +58,8 @@ class VerifyActionTest extends TestCase
         // Assert User was verified.
         $response->assertRedirect();
         $response->assertSessionHas('alert-primary', 'Welcome! Your Account Successfully Confirmed!');
+
+        $user = User::first();
+        $this->assertNotEmpty($user->email_verified_at);
     }
 }
