@@ -14,6 +14,3 @@ use Illuminate\Support\Facades\Auth;
 */
 
 // Auth::routes();
-Route::namespace('Frontend')->group(function () {
-    Route::post('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
-});

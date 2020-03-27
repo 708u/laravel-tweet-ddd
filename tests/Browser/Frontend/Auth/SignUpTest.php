@@ -36,15 +36,16 @@ class SignUpTest extends DuskTestCase
                 ->assertRouteIs('frontend.verification.notice')
                 ->assertAuthenticated();
 
-            $flashMessage = 'Welcome! Your Account Successfully Confirmed!';
-            $uuid = User::first()->uuid; // FIXME: should remove dependencies
+            // FIXME: Dirty test, it avoid verifying its email via verification route, and should remove dependencies from eloquent.
+            $user = User::first();
+            $uuid = $user->uuid;
+            $user->email_verified_at = now();
+            $user->save();
 
-            $browser->visit('email/verify/' . $uuid .'/' . sha1($email))
+            $browser->visit('/')
                 ->assertRouteIs('frontend.user.show', $uuid)
-                ->assertSee($flashMessage) // welcome flash message
                 ->visit('/signup')
                 ->assertRouteIs('frontend.user.show', $uuid) // redirect user page if already signed up
-                ->assertDontSee($flashMessage) // flash message disappeared
                 ->visit('/login')
                 ->assertRouteIs('frontend.user.show', $uuid); // also redirect user page if already signed up
         });
