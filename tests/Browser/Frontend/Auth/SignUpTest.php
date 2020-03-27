@@ -4,8 +4,6 @@ namespace Tests\Browser\Frontend\Auth;
 
 use App\Eloquent\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Str;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
@@ -38,7 +36,7 @@ class SignUpTest extends DuskTestCase
                 ->assertRouteIs('frontend.verification.notice')
                 ->assertAuthenticated();
 
-            // FIXME: Dirty test, it avoid verify its email via verification route, and should remove dependencies from eloquent.
+            // FIXME: Dirty test, it avoid verifying its email via verification route, and should remove dependencies from eloquent.
             $user = User::first();
             $uuid = $user->uuid;
             $user->email_verified_at = now();

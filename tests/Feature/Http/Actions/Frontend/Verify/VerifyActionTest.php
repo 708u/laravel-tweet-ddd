@@ -27,9 +27,9 @@ class VerifyActionTest extends TestCase
         $response = $this->post(
             'signup',
             [
-                'email' => 'foo@example.com',
-                'name'  => 'foo',
-                'password' => $password = 'password',
+                'email'                 => 'foo@example.com',
+                'name'                  => 'foo',
+                'password'              => $password = 'password',
                 'password_confirmation' => $password,
             ]
         );
@@ -47,8 +47,8 @@ class VerifyActionTest extends TestCase
         Notification::assertSentTo(
             $user = User::first(),
             VerifyEmail::class,
-            function($notification) use ($user, &$verificationUrl) {
-                $verificationUrl = $notification->toMail($user)->actionUrl;;
+            function ($notification) use ($user, &$verificationUrl) {
+                $verificationUrl = $notification->toMail($user)->actionUrl;
                 return true;
             }
         );
