@@ -48,10 +48,13 @@
 |   |       └── Transaction
 │   ├── Model // Domain Model layer
 │   │   ├── Entity
+|   |   |   ├── Base
 |   |   |   └── Tweet
 │   │   ├── ValueObject
+|   |   |   ├── Base
 |   |   |   └── Tweet
 │   │   └── DTO
+|   |       ├── Base
 |   |       └── Tweet
 │   ├── Query // Belongs to ApplicationService, Abstract CQRS Query, not included concrete implementation
 │   ├── Repository // Belongs to ApplicationService layer, not included concrete implementation
