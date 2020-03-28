@@ -46,29 +46,34 @@
 │   │   └── Contract
 |   |       ├── Uuid
 |   |       └── Transaction
-│   └── LaravelTweet // Core Domain
-│       ├── Model // Domain Model layer
-│       │   ├── Entity
-│       │   ├── ValueObject
-│       │   └── DTO
-│       ├── Query // Belongs to ApplicationService, Abstract CQRS Query, not included concrete implementation
-│       ├── Repository // Belongs to ApplicationService layer, not included concrete implementation
-│       │   └── Contract
-│       └── UseCase // Belongs to ApplicationService layer, Accomplish use-case
+│   ├── Model // Domain Model layer
+│   │   ├── Entity
+|   |   |   └── Tweet
+│   │   ├── ValueObject
+|   |   |   └── Tweet
+│   │   └── DTO
+|   |       └── Tweet
+│   ├── Query // Belongs to ApplicationService, Abstract CQRS Query, not included concrete implementation
+│   ├── Repository // Belongs to ApplicationService layer, not included concrete implementation
+│   │   └── Contract
+|   |       └── Tweet
+│   └── UseCase // Belongs to ApplicationService layer, Accomplish use-case
 |── infrastructure // Concrete Implementations. Should implement ApplicationService interface e.g RDBMS, HTTP Clients...
 │   ├── Application // Concrete Utility Application services
 |   |   ├── Uuid
 |   |   └── Transaction
-│   └── LaravelTweet // Core Domain Implementation
-│       ├── Query // Concrete CQRS Query
-|       └── Repository // Concrete Repository
-|           └── Eloquent
+│   ├── Query // Concrete CQRS Query
+|   └── Repository // Concrete Repository
+|       └── Tweet
 ├── app // Laravel app
 │   ├── Console
 │   ├── Eloquent
 │   ├── Exceptions
 │   ├── Http
 │   │   ├── Actions // For ADR pattern
+│   │   │   ├── Frontend
+│   │   │   └── Backend
+│   │   ├── Responders // For ADR pattern
 │   │   │   ├── Frontend
 │   │   │   └── Backend
 │   │   └── Middleware
