@@ -95,7 +95,7 @@ NUM=1
 ifdef num
   NUM=${num}
 endif
-scale-worker: ## Scale queue worker containers.## e.g make worker-scale num=3
+scale-worker: ## Scale queue worker containers. e.g make worker-scale num=3
 	docker-compose up -d --scale queue_worker=${NUM}
 
 .PHONY: queue-restart
