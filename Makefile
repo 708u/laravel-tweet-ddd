@@ -91,11 +91,11 @@ opt-clear: ## Clear all cache.
 	docker-compose exec app php artisan optimize:clear
 
 .PHONY: scale-worker
-NUM=1 ## Scale queue worker containers.## e.g make worker-scale num=3
+NUM=1
 ifdef num
   NUM=${num}
 endif
-scale-worker:
+scale-worker: ## Scale queue worker containers.## e.g make worker-scale num=3
 	docker-compose up -d --scale queue_worker=${NUM}
 
 .PHONY: queue-restart
