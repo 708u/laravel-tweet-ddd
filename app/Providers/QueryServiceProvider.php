@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use Domain\Query\Tweet\UserQuery;
+use Domain\Query\Contract\Tweet\UserQuery;
 use Illuminate\Support\ServiceProvider;
 use Infrastructure\Query\Tweet\EloquentUserQuery;
 

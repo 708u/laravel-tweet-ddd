@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Query\Tweet;
+namespace Domain\Query\Contract\Tweet;
 
 use Illuminate\Support\Collection;
 

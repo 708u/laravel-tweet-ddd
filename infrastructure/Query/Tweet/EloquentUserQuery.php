@@ -3,7 +3,7 @@
 namespace Infrastructure\Query\Tweet;
 
 use App\Eloquent\User as EloquentUser;
-use Domain\Query\Tweet\UserQuery;
+use Domain\Query\Contract\Tweet\UserQuery;
 use Illuminate\Support\Collection;
 use Infrastructure\DomainModelGeneratable\Eloquent\Tweet\UserGeneratable;
 
