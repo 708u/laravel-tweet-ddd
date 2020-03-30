@@ -176,6 +176,8 @@ return [
         // Bind repositories.
         App\Providers\RepositoryServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        // Bind queries.
+        App\Providers\QueryServiceProvider::class,
 
     ],
 
