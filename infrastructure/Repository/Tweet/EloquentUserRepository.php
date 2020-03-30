@@ -4,14 +4,15 @@ namespace Infrastructure\Repository\Tweet;
 
 use App\Eloquent\User as EloquentUser;
 use Domain\Model\Entity\Tweet\User;
-use Domain\Model\ValueObject\Tweet\Email\Email;
 use Domain\Model\ValueObject\Tweet\Identifier\UserId;
-use Domain\Model\ValueObject\Tweet\Password\HashedPassword;
 use Domain\Repository\Contract\Tweet\UserRepository;
 use Illuminate\Support\Collection;
+use Infrastructure\DomainModelGeneratable\Eloquent\Tweet\UserGeneratable;
 
 class EloquentUserRepository implements UserRepository
 {
+    use UserGeneratable;
+
     private EloquentUser $eloquentUser;
 
     public function __construct(EloquentUser $user)
@@ -74,21 +75,5 @@ class EloquentUserRepository implements UserRepository
             ->map(function ($user) {
                 return $this->generateUserFromEloquent($user);
             });
-    }
-
-    /**
-     * Generate eloquent to entity.
-     *
-     * @param EloquentUser $user
-     * @return User
-     */
-    private function generateUserFromEloquent(EloquentUser $user): User
-    {
-        return new User(
-            new UserId($user->uuid),
-            $user->name,
-            Email::factory($user->email),
-            HashedPassword::factory($user->password),
-        );
     }
 }
