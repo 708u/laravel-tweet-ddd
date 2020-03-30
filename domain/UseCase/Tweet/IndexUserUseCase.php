@@ -2,16 +2,16 @@
 
 namespace Domain\UseCase\Tweet;
 
-use Domain\Repository\Contract\Tweet\UserRepository;
+use Domain\Query\Contract\Tweet\UserQuery;
 use Illuminate\Support\Collection;
 
 class IndexUserUseCase
 {
-    private UserRepository $user;
+    private UserQuery $userQuery;
 
-    public function __construct(UserRepository $user)
+    public function __construct(UserQuery $userQuery)
     {
-        $this->user = $user;
+        $this->userQuery = $userQuery;
     }
 
     /**
@@ -22,8 +22,8 @@ class IndexUserUseCase
      */
     public function execute(): Collection
     {
-        return $this->user
-            ->findAll()
+        return $this->userQuery
+            ->findAllVerifiedUser()
             ->map(function ($user) {
                 return $user->toDTO();
             });
