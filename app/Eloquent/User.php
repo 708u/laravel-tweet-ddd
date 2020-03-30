@@ -33,6 +33,17 @@ class User extends UuidModel implements
     }
 
     /**
+     * Query Scope
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeVerified($query)
+    {
+        return $query->whereNotNull('email_verified_at');
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
