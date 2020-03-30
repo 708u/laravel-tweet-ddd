@@ -35,7 +35,8 @@ class User extends Entity
      */
     public function toDTO(): UserDTO
     {
-        return new UserDTO($this->identifierAsString(), $this->userName(), $this->email());
+        $verifiedAt = $this->verified() ? $this->formattedVerifiedAt() : 'not verified.';
+        return new UserDTO($this->identifierAsString(), $this->userName(), $this->email(), $verifiedAt);
     }
 
     /**
