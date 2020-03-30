@@ -6,5 +6,10 @@ use Illuminate\Support\Collection;
 
 interface UserQuery
 {
-    public function findAllActivatedUser(): Collection;
+    /**
+     * Get All Verified Users.
+     *
+     * @return Collection
+     */
+    public function findAllVerifiedUser(): Collection;
 }
