@@ -4,6 +4,7 @@ namespace Infrastructure\Repository\Tweet;
 
 use App\Eloquent\User as EloquentUser;
 use Domain\Model\Entity\Tweet\User;
+use Domain\Model\ValueObject\Tweet\ActivationStatus\VerificationStatus;
 use Domain\Model\ValueObject\Tweet\Email\Email;
 use Domain\Model\ValueObject\Tweet\Identifier\UserId;
 use Domain\Model\ValueObject\Tweet\Password\HashedPassword;
@@ -89,6 +90,7 @@ class EloquentUserRepository implements UserRepository
             $user->name,
             Email::factory($user->email),
             HashedPassword::factory($user->password),
+            VerificationStatus::factory($user->email_verified_at)
         );
     }
 }

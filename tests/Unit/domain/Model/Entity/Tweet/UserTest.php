@@ -5,6 +5,7 @@ namespace Tests\Unit\domain\Model\Entity\Tweet;
 use Domain\Application\Contract\Hash\Hashable;
 use Domain\Application\Contract\Uuid\UuidGeneratable;
 use Domain\Model\Entity\Tweet\User;
+use Domain\Model\ValueObject\Tweet\ActivationStatus\VerificationStatus;
 use Domain\Model\ValueObject\Tweet\Email\Email;
 use Domain\Model\ValueObject\Tweet\Identifier\UserId;
 use Domain\Model\ValueObject\Tweet\Password\HashedPassword;
@@ -28,7 +29,9 @@ class UserTest extends TestCase
     {
         $userId = new UserId(resolve(UuidGeneratable::class)->nextIdentifier());
         $password = HashedPassword::factory(resolve(Hashable::class)->make('password'));
-        $user = new User($userId, 'foo', Email::factory('foo@foo.com'), $password);
+        $verificationStatus = VerificationStatus::factory();
+        $user = new User($userId, 'foo', Email::factory('foo@foo.com'), $password, $verificationStatus);
+
         $repo = app(UserRepository::class);
         $repo->create($user);
         $this->assertDatabaseHas('users', ['email' => $user->email()]);

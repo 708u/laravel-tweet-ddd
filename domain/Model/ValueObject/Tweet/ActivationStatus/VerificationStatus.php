@@ -6,7 +6,12 @@ use Carbon\CarbonImmutable;
 
 class VerificationStatus
 {
-    public function __construct(string $verifiedAt = null)
+    public static function factory(?string $verifiedAt = null)
+    {
+        return new self($verifiedAt);
+    }
+
+    private function __construct(?string $verifiedAt)
     {
         $this->verifiedAt = $verifiedAt ? CarbonImmutable::parse($verifiedAt) : null;
     }
