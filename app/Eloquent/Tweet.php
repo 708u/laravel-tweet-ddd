@@ -2,9 +2,7 @@
 
 namespace App\Eloquent;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Tweet extends Model
+class Tweet extends UuidModel
 {
     /**
      * User Relationship.
