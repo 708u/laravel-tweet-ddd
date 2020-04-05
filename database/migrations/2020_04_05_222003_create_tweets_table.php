@@ -19,6 +19,8 @@ class CreateTweetsTable extends Migration
             $table->uuid('user_uuid');
             $table->foreign('user_uuid')->references('uuid')->on('users')->cascadeOnDelete();
             $table->timestamps();
+
+            $table->index(['user_uuid', 'created_at'], 'idx_user_uuid_created_at');
         });
     }
 
