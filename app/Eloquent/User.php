@@ -33,6 +33,16 @@ class User extends UuidModel implements
     }
 
     /**
+     * Tweet Relationship.
+     *
+     * @return void
+     */
+    public function tweets()
+    {
+        return $this->hasMany(Tweet::class);
+    }
+
+    /**
      * Query Scope
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
