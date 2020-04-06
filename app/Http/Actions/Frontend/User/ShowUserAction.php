@@ -23,7 +23,10 @@ class ShowUserAction extends Controller
 
     public function __invoke(string $uuid)
     {
+        [$userDTO, $tweetsDTO] = $this->useCase->execute($uuid);
+
         return $this->responder
-            ->setUser($this->useCase->execute($uuid));
+            ->setUser($userDTO)
+            ->setTweets($tweetsDTO);
     }
 }

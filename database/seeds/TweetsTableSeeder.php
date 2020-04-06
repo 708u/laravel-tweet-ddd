@@ -1,5 +1,6 @@
 <?php
 
+use App\Eloquent\Tweet;
 use App\Eloquent\User;
 use Illuminate\Database\Seeder;
 
@@ -12,12 +13,10 @@ class TweetsTableSeeder extends Seeder
      */
     public function run()
     {
-        $users = User::all();
-        $users->each(function ($user) {
-            $user->tweets()->createMany([
-                ['content' => 'hello world!'],
-                ['content' => 'こんにちは、世界!'],
-            ]);
+        User::all()->each(function ($user) {
+            $user->tweets()->saveMany(
+                factory(Tweet::class, 10)->make(),
+            );
         });
     }
 }

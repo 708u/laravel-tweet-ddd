@@ -5,6 +5,7 @@ namespace App\Http\Responders\Frontend\User;
 use Domain\Model\DTO\Tweet\UserDTO;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Response;
+use Illuminate\Support\Collection;
 use Illuminate\View\Factory as ViewFactory;
 
 class ShowUserResponder implements Responsable
@@ -12,6 +13,8 @@ class ShowUserResponder implements Responsable
     private ViewFactory $view;
 
     private UserDTO $user;
+
+    private Collection $tweets;
 
     public function __construct(ViewFactory $view)
     {
@@ -28,7 +31,8 @@ class ShowUserResponder implements Responsable
     {
         return new Response(
             $this->view->make('frontend.user.show')->with([
-                'user' => $this->user,
+                'user'   => $this->user,
+                'tweets' => $this->tweets,
             ])
         );
     }
@@ -42,6 +46,18 @@ class ShowUserResponder implements Responsable
     public function setUser(UserDTO $user): self
     {
         $this->user = $user;
+        return clone $this;
+    }
+
+    /**
+     * Set Tweets
+     *
+     * @param Collection $tweets
+     * @return self
+     */
+    public function setTweets(Collection $tweets): self
+    {
+        $this->tweets = $tweets;
         return clone $this;
     }
 }
