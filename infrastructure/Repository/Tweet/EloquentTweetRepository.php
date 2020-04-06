@@ -60,7 +60,7 @@ class EloquentTweetRepository implements TweetRepository
      */
     public function findByUserId(string $userId): Collection
     {
-        return $this->eloquentTweet
+        return $this->eloquentTweet::with(['user'])
             ->where('user_uuid', $userId)
             ->get()
             ->map(function ($tweet) {
