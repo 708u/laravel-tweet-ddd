@@ -2,15 +2,20 @@
 
 namespace Domain\UseCase\Tweet;
 
-use Domain\Model\DTO\Tweet\UserDTO;
+use Domain\Repository\Contract\Tweet\TweetRepository;
 use Domain\Repository\Contract\Tweet\UserRepository;
 
 class ShowUserUseCase
 {
     private UserRepository $user;
 
-    public function __construct(UserRepository $user)
-    {
+    private TweetRepository $tweet;
+
+    public function __construct(
+        UserRepository $user,
+        TweetRepository $tweet
+    ) {
+        $this->tweet = $tweet;
         $this->user = $user;
     }
 
@@ -18,10 +23,14 @@ class ShowUserUseCase
      * Find User to show its details.
      *
      * @param string $identifier
-     * @return UserDTO
+     * @return array
      */
-    public function execute(string $identifier): UserDTO
+    public function execute(string $identifier): array
     {
-        return $this->user->find($identifier)->toDto();
+        $userDTO = $this->user->find($identifier)->toDto();
+
+        $tweetsDTO = $this->tweet->findByUserId($identifier)->toDTO();
+
+        return [$userDTO, $tweetsDTO];
     }
 }
