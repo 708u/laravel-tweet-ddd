@@ -23,7 +23,7 @@ class TweetContent
      */
     public static function factory(string $content): self
     {
-        throw_unless(
+        throw_if(
             strlen($content) > self::CONTENT_MAX_LENGTH,
             new InvalidArgumentException('Tweet content length should be less than 140 chars.')
         );
