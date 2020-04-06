@@ -13,8 +13,8 @@ class TweetsTableSeeder extends Seeder
     public function run()
     {
         $users = User::all();
-        $users->each(function ($users) {
-            $users->tweets()->createMany([
+        $users->each(function ($user) {
+            $user->tweets()->createMany([
                 ['content' => 'hello world!'],
                 ['content' => 'こんにちは、世界!'],
             ]);
