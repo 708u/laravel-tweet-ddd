@@ -9,14 +9,17 @@ class Tweet extends Component
 {
     public LengthAwarePaginator $tweets;
 
+    public string $username;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(LengthAwarePaginator $tweets)
+    public function __construct(LengthAwarePaginator $tweets, string $username)
     {
         $this->tweets = $tweets;
+        $this->username = $username;
     }
 
     /**

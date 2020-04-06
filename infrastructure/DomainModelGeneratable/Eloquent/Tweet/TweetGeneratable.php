@@ -22,6 +22,7 @@ trait TweetGeneratable
         return new Tweet(
             new TweetId($eloquentTweet->uuid),
             new UserId($eloquentTweet->user_uuid),
+            $eloquentTweet->user->name,
             TweetContent::factory($eloquentTweet->content),
             new CarbonImmutable($eloquentTweet->created_at),
         );

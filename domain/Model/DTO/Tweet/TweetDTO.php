@@ -10,14 +10,22 @@ class TweetDTO extends DTO
 
     protected string $userId;
 
+    protected string $username;
+
     protected string $tweetContent;
 
     protected string $timestamp;
 
-    public function __construct(string $tweetId, string $userId, string $tweetContent, string $timestamp)
-    {
+    public function __construct(
+        string $tweetId,
+        string $userId,
+        string $username,
+        string $tweetContent,
+        string $timestamp
+    ) {
         $this->identifier = $tweetId;
         $this->userId = $userId;
+        $this->username = $username;
         $this->tweetContent = $tweetContent;
         $this->timestamp = $timestamp;
     }

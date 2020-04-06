@@ -3,7 +3,6 @@
 namespace Domain\Model\Entity\Tweet;
 
 use Carbon\CarbonImmutable;
-use Domain\Model\DTO\Base\DTO;
 use Domain\Model\DTO\Tweet\TweetDTO;
 use Domain\Model\Entity\Base\Entity;
 use Domain\Model\ValueObject\Tweet\Identifier\TweetId;
@@ -14,15 +13,18 @@ class Tweet extends Entity
 {
     private UserId $userId;
 
+    private string $username;
+
     private TweetContent $tweetContent;
 
     private CarbonImmutable $timestamp;
 
     public function __construct(
-        TweetId $tweetId, UserId $userId, TweetContent $tweetContent, CarbonImmutable $timestamp
+        TweetId $tweetId, UserId $userId, string $username, TweetContent $tweetContent, CarbonImmutable $timestamp
     ) {
         $this->identifier = $tweetId;
         $this->userId = $userId;
+        $this->username = $username;
         $this->tweetContent = $tweetContent;
         $this->timestamp = $timestamp;
     }
@@ -37,6 +39,7 @@ class Tweet extends Entity
         return new TweetDTO(
             $this->identifierAsString(),
             $this->userId->toString(),
+            $this->username(),
             $this->tweetContent(),
             $this->timestamp
         );
@@ -50,6 +53,16 @@ class Tweet extends Entity
     public function userId(): UserId
     {
         return $this->userId;
+    }
+
+    /**
+     * get username
+     *
+     * @return string
+     */
+    public function username(): string
+    {
+        return $this->username;
     }
 
     /**
