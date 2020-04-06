@@ -26,7 +26,7 @@ class MacroServiceProvider extends ServiceProvider
     {
         Collection::macro('toDTO', function () {
             return $this->map(function ($value) {
-                return $value->toDto();
+                return $value->toDTO();
             });
         });
     }

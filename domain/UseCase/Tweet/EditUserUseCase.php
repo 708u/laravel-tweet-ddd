@@ -23,6 +23,6 @@ class EditUserUseCase
      */
     public function execute(string $identifier): UserDTO
     {
-        return $this->user->find($identifier)->toDto();
+        return $this->user->find($identifier)->toDTO();
     }
 }
