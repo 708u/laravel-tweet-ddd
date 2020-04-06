@@ -31,7 +31,7 @@ class ShowUserResponder implements Responsable
     {
         return new Response(
             $this->view->make('frontend.user.show')->with([
-                'user' => $this->user,
+                'user'   => $this->user,
                 'tweets' => $this->tweets,
             ])
         );
