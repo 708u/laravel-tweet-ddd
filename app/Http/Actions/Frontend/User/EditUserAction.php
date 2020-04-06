@@ -4,11 +4,11 @@ namespace App\Http\Actions\Frontend\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Responders\Frontend\User\EditUserResponder;
-use Domain\UseCase\Tweet\ShowUserUseCase;
+use Domain\UseCase\Tweet\EditUserUseCase;
 
 class EditUserAction extends Controller
 {
-    private ShowUserUseCase $useCase;
+    private EditUserUseCase $useCase;
 
     private EditUserResponder $responder;
 
@@ -17,7 +17,7 @@ class EditUserAction extends Controller
      *
      * @return void
      */
-    public function __construct(ShowUserUseCase $useCase, EditUserResponder $responder)
+    public function __construct(EditUserUseCase $useCase, EditUserResponder $responder)
     {
         $this->middleware('RedirectIfAuthUserDosentHaveGivenUuid');
         $this->useCase = $useCase;
