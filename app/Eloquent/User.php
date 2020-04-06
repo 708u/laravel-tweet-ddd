@@ -35,7 +35,7 @@ class User extends UuidModel implements
     /**
      * Tweet Relationship.
      *
-     * @return void
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function tweets()
     {

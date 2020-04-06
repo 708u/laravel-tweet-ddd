@@ -16,7 +16,7 @@ class Tweet extends UuidModel
     /**
      * User Relationship.
      *
-     * @return void
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
     {
