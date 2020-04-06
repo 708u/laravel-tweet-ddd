@@ -64,6 +64,10 @@ jobs:
       # cache config
       - run: php artisan config:cache
 
+      # Determine if laravel application successfully loaded
+      - run: php artisan
+      - run: php artisan route:list
+
       # Unit test
       - run: php artisan migrate
       - run: vendor/bin/phpunit
