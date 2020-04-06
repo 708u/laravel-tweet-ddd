@@ -15,7 +15,9 @@
         <div class="col-md-8">
             <h3>Tweets</h3>
             <ol class="tweets">
-                <x-frontend.tweets.tweet :tweets="$tweets"/>
+                @foreach ($tweets as $tweet)
+                    <x-frontend.tweets.tweet :tweet="$tweet"/>
+                @endforeach
             </ol>
         </div>
     </div>

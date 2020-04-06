@@ -2,24 +2,22 @@
 
 namespace App\View\Components\Frontend\Tweets;
 
-use Illuminate\Pagination\LengthAwarePaginator;
+use Domain\Model\DTO\Tweet\TweetDTO;
+use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
 class Tweet extends Component
 {
-    public LengthAwarePaginator $tweets;
-
-    public string $username;
+    public TweetDTO $tweet;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(LengthAwarePaginator $tweets, string $username)
+    public function __construct(TweetDTO $tweet)
     {
-        $this->tweets = $tweets;
-        $this->username = $username;
+        $this->tweet = $tweet;
     }
 
     /**
