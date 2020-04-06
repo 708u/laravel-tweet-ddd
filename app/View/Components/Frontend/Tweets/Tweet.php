@@ -3,7 +3,6 @@
 namespace App\View\Components\Frontend\Tweets;
 
 use Domain\Model\DTO\Tweet\TweetDTO;
-use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
 class Tweet extends Component
