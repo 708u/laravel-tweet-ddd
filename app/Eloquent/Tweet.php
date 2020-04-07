@@ -10,7 +10,7 @@ class Tweet extends UuidModel
      * @var array
      */
     protected $fillable = [
-        'content', 'user_uuid',
+        'uuid', 'content', 'user_uuid',
     ];
 
     /**

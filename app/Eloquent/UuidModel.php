@@ -12,13 +12,4 @@ abstract class UuidModel extends Model
     protected $keyType = 'string';
 
     public $incrementing = false;
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($m) {
-            $m->{$m->getKeyName()} = app(UuidGeneratable::class)->nextIdentifier();
-        });
-    }
 }

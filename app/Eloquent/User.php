@@ -59,7 +59,7 @@ class User extends UuidModel implements
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'uuid', 'name', 'email', 'password',
     ];
 
     /**
