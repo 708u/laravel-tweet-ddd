@@ -130,6 +130,12 @@ class User extends Entity
         return clone $this;
     }
 
+    /**
+     * Tweet a message
+     *
+     * @param string $tweetContent
+     * @return Tweet
+     */
     public function tweet(string $tweetContent): Tweet
     {
         return new Tweet(
