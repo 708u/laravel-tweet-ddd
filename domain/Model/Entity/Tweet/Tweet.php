@@ -74,4 +74,14 @@ class Tweet extends Entity
     {
         return $this->tweetContent->content();
     }
+
+    /**
+     * get timestamp as string.
+     *
+     * @return string
+     */
+    public function timestamp(): string
+    {
+        return $this->timestamp->toDateTimeString();
+    }
 }

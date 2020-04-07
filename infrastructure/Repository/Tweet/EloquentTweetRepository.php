@@ -27,7 +27,13 @@ class EloquentTweetRepository implements TweetRepository
      */
     public function create(Tweet $tweet): void
     {
-        //
+        $this->eloquentTweet->insert([
+            'uuid'       => $tweet->identifierAsString(),
+            'user_uuid'  => $tweet->userId()->toString(),
+            'content'    => $tweet->tweetContent(),
+            'created_at' => $tweet->timestamp(),
+            'updated_at' => $tweet->timestamp(),
+        ]);
     }
 
     /**
