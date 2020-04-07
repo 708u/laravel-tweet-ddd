@@ -34,6 +34,6 @@ class UserTest extends TestCase
 
         $repo = app(UserRepository::class);
         $repo->create($user);
-        $this->assertDatabaseHas('users', ['email' => $user->email()]);
+        $this->assertDatabaseHas('users', ['uuid' => $userId->toString(), 'email' => $user->email()]);
     }
 }
