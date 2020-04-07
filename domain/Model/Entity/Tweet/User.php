@@ -2,12 +2,16 @@
 
 namespace Domain\Model\Entity\Tweet;
 
+use Carbon\CarbonImmutable;
+use Domain\Application\Contract\Uuid\UuidGeneratable;
 use Domain\Model\DTO\Tweet\UserDTO;
 use Domain\Model\Entity\Base\Entity;
 use Domain\Model\ValueObject\Tweet\ActivationStatus\VerificationStatus;
 use Domain\Model\ValueObject\Tweet\Email\Email;
+use Domain\Model\ValueObject\Tweet\Identifier\TweetId;
 use Domain\Model\ValueObject\Tweet\Identifier\UserId;
 use Domain\Model\ValueObject\Tweet\Password\HashedPassword;
+use Domain\Model\ValueObject\Tweet\TweetContent\TweetContent;
 
 class User extends Entity
 {
@@ -124,5 +128,16 @@ class User extends Entity
     {
         $this->hashedPassword = $password;
         return clone $this;
+    }
+
+    public function tweet(string $tweetContent): Tweet
+    {
+        return new Tweet(
+            new TweetId(resolve(UuidGeneratable::class)->nextIdentifier()),
+            $this->identifier(),
+            $this->userName(),
+            TweetContent::factory($tweetContent),
+            new CarbonImmutable()
+        );
     }
 }
