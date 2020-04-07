@@ -5,6 +5,7 @@ namespace App\Http\Actions\Frontend\Auth;
 use App\Eloquent\User;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Domain\Application\Contract\Uuid\UuidGeneratable;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
@@ -23,14 +24,17 @@ class SignUpAction extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    private UuidGeneratable $uuidGenerator;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UuidGeneratable $uuidGenerator)
     {
         $this->middleware('guest');
+        $this->uuidGenerator = $uuidGenerator;
     }
 
     public function __invoke(Request $request)
@@ -75,6 +79,7 @@ class SignUpAction extends Controller
     protected function create(array $data)
     {
         return User::create([
+            'uuid'     => $this->uuidGenerator->nextIdentifier(),
             'name'     => $data['name'],
             'email'    => $data['email'],
             'password' => Hash::make($data['password']),
