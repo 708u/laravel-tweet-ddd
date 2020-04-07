@@ -5,6 +5,7 @@ namespace App\Http\Responders\Frontend\User;
 use Domain\Model\DTO\Tweet\UserDTO;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Response;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\View\Factory as ViewFactory;
 
@@ -15,6 +16,9 @@ class ShowUserResponder implements Responsable
     private UserDTO $user;
 
     private Collection $tweets;
+
+    /** @var int amount of items shown in per pages */
+    private int $perPage = 30;
 
     public function __construct(ViewFactory $view)
     {
@@ -29,10 +33,21 @@ class ShowUserResponder implements Responsable
      */
     public function toResponse($request): Response
     {
+        $page = (int) $request->query('page');
+
+        $allTweetsCount = $this->tweets->count();
+
+        $paginatedTweets = app()->makeWith(LengthAwarePaginator::class, [
+            'items'   => $this->tweets->forPage($page, $this->perPage),
+            'total'   => $allTweetsCount,
+            'perPage' => $this->perPage,
+        ]);
+
         return new Response(
             $this->view->make('frontend.user.show')->with([
-                'user'   => $this->user,
-                'tweets' => $this->tweets,
+                'user'           => $this->user,
+                'tweets'         => $paginatedTweets->withPath('/users/' . $this->user->identifier),
+                'allTweetsCount' => $allTweetsCount,
             ])
         );
     }
