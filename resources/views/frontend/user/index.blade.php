@@ -9,6 +9,6 @@
 
 <div class="container">
     <x-frontend.user.users :users="$users"/>
-    <div class="d-flex justify-content-center mt-4">{{ $users->links() }}</div>
+    <x-partial.pager :pager="$users"/>
 </div>
 @endsection
