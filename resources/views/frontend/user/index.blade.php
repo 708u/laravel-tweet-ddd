@@ -9,6 +9,6 @@
 
 <div class="container">
     <x-frontend.user.users :users="$users"/>
-    <x-partial.pager :pager="$users"/>
+    <x-partial.pager :pager="$users" class="justify-content-center"/>
 </div>
 @endsection

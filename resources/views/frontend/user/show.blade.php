@@ -19,6 +19,7 @@
                     <x-frontend.tweets.tweet :tweet="$tweet"/>
                 @endforeach
             </ol>
+            <x-partial.pager :pager="$tweets" class="justify-content-left"/>
         </div>
     </div>
 </div>
