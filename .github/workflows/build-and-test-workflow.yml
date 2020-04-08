@@ -63,6 +63,13 @@ jobs:
 
       - run: echo ${{ github.run_id }}
 
+      - uses: actions/checkout@v2
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2.0.0
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_MESSAGE: "https://github.com/naoyaUda/laravel-tweet-ddd/actions/runs/${{ github.run_id }}"
+
       # cache config
       - run: php artisan config:cache
 
