@@ -110,7 +110,7 @@ jobs:
 
       - uses: 8398a7/action-slack@v2
         with:
-          icon_emoji: ':owl:'
+          test: ':owl:'
           status: ${{ job.status }}
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }} # required
