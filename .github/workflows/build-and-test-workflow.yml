@@ -61,6 +61,8 @@ jobs:
       - run: yarn prod
       - run: php artisan key:generate
 
+      - run: actions/cache@v1
+
       # cache config
       - run: php artisan config:cache
 
