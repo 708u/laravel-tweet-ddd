@@ -90,3 +90,11 @@ jobs:
         with:
           name: laravel-log
           path: storage/logs
+
+      - uses: 8398a7/action-slack@v2.7.0
+        if: always()
+        with:
+          status: ${{ job.status }}
+          author_name: Integration Test
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }} # required

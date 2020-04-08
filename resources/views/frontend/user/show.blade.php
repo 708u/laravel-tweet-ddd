@@ -13,7 +13,7 @@
             </section>
         </aside>
         <div class="col-md-8">
-            <h3 class="mb-3">Tweets ({{ $allTweetsCount }})</h3>
+            <h3 class="mb-3">Tweets ({{ $tweets->total() }})</h3>
             <ol class="tweets">
                 @foreach ($tweets as $tweet)
                     <x-frontend.tweets.tweet :tweet="$tweet"/>
