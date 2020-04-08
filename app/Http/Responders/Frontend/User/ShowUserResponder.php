@@ -35,11 +35,9 @@ class ShowUserResponder implements Responsable
     {
         $page = (int) $request->query('page');
 
-        $allTweetsCount = $this->tweets->count();
-
         $paginatedTweets = app()->makeWith(LengthAwarePaginator::class, [
             'items'   => $this->tweets->forPage($page, $this->perPage),
-            'total'   => $allTweetsCount,
+            'total'   => $this->tweets->count(),
             'perPage' => $this->perPage,
         ]);
 
@@ -47,7 +45,6 @@ class ShowUserResponder implements Responsable
             $this->view->make('frontend.user.show')->with([
                 'user'           => $this->user,
                 'tweets'         => $paginatedTweets->withPath('/users/' . $this->user->identifier),
-                'allTweetsCount' => $allTweetsCount,
             ])
         );
     }
