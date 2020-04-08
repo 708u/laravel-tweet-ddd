@@ -61,6 +61,8 @@ jobs:
       - run: yarn prod
       - run: php artisan key:generate
 
+      - run: echo ${{ github.run_id }}
+
       # cache config
       - run: php artisan config:cache
 
