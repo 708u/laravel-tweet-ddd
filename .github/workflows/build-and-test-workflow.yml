@@ -96,7 +96,7 @@ jobs:
         if: success()
         env:
           SLACK_TITLE: CI status
-          SLACK_MESSAGE: "success :rocket:"
+          SLACK_MESSAGE: "success :owl:"
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
       - name: Slack failed notification
@@ -105,5 +105,5 @@ jobs:
         env:
           SLACK_COLOR: '#dc143c'
           SLACK_TITLE: CI status
-          SLACK_MESSAGE: "Failed... :red_circle:"
+          SLACK_MESSAGE: "Failed... :cry:"
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
