@@ -93,7 +93,7 @@ trait CanReferUnaccessible
         if (is_null($reflection)) {
             $reflection = new ReflectionClass($original_instance);
             $this->setReflectionInstance($reflection);
-        };
+        }
         return $reflection;
     }
 }
