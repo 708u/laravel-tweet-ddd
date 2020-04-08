@@ -5,93 +5,87 @@ namespace Tests\Helper\Utils;
 use ReflectionClass;
 
 /**
- * Reflectionクラスのtest用wrapper_trait
+ * For access unaccessible methods and properties.
  *
- * 第一引数にアクセスしたいインスタンスを渡すこと
- *
- * テスト用途のみで使用すること
- * 使い方次第では、本来アクセスできないメソッドを呼び出せてしまう
+ * NOTE: DO NOT USE this trait in production code. you should use this only testing.
  */
 trait CanReferUnaccessible
 {
-    /** @var array 内部にReflectionClassを保持する. test中同じインスタンスを使い回すために使用する */
-    private $reflection_instances = [];
+    private array $reflectionInstances = [];
 
     /**
-     * protected,privateメソッドをリフレクションを用いて読み出す
-     * 引数が必要なメソッドの場合、配列に入れて渡す
+     * Run unaccessible method.
+     * If necessary, you can give this method's arguments.
      *
-     * @param object $original_instance リフレクション元のオリジナルクラス
-     * @param string $method_name
+     * @param object $originalInstance
+     * @param string $methodName
      * @param array  $args
      * @return mixed
      */
     public function runUnaccessibleMethod(
-        object $original_instance,
-        string $method_name,
+        object $originalInstance,
+        string $methodName,
         array $args = []
     ) {
-        $reflection = $this->buildOrReuseReflectionInstance($original_instance);
-        $method = $reflection->getMethod($method_name);
+        $reflection = $this->buildOrReuseReflectionInstance($originalInstance);
+        $method = $reflection->getMethod($methodName);
         $method->setAccessible(true);
-        return $method->invokeArgs($original_instance, $args);
+        return $method->invokeArgs($originalInstance, $args);
     }
 
     /**
-     * 1つの指定したprotected,privateプロパティをリフレクションを用いて読み出す
+     * Get unaccessible property.
      *
-     * @param object $original_instanceリフレクション元のオリジナルクラス
-     * @param string $property_name
+     * @param object $originalInstance
+     * @param string $propertyName
      * @return mixed
      */
-    public function getUnaccessibleProperty($original_instance, string $property_name)
+    public function getUnaccessibleProperty(object $originalInstance, string $propertyName)
     {
-        $reflection = $this->buildOrReuseReflectionInstance($original_instance);
-        $property = $reflection->getProperty($property_name);
+        $reflection = $this->buildOrReuseReflectionInstance($originalInstance);
+        $property = $reflection->getProperty($propertyName);
         $property->setAccessible(true);
-        return $property->getValue($original_instance);
+        return $property->getValue($originalInstance);
     }
 
     /**
-     * 指定した任意の数のprotected,privateプロパティをリフレクションを用いてすべて取得する
+     * Get unaccessible properties.
      *
-     * @param object $original_instance リフレクション元のオリジナルクラス
-     * @param array  $property_names キー名を格納した配列
+     * @param object $originalInstance
+     * @param array  $propertyNames
      * @return array
      */
-    public function getUnaccessibleProperties($original_instance, array $property_names): array
+    public function getUnaccessibleProperties(object $originalInstance, array $propertyNames): array
     {
         $array = [];
-        foreach ($property_names as $name) {
-            $array[$name] = $this->getUnaccessibleProperty($original_instance, $name);
+        foreach ($propertyNames as $name) {
+            $array[$name] = $this->getUnaccessibleProperty($originalInstance, $name);
         }
         return $array;
     }
 
     /**
-     * setter. 内部使用のみを想定
+     * Set Reflection class for reuse
      *
      * @param ReflectionClass $reflection
      * @return void
      */
     private function setReflectionInstance(ReflectionClass $reflection): void
     {
-        $this->reflection_instances[$reflection->getName()] = $reflection;
+        $this->reflectionInstances[$reflection->getName()] = $reflection;
     }
 
     /**
-     * ReflectionClassを取得する
-     * 既にsetされている場合はそのインスタンスを使い回す
-     * setされていない場合は次回以降使い回すためプロパティに格納する
+     * Get or Reuse Reflection instance.
      *
-     * @param  object $original_instance
+     * @param  object $originalInstance
      * @return ReflectionClass
      */
-    private function buildOrReuseReflectionInstance($original_instance): ReflectionClass
+    private function buildOrReuseReflectionInstance(object $originalInstance): ReflectionClass
     {
-        $reflection = $this->reflection_instances[get_class($original_instance)] ?? null;
+        $reflection = $this->reflectionInstances[get_class($originalInstance)] ?? null;
         if (is_null($reflection)) {
-            $reflection = new ReflectionClass($original_instance);
+            $reflection = new ReflectionClass($originalInstance);
             $this->setReflectionInstance($reflection);
         }
         return $reflection;
