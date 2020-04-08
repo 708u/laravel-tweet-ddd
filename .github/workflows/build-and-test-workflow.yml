@@ -95,5 +95,6 @@ jobs:
         if: always()
         with:
           status: ${{ job.status }}
+          author_name: Integration Test
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }} # required
