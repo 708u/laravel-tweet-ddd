@@ -45,4 +45,16 @@ class InMemoryRepositoryTest extends TestCase
         $savedEntity = $this->getUnaccessibleProperty($this->repository, 'repository')[AbstractInMemoryRepositoryMock::class][$this->plainIdentifier];
         $this->assertSame($this->entity, $savedEntity);
     }
+
+    /**
+     * @group repository
+     *
+     * @return void
+     */
+    public function testFind()
+    {
+        $this->repository->save($this->entity);
+        $foundEntity = $this->repository->find($this->identifier);
+        $this->assertSame($this->entity, $foundEntity);
+    }
 }
