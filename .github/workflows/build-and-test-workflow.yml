@@ -61,8 +61,6 @@ jobs:
       - run: yarn prod
       - run: php artisan key:generate
 
-      - run: echo ${{ github.run_id }}
-
       # cache config
       - run: php artisan config:cache
 
@@ -98,4 +96,4 @@ jobs:
         if: success()
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_MESSAGE: "CI success :rocket"
+          SLACK_MESSAGE: "CI success :rocket:"
