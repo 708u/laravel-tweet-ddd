@@ -62,7 +62,7 @@ jobs:
       - run: php artisan key:generate
 
       # for test
-       - uses: actions/checkout@v2
+      - run: actions/checkout@v2
 
       # cache config
       - run: php artisan config:cache
