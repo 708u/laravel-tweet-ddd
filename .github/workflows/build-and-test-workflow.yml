@@ -108,7 +108,7 @@ jobs:
       #     SLACK_MESSAGE: "Failed... :cry:"
       #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
-      - uses: 8398a7/action-slack@v3
+      - uses: 8398a7/action-slack@v2
         with:
           icon_emoji: ':owl:'
           status: ${{ job.status }}
