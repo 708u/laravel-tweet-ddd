@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\domain\Repository\Base;
 
+use Domain\Application\Contract\Uuid\UuidGeneratable;
 use Domain\Model\Entity\Base\Entity;
 use Domain\Model\ValueObject\Base\Identifier;
 use Tests\Helper\Domain\Model\Entity\Base\AbstractEntityMock;
@@ -65,8 +66,12 @@ class InMemoryRepositoryTest extends TestCase
      */
     public function testFindBy()
     {
+        $entity2 = new AbstractEntityMock(new AbstractIdentifierMock(resolve(UuidGeneratable::class)->nextIdentifier()));
         $this->repository->save($this->entity);
+        $this->repository->save($entity2);
         $foundEntities = $this->repository->findBy($this->identifier, 'identifier');
+
+        $this->assertCount(1, $foundEntities);
         $this->assertSame($foundEntities->first(), $this->entity);
     }
 
