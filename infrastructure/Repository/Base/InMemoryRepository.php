@@ -35,6 +35,16 @@ abstract class InMemoryRepository
     }
 
     /**
+     * find all entities in memory.
+     *
+     * @return Collection
+     */
+    protected function findAllInMemory(): Collection
+    {
+        return collect($this->repository[static::class]);
+    }
+
+    /**
      * find entity has specific attribute in memory repository.
      *
      * @param mixed $attribute
