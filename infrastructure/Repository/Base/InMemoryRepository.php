@@ -46,8 +46,14 @@ abstract class InMemoryRepository
         $foundEntities = collect();
 
         foreach ($this->repository[static::class] as $entity) {
-            if (method_exists($entity, $getterMethod)) {
-                $attribute === $entity->$getterMethod() && $foundEntities[] = $entity;
+            if (! method_exists($entity, $getterMethod)) {
+                continue;
+            }
+
+            if (method_exists($attribute, 'equals')) {
+                $attribute->equals($entity->$getterMethod()) && $foundEntities[] = $entity;
+            } elseif ($attribute === $entity->$getterMethod()) {
+                $foundEntities[] = $entity;
             }
         }
 

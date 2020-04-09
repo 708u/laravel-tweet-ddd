@@ -55,6 +55,19 @@ class InMemoryRepositoryTest extends TestCase
     {
         $this->repository->save($this->entity);
         $foundEntity = $this->repository->find($this->identifier);
-        $this->assertSame($this->entity, $foundEntity);
+        $this->assertSame($foundEntity, $this->entity);
+    }
+
+
+    /**
+     * @group repository
+     *
+     * @return void
+     */
+    public function testFindBy()
+    {
+        $this->repository->save($this->entity);
+        $foundEntities = $this->repository->findBy($this->identifier, 'identifier');
+        $this->assertSame($foundEntities->first(), $this->entity);
     }
 }
