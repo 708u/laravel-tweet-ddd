@@ -70,4 +70,21 @@ class InMemoryRepositoryTest extends TestCase
         $foundEntities = $this->repository->findBy($this->identifier, 'identifier');
         $this->assertSame($foundEntities->first(), $this->entity);
     }
+
+    /**
+     * @group repository
+     *
+     * @return void
+     */
+    public function testRemove()
+    {
+        $getRepo = fn() => $this->getUnaccessibleProperty($this->repository, 'repository')[AbstractInMemoryRepositoryMock::class];
+        $this->repository->save($this->entity);
+        $repository = $getRepo();
+        $this->assertNotEmpty($repository);
+
+        $this->repository->remove($this->identifier);
+        $repository = $getRepo();
+        $this->assertEmpty($repository);
+    }
 }
