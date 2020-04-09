@@ -3,6 +3,8 @@
 namespace Domain\Repository\Contract\Tweet;
 
 use Domain\Model\Entity\Tweet\Tweet;
+use Domain\Model\ValueObject\Tweet\Identifier\TweetId;
+use Domain\Model\ValueObject\Tweet\Identifier\UserId;
 use Illuminate\Support\Collection;
 
 interface TweetRepository
@@ -26,16 +28,16 @@ interface TweetRepository
     /**
      * Find Tweet entity.
      *
-     * @param string $id
-     * @return Collection
+     * @param TweetId $tweetId
+     * @return Tweet
      */
-    public function find(string $id): Collection;
+    public function find(TweetId $tweetId): Tweet;
 
     /**
      * Find Tweet entity by userId.
      *
-     * @param string $userId
+     * @param UserId $userId
      * @return Collection
      */
-    public function findByUserId(string $userId): Collection;
+    public function findByUserId(UserId $userId): Collection;
 }
