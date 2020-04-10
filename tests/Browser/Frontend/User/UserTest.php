@@ -2,6 +2,7 @@
 
 namespace Tests\Browser\Frontend\User;
 
+use App\Eloquent\Tweet;
 use App\Eloquent\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
@@ -98,6 +99,37 @@ class UserTest extends DuskTestCase
                     ->type('password', $newPassword)
                     ->press('Login')
                     ->assertRouteIs('frontend.user.show', ['uuid' => $user->uuid]);
+        });
+    }
+
+    /**
+     * @group user
+     * TODO: implement ordered tweet appearance by created_at.
+     *
+     * @return void
+     */
+    public function testVisitUserProfile()
+    {
+        $this->browse(function (Browser $browser) {
+            $user = factory(User::class)->create();
+            $tweets = factory(Tweet::class, 30)->make();
+            $user->tweets()->saveMany($tweets);
+
+            $browser->loginAs($user)
+                    ->visit('/users/' . $user->uuid)
+                    ->assertRouteIs('frontend.user.show', ['uuid' => $user->uuid])
+                    ->assertTitle($this->getTitle('User Profile'))
+                    ->assertQueryStringMissing('page'); // pagination not performed cause amount of tweets is 30.
+            foreach ($tweets as $tweet) {
+                $browser->assertSee($tweet->content);
+            }
+
+            // Add tweet over pagination limit.
+            $user->tweets()->save(factory(Tweet::class)->make());
+
+            $browser->refresh()
+                ->clickLink($paginationLink = 2)
+                ->assertQueryStringHas('page', $paginationLink);
         });
     }
 
