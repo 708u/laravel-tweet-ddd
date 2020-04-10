@@ -126,6 +126,9 @@
     │   ├── Pages
     │   ├── console
     │   └── screenshots
+    ├── Helper // test helpers
+    │   ├── Domain
+    │   └── Utils
     ├── Feature
     └── Unit
 ```
