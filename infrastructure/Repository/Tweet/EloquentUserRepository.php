@@ -55,10 +55,10 @@ class EloquentUserRepository implements UserRepository
     /**
      * Find user entity.
      *
-     * @param string $userId
+     * @param UserId $userId
      * @return User
      */
-    public function find(string $userId): User
+    public function find(UserId $userId): User
     {
         $user = $this->eloquentUser->findOrFail($userId);
         return $this->generateUserFromEloquent($user);

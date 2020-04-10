@@ -28,7 +28,7 @@ class ShowUserUseCase
      */
     public function execute(string $identifier): array
     {
-        $userDTO = $this->user->find($identifier)->toDTO();
+        $userDTO = $this->user->find(new UserId($identifier))->toDTO();
 
         $tweetsDTO = $this->tweet->findByUserId(new UserId($identifier))->toDTO();
 
