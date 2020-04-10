@@ -11,8 +11,6 @@ use ReflectionClass;
  */
 trait CanReferUnaccessible
 {
-    private array $reflectionInstances = [];
-
     /**
      * Run unaccessible method.
      * If necessary, you can give this method's arguments.
@@ -27,7 +25,7 @@ trait CanReferUnaccessible
         string $methodName,
         array $args = []
     ) {
-        $reflection = $this->buildOrReuseReflectionInstance($originalInstance);
+        $reflection = new ReflectionClass($originalInstance);
         $method = $reflection->getMethod($methodName);
         $method->setAccessible(true);
         return $method->invokeArgs($originalInstance, $args);
@@ -42,7 +40,7 @@ trait CanReferUnaccessible
      */
     public function getUnaccessibleProperty(object $originalInstance, string $propertyName)
     {
-        $reflection = $this->buildOrReuseReflectionInstance($originalInstance);
+        $reflection = new ReflectionClass($originalInstance);
         $property = $reflection->getProperty($propertyName);
         $property->setAccessible(true);
         return $property->getValue($originalInstance);
@@ -62,32 +60,5 @@ trait CanReferUnaccessible
             $array[$name] = $this->getUnaccessibleProperty($originalInstance, $name);
         }
         return $array;
-    }
-
-    /**
-     * Set Reflection class for reuse
-     *
-     * @param ReflectionClass $reflection
-     * @return void
-     */
-    private function setReflectionInstance(ReflectionClass $reflection): void
-    {
-        $this->reflectionInstances[$reflection->getName()] = $reflection;
-    }
-
-    /**
-     * Get or Reuse Reflection instance.
-     *
-     * @param  object $originalInstance
-     * @return ReflectionClass
-     */
-    private function buildOrReuseReflectionInstance(object $originalInstance): ReflectionClass
-    {
-        $reflection = $this->reflectionInstances[get_class($originalInstance)] ?? null;
-        if (is_null($reflection)) {
-            $reflection = new ReflectionClass($originalInstance);
-            $this->setReflectionInstance($reflection);
-        }
-        return $reflection;
     }
 }
