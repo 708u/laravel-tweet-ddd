@@ -67,6 +67,8 @@
 |   |   └── Transaction
 │   ├── Query // Concrete CQRS Query
 |   └── Repository // Concrete Repository
+|       ├── Base
+│       │   └── InMemoryRepository // for testing
 |       └── Tweet
 ├── app // Laravel app
 │   ├── Console
