@@ -4,6 +4,7 @@ namespace Domain\UseCase\Tweet;
 
 use Domain\Application\Contract\Hash\Hashable;
 use Domain\Model\ValueObject\Tweet\Email\Email;
+use Domain\Model\ValueObject\Tweet\Identifier\UserId;
 use Domain\Model\ValueObject\Tweet\Password\HashedPassword;
 use Domain\Repository\Contract\Tweet\UserRepository;
 
@@ -27,7 +28,7 @@ class UpdateUserUseCase
      */
     public function execute(string $identifier, string $userName, string $email, string $password): void
     {
-        $user = $this->user->find($identifier)
+        $user = $this->user->find(new UserId($identifier))
             ->changeName($userName)
             ->changeEmail(Email::factory($email))
             ->changeHashedPassword(HashedPassword::factory($this->hash->make($password)));

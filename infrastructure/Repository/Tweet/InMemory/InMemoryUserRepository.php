@@ -3,6 +3,7 @@
 namespace Infrastructure\Repository\Tweet\InMemory;
 
 use Domain\Model\Entity\Tweet\User;
+use Domain\Model\ValueObject\Tweet\Identifier\UserId;
 use Domain\Repository\Contract\Tweet\UserRepository;
 use Illuminate\Support\Collection;
 use Infrastructure\Repository\Base\InMemoryRepository;
@@ -34,12 +35,12 @@ class InMemoryUserRepository extends InMemoryRepository implements UserRepositor
     /**
      * Find user entity.
      *
-     * @param string $userId
+     * @param UserId $userId
      * @return User
      */
-    public function find(string $userId): User
+    public function find(UserId $userId): User
     {
-        $this->findInMemory($userId);
+        return $this->findInMemory($userId);
     }
 
     /**
