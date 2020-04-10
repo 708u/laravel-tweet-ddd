@@ -2,6 +2,7 @@
 
 namespace Domain\UseCase\Tweet;
 
+use Domain\Model\ValueObject\Tweet\Identifier\UserId;
 use Domain\Repository\Contract\Tweet\TweetRepository;
 use Domain\Repository\Contract\Tweet\UserRepository;
 
@@ -29,7 +30,7 @@ class ShowUserUseCase
     {
         $userDTO = $this->user->find($identifier)->toDTO();
 
-        $tweetsDTO = $this->tweet->findByUserId($identifier)->toDTO();
+        $tweetsDTO = $this->tweet->findByUserId(new UserId($identifier))->toDTO();
 
         return [$userDTO, $tweetsDTO];
     }

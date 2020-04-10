@@ -4,6 +4,8 @@ namespace Infrastructure\Repository\Tweet;
 
 use App\Eloquent\Tweet as EloquentTweet;
 use Domain\Model\Entity\Tweet\Tweet;
+use Domain\Model\ValueObject\Tweet\Identifier\TweetId;
+use Domain\Model\ValueObject\Tweet\Identifier\UserId;
 use Domain\Repository\Contract\Tweet\TweetRepository;
 use Illuminate\Support\Collection;
 use Infrastructure\DomainModelGeneratable\Eloquent\Tweet\TweetGeneratable;
@@ -50,10 +52,10 @@ class EloquentTweetRepository implements TweetRepository
     /**
      * Find Tweet entity.
      *
-     * @param string $id
-     * @return Collection
+     * @param TweetId $tweetId
+     * @return Tweet
      */
-    public function find(string $id): Collection
+    public function find(TweetId $tweetId): Tweet
     {
         //
     }
@@ -61,10 +63,10 @@ class EloquentTweetRepository implements TweetRepository
     /**
      * Find Tweet entity by userId.
      *
-     * @param string $userId
+     * @param UserId $userId
      * @return Collection
      */
-    public function findByUserId(string $userId): Collection
+    public function findByUserId(UserId $userId): Collection
     {
         return $this->eloquentTweet::with(['user'])
             ->where('user_uuid', $userId)
