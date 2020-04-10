@@ -11,6 +11,19 @@ abstract class InMemoryRepository
     protected array $repository = [];
 
     /**
+     * Determine if entity was saved in memory.
+     *
+     * @param Entity $entity
+     * @return bool
+     */
+    public function hasSaved(Entity $entity): bool
+    {
+        return ! is_null(
+            $this->repository[static::class][$entity->identifierAsString()]
+        );
+    }
+
+    /**
      * save entity in memory that php's array
      *
      * @param Entity $entity
