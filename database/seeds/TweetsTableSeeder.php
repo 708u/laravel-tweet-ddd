@@ -15,7 +15,7 @@ class TweetsTableSeeder extends Seeder
     {
         User::all()->each(function ($user) {
             $user->tweets()->saveMany(
-                factory(Tweet::class, 10)->make(),
+                factory(Tweet::class, 40)->make(),
             );
         });
     }
