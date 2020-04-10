@@ -104,7 +104,7 @@ class UserTest extends DuskTestCase
 
     /**
      * @group user
-     * NOTE: implement ordered tweet appearance by created_at.
+     * TODO: implement ordered tweet appearance by created_at.
      *
      * @return void
      */
