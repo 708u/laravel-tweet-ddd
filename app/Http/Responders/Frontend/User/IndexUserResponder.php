@@ -2,16 +2,15 @@
 
 namespace App\Http\Responders\Frontend\User;
 
+use App\Http\Responders\Base\Responder;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Response;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\View\Factory as ViewFactory;
 
-class IndexUserResponder implements Responsable
+class IndexUserResponder extends Responder implements Responsable
 {
-    private ViewFactory $view;
-
     private Collection $users;
 
     /** @var int amount of items shown in per pages */

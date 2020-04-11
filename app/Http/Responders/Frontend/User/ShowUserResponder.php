@@ -2,6 +2,7 @@
 
 namespace App\Http\Responders\Frontend\User;
 
+use App\Http\Responders\Base\Responder;
 use Domain\Model\DTO\Tweet\UserDTO;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Response;
@@ -9,10 +10,8 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\View\Factory as ViewFactory;
 
-class ShowUserResponder implements Responsable
+class ShowUserResponder extends Responder implements Responsable
 {
-    private ViewFactory $view;
-
     private UserDTO $user;
 
     private Collection $tweets;

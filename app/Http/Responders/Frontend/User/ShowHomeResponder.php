@@ -2,6 +2,7 @@
 
 namespace App\Http\Responders\Frontend\User;
 
+use App\Http\Responders\Base\Responder;
 use App\Providers\RouteServiceProvider;
 use Domain\Model\DTO\Tweet\UserDTO;
 use Illuminate\Contracts\Support\Responsable;
@@ -10,10 +11,8 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\View\Factory as ViewFactory;
 
-class ShowHomeResponder implements Responsable
+class ShowHomeResponder extends Responder implements Responsable
 {
-    private ViewFactory $view;
-
     private UserDTO $user;
 
     private Collection $feeds;

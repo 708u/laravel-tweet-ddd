@@ -2,15 +2,14 @@
 
 namespace App\Http\Responders\Frontend\User;
 
+use App\Http\Responders\Base\Responder;
 use Domain\Model\DTO\Tweet\UserDTO;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Response;
 use Illuminate\View\Factory as ViewFactory;
 
-class EditUserResponder implements Responsable
+class EditUserResponder extends Responder implements Responsable
 {
-    private ViewFactory $view;
-
     private UserDTO $user;
 
     public function __construct(ViewFactory $view)
