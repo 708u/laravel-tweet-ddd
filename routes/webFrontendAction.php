@@ -48,3 +48,8 @@ Route::name('user.')->namespace('User')->middleware('verified')->group(function 
         });
     });
 });
+
+Route::name('tweet.')->namespace('Tweet')->prefix('/tweets')->middleware('verified')->group(function () {
+    Route::post('/', 'CreateTweetAction')->name('create');
+    Route::delete('/{tweetUuid}', 'DestroyTweetAction')->name('destroy');
+});

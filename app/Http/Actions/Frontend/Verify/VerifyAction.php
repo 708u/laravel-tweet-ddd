@@ -42,7 +42,7 @@ class VerifyAction extends Controller
         if ($request->user()->hasVerifiedEmail()) {
             return $request->wantsJson()
                         ? new Response('', 204)
-                        : redirect()->route('frontend.user.show', ['uuid' => $uuid]);
+                        : redirect()->route('frontend.user');
         }
 
         if ($request->user()->markEmailAsVerified()) {
@@ -55,7 +55,7 @@ class VerifyAction extends Controller
 
         return $request->wantsJson()
                     ? new Response('', 204)
-                    : redirect()->route('frontend.user.show', ['uuid' => $uuid])
+                    : redirect()->route('frontend.user.home')
                         ->with('verified', true)
                         ->with('alert-primary', 'Welcome! Your Account Successfully Confirmed!');
     }

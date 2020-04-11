@@ -37,10 +37,7 @@ class LoginPageTest extends DuskTestCase
                 ->type('email', $user->email)
                 ->type('password', $plainPassword)
                 ->press('Login')
-                ->assertRouteIs('frontend.user.show', $user->uuid)
-                ->assertSee($flashMessage = 'You are logged in!') // flash message
-                ->refresh()
-                ->assertDontSee($flashMessage)
+                ->assertRouteIs('frontend.user.home')
                 ->click('#navbarDropdown')
                 ->assertSeeLink('Profile') // Can see dropdown menu after logged in.
                 ->assertSeeLink('Settings')
