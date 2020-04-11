@@ -4,7 +4,6 @@ namespace App\Http\Actions\Frontend\Tweet;
 
 use App\Http\Controllers\Controller;
 use App\Http\Responders\Frontend\Tweet\CreateTweetResponder;
-use App\Http\Responders\Frontend\User\ShowHomeResponder;
 use Domain\Model\ValueObject\Tweet\Identifier\UserId;
 use Domain\Model\ValueObject\Tweet\TweetContent\TweetContent;
 use Domain\UseCase\Tweet\CreateTweetUseCase;
