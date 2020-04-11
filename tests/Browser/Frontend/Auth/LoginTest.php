@@ -32,7 +32,6 @@ class LoginPageTest extends DuskTestCase
                 ->assertSeeLink('Login')
                 ->assertSeeLink('About')
                 ->assertSee('Login')
-                ->refresh()
                 ->assertRouteIs('frontend.auth.login')
                 ->assertSeeLink('Sign up now!')
                 ->type('email', $user->email)
