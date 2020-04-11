@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components\frontend\user;
+namespace App\View\Components\Frontend\User;
 
 use Domain\Model\DTO\Tweet\UserDTO;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\Component;
 
-class info extends Component
+class Info extends Component
 {
     public UserDTO $user;
 

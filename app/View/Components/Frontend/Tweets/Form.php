@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components\frontend\tweets;
+namespace App\View\Components\Frontend\Tweets;
 
 use Illuminate\View\Component;
 
-class form extends Component
+class Form extends Component
 {
     /**
      * Create a new component instance.
