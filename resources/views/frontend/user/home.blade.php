@@ -3,20 +3,18 @@
 @section('content')
 <div class="container my-5">
     <div class="row justify-content-center">
+        <aside class="col-md-4">
+            <x-frontend.user.info :user="$user" :feeds="$feeds"/>
+            <x-frontend.tweets.form/>
+        </aside>
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
+            <h3>Tweet Feed</h3>
+            <ol class="tweets">
+                @foreach ($feeds as $feed)
+                    <x-frontend.tweets.tweet :tweet="$feed"/>
+                @endforeach
+                <x-partial.pager :pager="$feeds" class="justify-content-center"/>
+            </ol>
         </div>
     </div>
 </div>

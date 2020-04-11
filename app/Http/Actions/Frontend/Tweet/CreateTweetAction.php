@@ -8,7 +8,7 @@ class CreateTweetAction extends Controller
 {
     public function __construct()
     {
-        $this->middleware('RedirectIfAuthUserDosentHaveGivenUuid');
+        //
     }
 
     public function __invoke()
