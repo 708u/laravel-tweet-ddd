@@ -24,7 +24,7 @@ class CreateTweetRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => 'required|max:140'
+            'content' => 'required|max:140',
         ];
     }
 
