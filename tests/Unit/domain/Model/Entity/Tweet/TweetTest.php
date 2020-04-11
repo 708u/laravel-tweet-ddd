@@ -3,6 +3,7 @@
 namespace Tests\Unit\domain\Model\Entity\Tweet;
 
 use App\Eloquent\User;
+use Domain\Model\ValueObject\Tweet\TweetContent\TweetContent;
 use Domain\Repository\Contract\Tweet\TweetRepository;
 use Domain\Repository\Contract\Tweet\UserRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -35,7 +36,7 @@ class TweetTest extends TestCase
     {
         $user = $this->generateUserFromEloquent(factory(User::class)->create());
 
-        $tweet = $user->tweet('hello world!');
+        $tweet = $user->tweet(TweetContent::factory('hello world!'));
 
         $this->tweetRepository->create($tweet);
 

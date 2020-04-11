@@ -133,16 +133,16 @@ class User extends Entity
     /**
      * Tweet a message
      *
-     * @param string $tweetContent
+     * @param TweetContent $tweetContent
      * @return Tweet
      */
-    public function tweet(string $tweetContent): Tweet
+    public function tweet(TweetContent $tweetContent): Tweet
     {
         return new Tweet(
             new TweetId(resolve(UuidGeneratable::class)->nextIdentifier()),
             $this->identifier(),
             $this->userName(),
-            TweetContent::factory($tweetContent),
+            $tweetContent,
             new CarbonImmutable()
         );
     }

@@ -9,6 +9,7 @@ use Domain\Model\ValueObject\Tweet\ActivationStatus\VerificationStatus;
 use Domain\Model\ValueObject\Tweet\Email\Email;
 use Domain\Model\ValueObject\Tweet\Identifier\UserId;
 use Domain\Model\ValueObject\Tweet\Password\HashedPassword;
+use Domain\Model\ValueObject\Tweet\TweetContent\TweetContent;
 use Domain\Repository\Contract\Tweet\TweetRepository;
 use Infrastructure\Repository\Tweet\InMemory\InMemoryTweetRepository;
 use Tests\TestCase;
@@ -43,7 +44,7 @@ class InMemoryTweetTest extends TestCase
      */
     public function testCanCreate()
     {
-        $tweet = $this->userEntity->tweet('hello world!');
+        $tweet = $this->userEntity->tweet(TweetContent::factory('hello world!'));
 
         $this->tweetRepository->create($tweet);
 
