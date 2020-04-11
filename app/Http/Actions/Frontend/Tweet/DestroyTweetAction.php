@@ -3,16 +3,20 @@
 namespace App\Http\Actions\Frontend\Tweet;
 
 use App\Http\Controllers\Controller;
+use Domain\UseCase\Tweet\DestroyTweetUseCase;
+use Illuminate\Support\Facades\Auth;
 
 class DestroyTweetAction extends Controller
 {
-    public function __construct()
+    private DestroyTweetUseCase $useCase;
+
+    public function __construct(DestroyTweetUseCase $useCase)
     {
-        $this->middleware('RedirectIfAuthUserDosentHaveGivenUuid');
+        $this->useCase = $useCase;
     }
 
     public function __invoke(string $tweetUuid)
     {
-        //
+        $this->useCase->execute($tweetUuid, Auth::id());
     }
 }
