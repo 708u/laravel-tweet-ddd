@@ -38,16 +38,15 @@ class SignUpTest extends DuskTestCase
 
             // FIXME: Dirty test, it avoid verifying its email via verification route, and should remove dependencies from eloquent.
             $user = User::first();
-            $uuid = $user->uuid;
             $user->email_verified_at = now();
             $user->save();
 
             $browser->visit('/')
-                ->assertRouteIs('frontend.user.show', $uuid)
+                ->assertRouteIs('frontend.user.home')
                 ->visit('/signup')
-                ->assertRouteIs('frontend.user.show', $uuid) // redirect user page if already signed up
+                ->assertRouteIs('frontend.user.home') // redirect user page if already signed up
                 ->visit('/login')
-                ->assertRouteIs('frontend.user.show', $uuid); // also redirect user page if already signed up
+                ->assertRouteIs('frontend.user.home'); // also redirect user page if already signed up
         });
 
         $this->assertDatabaseHas(
