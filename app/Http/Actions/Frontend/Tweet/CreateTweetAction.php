@@ -3,6 +3,8 @@
 namespace App\Http\Actions\Frontend\Tweet;
 
 use App\Http\Controllers\Controller;
+use App\Http\Responders\Frontend\Tweet\CreateTweetResponder;
+use App\Http\Responders\Frontend\User\ShowHomeResponder;
 use Domain\Model\ValueObject\Tweet\Identifier\UserId;
 use Domain\Model\ValueObject\Tweet\TweetContent\TweetContent;
 use Domain\UseCase\Tweet\CreateTweetUseCase;
@@ -13,9 +15,12 @@ class CreateTweetAction extends Controller
 {
     private CreateTweetUseCase $useCase;
 
-    public function __construct(CreateTweetUseCase $useCase)
+    private CreateTweetResponder $responder;
+
+    public function __construct(CreateTweetUseCase $useCase, CreateTweetResponder $responder)
     {
         $this->useCase = $useCase;
+        $this->responder = $responder;
     }
 
     public function __invoke(Request $request)
@@ -24,5 +29,7 @@ class CreateTweetAction extends Controller
             new UserId(Auth::id()),
             TweetContent::factory($request->content)
         );
+
+        return $this->responder->toResponse();
     }
 }
