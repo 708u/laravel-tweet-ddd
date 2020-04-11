@@ -4,7 +4,7 @@
 <div class="container my-5">
     <div class="row justify-content-center">
         <aside class="col-md-4">
-            <x-frontend.user.info/>
+            <x-frontend.user.info :user="$user" :feeds="$feeds"/>
             <x-frontend.tweets.form/>
         </aside>
         <div class="col-md-8">
