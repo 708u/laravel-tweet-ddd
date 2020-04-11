@@ -20,11 +20,11 @@ class UuidGenerator implements UuidGeneratable
     /**
      * determine if value is uuid.
      *
-     * @param string $str
+     * @param string|null $str
      * @return bool
      */
-    public function isUuid(string $str): bool
+    public function isUuid(?string $str = null): bool
     {
-        return Str::isUuid($str);
+        return Str::isUuid($str ??= '');
     }
 }
