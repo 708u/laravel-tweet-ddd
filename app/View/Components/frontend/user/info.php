@@ -3,21 +3,21 @@
 namespace App\View\Components\frontend\user;
 
 use Domain\Model\DTO\Tweet\UserDTO;
-use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\Component;
 
 class info extends Component
 {
     public UserDTO $user;
 
-    public Collection $feeds;
+    public LengthAwarePaginator $feeds;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(UserDTO $user, Collection $feeds)
+    public function __construct(UserDTO $user, LengthAwarePaginator $feeds)
     {
         $this->user = $user;
         $this->feeds = $feeds;

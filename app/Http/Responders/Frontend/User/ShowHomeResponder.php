@@ -2,9 +2,11 @@
 
 namespace App\Http\Responders\Frontend\User;
 
+use App\Providers\RouteServiceProvider;
 use Domain\Model\DTO\Tweet\UserDTO;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Response;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\View\Factory as ViewFactory;
 
@@ -15,6 +17,8 @@ class ShowHomeResponder implements Responsable
     private UserDTO $user;
 
     private Collection $feeds;
+
+    private int $perPage = 30;
 
     public function __construct(ViewFactory $view)
     {
@@ -29,10 +33,18 @@ class ShowHomeResponder implements Responsable
      */
     public function toResponse($request): Response
     {
+        $page = (int) $request->query('page');
+
+        $paginatedFeeds = app()->makeWith(LengthAwarePaginator::class, [
+            'items'   => $this->feeds->forPage($page, $this->perPage),
+            'total'   => $this->feeds->count(),
+            'perPage' => $this->perPage,
+        ]);
+
         return new Response(
             $this->view->make('frontend.user.home')->with([
                 'user'  => $this->user,
-                'feeds' => $this->feeds,
+                'feeds' => $paginatedFeeds->withPath(RouteServiceProvider::HOME),
             ])
         );
     }
