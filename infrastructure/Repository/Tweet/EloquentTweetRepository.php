@@ -57,7 +57,9 @@ class EloquentTweetRepository implements TweetRepository
      */
     public function find(TweetId $tweetId): Tweet
     {
-        //
+        $eloquentTweet = $this->eloquentTweet->findOrFail($tweetId->toString());
+
+        return $this->generateTweet($eloquentTweet);
     }
 
     /**
