@@ -13,7 +13,7 @@ class CreateTweetRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,20 @@ class CreateTweetRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'content' => 'required|max:140'
+        ];
+    }
+
+    /**
+     * error messages
+     *
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+            'content.required' => 'つぶやきは最低1文字以上必要です',
+            'content.max'      => 'つぶやきは140文字以内までです',
         ];
     }
 }

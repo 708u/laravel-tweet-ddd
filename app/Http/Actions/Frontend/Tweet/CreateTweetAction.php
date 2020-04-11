@@ -3,11 +3,11 @@
 namespace App\Http\Actions\Frontend\Tweet;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateTweetRequest;
 use App\Http\Responders\Frontend\Tweet\CreateTweetResponder;
 use Domain\Model\ValueObject\Tweet\Identifier\UserId;
 use Domain\Model\ValueObject\Tweet\TweetContent\TweetContent;
 use Domain\UseCase\Tweet\CreateTweetUseCase;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CreateTweetAction extends Controller
@@ -22,7 +22,7 @@ class CreateTweetAction extends Controller
         $this->responder = $responder;
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(CreateTweetRequest $request)
     {
         $this->useCase->execute(
             new UserId(Auth::id()),
