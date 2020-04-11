@@ -1,4 +1,4 @@
-<section class="micropost_form">
+<section class="tweet_form">
     <form method="POST" action="{{ route('frontend.tweet.create') }}">
         @csrf
         <div class="field form-group">
