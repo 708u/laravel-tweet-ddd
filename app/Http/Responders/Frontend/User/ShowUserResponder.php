@@ -8,7 +8,6 @@ use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Response;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
-use Illuminate\View\Factory as ViewFactory;
 
 class ShowUserResponder extends Responder implements Responsable
 {

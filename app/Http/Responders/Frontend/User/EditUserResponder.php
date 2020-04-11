@@ -6,7 +6,6 @@ use App\Http\Responders\Base\Responder;
 use Domain\Model\DTO\Tweet\UserDTO;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Response;
-use Illuminate\View\Factory as ViewFactory;
 
 class EditUserResponder extends Responder implements Responsable
 {

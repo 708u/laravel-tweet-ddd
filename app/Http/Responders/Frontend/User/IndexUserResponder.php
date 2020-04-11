@@ -7,7 +7,6 @@ use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Response;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
-use Illuminate\View\Factory as ViewFactory;
 
 class IndexUserResponder extends Responder implements Responsable
 {
