@@ -5,6 +5,7 @@
     <div class="row justify-content-center">
         <aside class="col-md-4">
             <x-frontend.user.info/>
+            <x-frontend.tweets.form/>
         </aside>
         <div class="col-md-8">
             <div class="card">
