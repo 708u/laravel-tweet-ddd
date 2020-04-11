@@ -3,6 +3,9 @@
 @section('content')
 <div class="container my-5">
     <div class="row justify-content-center">
+        <aside class="col-md-4">
+            <x-frontend.user.info/>
+        </aside>
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
