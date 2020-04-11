@@ -8,19 +8,12 @@
             <x-frontend.tweets.form/>
         </aside>
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
+            <h3>Tweet Feed</h3>
+            <ol class="tweets">
+                @foreach ($feeds as $feed)
+                    <x-frontend.tweets.tweet :tweet="$feed"/>
+                @endforeach
+            </ol>
         </div>
     </div>
 </div>
