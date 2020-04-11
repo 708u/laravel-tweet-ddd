@@ -56,15 +56,4 @@ class LoginAction extends Controller
 
         return $this->sendFailedLoginResponse($request);
     }
-
-    /**
-     * Redirect path
-     *
-     * @return void
-     */
-    protected function redirectTo()
-    {
-        $uuid = Auth::id();
-        return $this->redirectTo . "/$uuid";
-    }
 }

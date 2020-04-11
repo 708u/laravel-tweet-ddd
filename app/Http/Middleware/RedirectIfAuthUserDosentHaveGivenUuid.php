@@ -28,7 +28,7 @@ class RedirectIfAuthUserDosentHaveGivenUuid
         $uuid = $request->uuid;
 
         if (! $this->uuidGen->isUuid($uuid)) {
-            redirect()->route('frontend.user.show', ['uuid' => $userUuid]);
+            redirect()->route('frontend.user.home');
         } elseif ($userUuid !== $request->uuid) {
             abort(403);
         }
