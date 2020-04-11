@@ -119,6 +119,7 @@ class UserTest extends DuskTestCase
                     ->visit('/users/' . $user->uuid)
                     ->assertRouteIs('frontend.user.show', ['uuid' => $user->uuid])
                     ->assertTitle($this->getTitle('User Profile'))
+                    ->assertSee('Tweets (30)')
                     ->assertQueryStringMissing('page'); // pagination not performed cause amount of tweets is 30.
             foreach ($tweets as $tweet) {
                 $browser->assertSee($tweet->content);
@@ -128,6 +129,7 @@ class UserTest extends DuskTestCase
             $user->tweets()->save(factory(Tweet::class)->make());
 
             $browser->refresh()
+                ->assertSee('Tweets (31)')
                 ->clickLink($paginationLink = 2)
                 ->assertQueryStringHas('page', $paginationLink);
         });
