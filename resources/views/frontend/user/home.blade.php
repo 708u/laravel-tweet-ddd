@@ -13,6 +13,7 @@
                 @foreach ($feeds as $feed)
                     <x-frontend.tweets.tweet :tweet="$feed"/>
                 @endforeach
+                <x-partial.pager :pager="$feeds" class="justify-content-center"/>
             </ol>
         </div>
     </div>
