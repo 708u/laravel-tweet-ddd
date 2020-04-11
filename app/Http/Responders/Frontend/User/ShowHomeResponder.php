@@ -19,11 +19,6 @@ class ShowHomeResponder extends Responder implements Responsable
 
     private int $perPage = 30;
 
-    public function __construct(ViewFactory $view)
-    {
-        $this->view = $view;
-    }
-
     /**
      * Create response
      *

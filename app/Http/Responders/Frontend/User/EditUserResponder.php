@@ -12,11 +12,6 @@ class EditUserResponder extends Responder implements Responsable
 {
     private UserDTO $user;
 
-    public function __construct(ViewFactory $view)
-    {
-        $this->view = $view;
-    }
-
     /**
      * Create response
      *

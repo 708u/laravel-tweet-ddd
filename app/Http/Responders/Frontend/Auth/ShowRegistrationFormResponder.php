@@ -9,11 +9,6 @@ use Illuminate\View\Factory as ViewFactory;
 
 class ShowRegistrationFormResponder extends Responder implements Responsable
 {
-    public function __construct(ViewFactory $view)
-    {
-        $this->view = $view;
-    }
-
     /**
      * Create response
      *

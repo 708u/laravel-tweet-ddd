@@ -16,11 +16,6 @@ class IndexUserResponder extends Responder implements Responsable
     /** @var int amount of items shown in per pages */
     private int $perPage = 30;
 
-    public function __construct(ViewFactory $view)
-    {
-        $this->view = $view;
-    }
-
     /**
      * Create response.
      * Using LengthAwarePagination to paginate.
