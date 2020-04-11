@@ -6,6 +6,7 @@ use Carbon\CarbonImmutable;
 use Domain\Application\Contract\Uuid\UuidGeneratable;
 use Domain\Model\DTO\Tweet\UserDTO;
 use Domain\Model\Entity\Base\Entity;
+use Domain\Model\Entity\Tweet\Tweet;
 use Domain\Model\ValueObject\Tweet\ActivationStatus\VerificationStatus;
 use Domain\Model\ValueObject\Tweet\Email\Email;
 use Domain\Model\ValueObject\Tweet\Identifier\TweetId;
@@ -145,5 +146,16 @@ class User extends Entity
             $tweetContent,
             new CarbonImmutable()
         );
+    }
+
+    /**
+     * Determine if user has given tweet.
+     *
+     * @param Tweet $tweet
+     * @return bool
+     */
+    public function hasTweet(Tweet $tweet): bool
+    {
+        return $this->identifier()->equals($tweet->userId());
     }
 }
