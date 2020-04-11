@@ -2,19 +2,12 @@
 
 namespace App\Http\Responders\Frontend\Auth;
 
+use App\Http\Responders\Base\Responder;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\Response;
-use Illuminate\View\Factory as ViewFactory;
 
-class ShowRegistrationFormResponder implements Responsable
+class ShowRegistrationFormResponder extends Responder implements Responsable
 {
-    private ViewFactory $view;
-
-    public function __construct(ViewFactory $view)
-    {
-        $this->view = $view;
-    }
-
     /**
      * Create response
      *
