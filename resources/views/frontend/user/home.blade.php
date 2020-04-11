@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="container my-5">
-    <div class="row justify-content-center">
-        <aside class="col-md-4">
+    <div class="row justify-content-between">
+        <aside class="col-md-4 col-md-offset-1">
             <x-frontend.user.info :user="$user" :feeds="$feeds"/>
             <x-frontend.tweets.form/>
         </aside>
-        <div class="col-md-8">
+        <div class="col-md-7">
             <h3>Tweet Feed</h3>
             <ol class="tweets">
                 @foreach ($feeds as $feed)
