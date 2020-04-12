@@ -6,7 +6,6 @@ use Carbon\CarbonImmutable;
 use Domain\Application\Contract\Uuid\UuidGeneratable;
 use Domain\Model\DTO\Tweet\UserDTO;
 use Domain\Model\Entity\Base\Entity;
-use Domain\Model\Entity\Tweet\Tweet;
 use Domain\Model\ValueObject\Tweet\ActivationStatus\VerificationStatus;
 use Domain\Model\ValueObject\Tweet\Email\Email;
 use Domain\Model\ValueObject\Tweet\Identifier\TweetId;

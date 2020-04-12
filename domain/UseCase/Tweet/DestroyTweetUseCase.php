@@ -32,7 +32,7 @@ class DestroyTweetUseCase
         $user = $this->user->find(new UserId($userUuid));
         $tweet = $this->tweet->find(new TweetId($tweetUuid));
 
-        if(! $user->hasTweet($tweet)) {
+        if (! $user->hasTweet($tweet)) {
             throw new DomainException('You try to delete a tweet owned other users.');
         }
 
