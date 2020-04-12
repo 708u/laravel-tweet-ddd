@@ -24,9 +24,6 @@ class MacroServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Collection::macro(
-            'toDTO', fn ()
-                => $this->map(fn ($entity) => $entity->toDTO())
-        );
+        Collection::macro('toDTO', fn () => $this->map(fn ($v) => $v->toDTO()));
     }
 }
