@@ -40,4 +40,12 @@ interface TweetRepository
      * @return Collection
      */
     public function findByUserId(UserId $userId): Collection;
+
+    /**
+     * Remove tweet entity.
+     *
+     * @param Tweet $tweet
+     * @return void
+     */
+    public function remove(Tweet $tweet): void;
 }

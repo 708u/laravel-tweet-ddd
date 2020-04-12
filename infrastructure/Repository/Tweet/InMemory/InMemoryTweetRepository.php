@@ -54,4 +54,15 @@ class InMemoryTweetRepository extends InMemoryRepository implements TweetReposit
     {
         return $this->findByAttributeInMemory($userId, 'userId');
     }
+
+    /**
+     * Remove tweet entity.
+     *
+     * @param Tweet $tweet
+     * @return void
+     */
+    public function remove(Tweet $tweet): void
+    {
+        $this->removeInMemory($tweet->identifier());
+    }
 }

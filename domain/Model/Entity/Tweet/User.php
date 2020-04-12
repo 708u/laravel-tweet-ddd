@@ -146,4 +146,15 @@ class User extends Entity
             new CarbonImmutable()
         );
     }
+
+    /**
+     * Determine if user has given tweet.
+     *
+     * @param Tweet $tweet
+     * @return bool
+     */
+    public function hasTweet(Tweet $tweet): bool
+    {
+        return $this->identifier()->equals($tweet->userId());
+    }
 }
