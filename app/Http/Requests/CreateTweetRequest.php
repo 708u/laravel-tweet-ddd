@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Domain\Model\ValueObject\Tweet\TweetContent\TweetContent;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateTweetRequest extends FormRequest
@@ -24,7 +25,7 @@ class CreateTweetRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => 'required|max:140',
+            'content' => 'required|max:' . TweetContent::CONTENT_MAX_LENGTH,
         ];
     }
 
