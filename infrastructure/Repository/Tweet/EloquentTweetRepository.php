@@ -77,4 +77,15 @@ class EloquentTweetRepository implements TweetRepository
                 return $this->generateTweet($tweet);
             });
     }
+
+    /**
+     * Remove tweet entity.
+     *
+     * @param Tweet $tweet
+     * @return void
+     */
+    public function remove(Tweet $tweet): void
+    {
+        $this->eloquentTweet->destroy($tweet->identifierAsString());
+    }
 }
