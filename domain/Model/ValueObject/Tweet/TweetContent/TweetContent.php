@@ -8,7 +8,7 @@ class TweetContent
 {
     private string $content;
 
-    private const CONTENT_MAX_LENGTH = 140;
+    public const CONTENT_MAX_LENGTH = 140;
 
     private function __construct(string $content)
     {
