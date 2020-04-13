@@ -6,14 +6,11 @@ use App\Eloquent\User;
 use Domain\Model\ValueObject\Tweet\TweetContent\TweetContent;
 use Domain\Repository\Contract\Tweet\TweetRepository;
 use Domain\Repository\Contract\Tweet\UserRepository;
-use Domain\UseCase\Tweet\CreateTweetUseCase;
 use Domain\UseCase\Tweet\DestroyTweetUseCase;
-use Illuminate\Support\Str;
 use Infrastructure\DomainModelGeneratable\Eloquent\Tweet\TweetGeneratable;
 use Infrastructure\DomainModelGeneratable\Eloquent\Tweet\UserGeneratable;
 use Infrastructure\Repository\Tweet\InMemory\InMemoryTweetRepository;
 use Infrastructure\Repository\Tweet\InMemory\InMemoryUserRepository;
-use InvalidArgumentException;
 use Tests\TestCase;
 
 /**
@@ -47,7 +44,7 @@ class DestroyTweetUseCaseTest extends TestCase
         $user = $this->generateUserFromEloquent(factory(User::class)->make());
         $this->user->create($user);
 
-        $tweet= $user->tweet(TweetContent::factory('hello world!'));
+        $tweet = $user->tweet(TweetContent::factory('hello world!'));
         $this->tweet->create($tweet);
 
         // assert tweet was created.
