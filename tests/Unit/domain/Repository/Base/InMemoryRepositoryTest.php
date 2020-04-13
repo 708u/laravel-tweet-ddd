@@ -91,4 +91,26 @@ class InMemoryRepositoryTest extends TestCase
         $repository = $getRepo();
         $this->assertEmpty($repository);
     }
+
+    /**
+     * @group repository
+     *
+     * @return void
+     */
+    public function testHasSaved()
+    {
+        $this->repository->save($this->entity);
+
+        $this->assertTrue($this->repository->hasSaved($this->entity));
+    }
+
+    /**
+     * @group repository
+     *
+     * @return void
+     */
+    public function testHasNotSaved()
+    {
+        $this->assertTrue($this->repository->hasNotSaved($this->entity));
+    }
 }

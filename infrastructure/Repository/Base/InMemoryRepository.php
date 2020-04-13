@@ -18,9 +18,18 @@ abstract class InMemoryRepository
      */
     public function hasSaved(Entity $entity): bool
     {
-        return ! is_null(
-            $this->repository[static::class][$entity->identifierAsString()]
-        );
+        return ! is_null($this->repository[static::class][$entity->identifierAsString()] ?? null);
+    }
+
+    /**
+     * Determine if entity was NOT saved in memory.
+     *
+     * @param Entity $entity
+     * @return bool
+     */
+    public function hasNotSaved(Entity $entity): bool
+    {
+        return ! $this->hasSaved($entity);
     }
 
     /**
