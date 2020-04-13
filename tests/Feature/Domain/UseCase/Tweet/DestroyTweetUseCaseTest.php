@@ -56,6 +56,6 @@ class DestroyTweetUseCaseTest extends TestCase
         $this->useCase->execute($tweet->identifierAsString(), $user->identifierAsString());
 
         // assert tweet was destroyed.
-        $this->assertFalse($this->tweet->hasSaved($tweet));
+        $this->assertTrue($this->tweet->hasNotSaved($tweet));
     }
 }
