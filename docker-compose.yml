@@ -82,7 +82,7 @@ services:
   minio:
     image: minio/minio
     ports:
-      - "19000:9000"
+      - "${MINIO_PORT}:9000"
     volumes:
       - minio_store:/export
     environment:
