@@ -43,11 +43,11 @@ jobs:
       minio:
         image: bitnami/minio:latest
         ports:
-          - 9000:9000
+          - $MINIO_PORT:$MINIO_PORT
         env:
           MINIO_ACCESS_KEY: root
           MINIO_SECRET_KEY: password
-          MINIO_DEFAULT_BUCKETS: test
+          MINIO_DEFAULT_BUCKETS: $AWS_BUCKET
     steps:
       - uses: actions/checkout@v2
       - run: cp .env.example .env
