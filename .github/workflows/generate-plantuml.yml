@@ -14,5 +14,5 @@ jobs:
       uses: grassedge/generate-plantuml-action@v1.1
       with:
         path: docs/test
-      # env:
-      #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
