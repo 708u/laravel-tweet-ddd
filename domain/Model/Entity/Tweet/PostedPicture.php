@@ -4,6 +4,7 @@ namespace Domain\Model\Entity\Tweet;
 
 use Domain\Model\DTO\Base\DTO;
 use Domain\Model\Entity\Base\Entity;
+use Domain\Model\ValueObject\Tweet\Identifier\PostedPictureId;
 use Domain\Model\ValueObject\Tweet\Identifier\TweetId;
 
 class PostedPicture extends Entity
@@ -14,8 +15,13 @@ class PostedPicture extends Entity
 
     private string $temporaryPath;
 
-    public function __construct(string $path, TweetId $tweetId, string $temporaryPath = '')
-    {
+    public function __construct(
+        PostedPictureId $postedPictureId,
+        string $path,
+        TweetId $tweetId,
+        string $temporaryPath = ''
+    ) {
+        $this->identifier = $postedPictureId;
         $this->path = $path;
         $this->tweetId = $tweetId;
         $this->temporaryPath = $temporaryPath;

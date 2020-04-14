@@ -3,8 +3,10 @@
 namespace Domain\Model\Entity\Tweet;
 
 use Carbon\CarbonImmutable;
+use Domain\Application\Contract\Uuid\UuidGeneratable;
 use Domain\Model\DTO\Tweet\TweetDTO;
 use Domain\Model\Entity\Base\Entity;
+use Domain\Model\ValueObject\Tweet\Identifier\PostedPictureId;
 use Domain\Model\ValueObject\Tweet\Identifier\TweetId;
 use Domain\Model\ValueObject\Tweet\Identifier\UserId;
 use Domain\Model\ValueObject\Tweet\TweetContent\TweetContent;
@@ -54,7 +56,12 @@ class Tweet extends Entity
      */
     public function postPicture(string $path, string $temporaryPath): PostedPicture
     {
-        return new PostedPicture($path, $this->identifier(), $temporaryPath);
+        return new PostedPicture(
+            new PostedPictureId(resolve(UuidGeneratable::class)->nextIdentifier()),
+            $path,
+            $this->identifier(),
+            $temporaryPath
+        );
     }
 
     /**

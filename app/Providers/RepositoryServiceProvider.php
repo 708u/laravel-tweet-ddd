@@ -13,9 +13,9 @@ use Infrastructure\Repository\Tweet\EloquentUserRepository;
 class RepositoryServiceProvider extends ServiceProvider
 {
     public $bindings = [
-        TweetRepository::class => EloquentTweetRepository::class,
+        TweetRepository::class         => EloquentTweetRepository::class,
         PostedPictureRepository::class => EloquentS3PostedPictureRepository::class,
-        UserRepository::class  => EloquentUserRepository::class,
+        UserRepository::class          => EloquentUserRepository::class,
     ];
 
     /**
