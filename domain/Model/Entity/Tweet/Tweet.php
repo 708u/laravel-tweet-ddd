@@ -5,6 +5,7 @@ namespace Domain\Model\Entity\Tweet;
 use Carbon\CarbonImmutable;
 use Domain\Model\DTO\Tweet\TweetDTO;
 use Domain\Model\Entity\Base\Entity;
+use Domain\Model\Entity\Tweet\PostedPicture;
 use Domain\Model\ValueObject\Tweet\Identifier\TweetId;
 use Domain\Model\ValueObject\Tweet\Identifier\UserId;
 use Domain\Model\ValueObject\Tweet\TweetContent\TweetContent;
@@ -43,6 +44,18 @@ class Tweet extends Entity
             $this->tweetContent(),
             $this->timestamp
         );
+    }
+
+    /**
+     * Post Picture
+     *
+     * @param string $path
+     * @param string $temporaryPath
+     * @return void
+     */
+    public function postPicture(string $path, string $temporaryPath): PostedPicture
+    {
+        return new PostedPicture($path, $this->identifier(), $temporaryPath);
     }
 
     /**
