@@ -31,6 +31,6 @@ class ExampleTest extends TestCase
     {
         $disk = Storage::disk('s3');
         $disk->put('hello.json', '{"hello": "world"}');
-        $this->assertTrue($disk->exists('hello.json'));
+        $this->assertFalse($disk->exists('hello.json'));
     }
 }
