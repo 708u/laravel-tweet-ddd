@@ -42,7 +42,8 @@ jobs:
         image: redis:5.0.7-alpine
       minio:
         image: bitnami/minio:latest
-        ports: 9000
+        ports:
+          - 9000:9000
         env:
           MINIO_ACCESS_KEY: root
           MINIO_SECRET_KEY: password
