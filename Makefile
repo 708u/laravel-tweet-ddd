@@ -102,6 +102,13 @@ scale-worker: ## Scale queue worker containers. e.g make worker-scale num=3
 queue-restart: ## restart queue worker container.
 	docker-compose restart queue_worker
 
+.PHONY: art
+ifeq (art,$(firstword $(MAKECMDGOALS)))
+  RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+endif
+art: ## Exec php artisan command with args : ## make art route:list
+	docker-compose exec -u $(UID):$(UID) app php artisan $(RUN_ARGS)
+
 .PHONY: tinker
 tinker: ## Open tinker interface.
 	docker-compose exec app php artisan tinker
