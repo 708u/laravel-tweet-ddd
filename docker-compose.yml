@@ -79,6 +79,17 @@ services:
       - "redis_store:/data"
     tty: true
 
+  minio:
+    image: minio/minio
+    ports:
+      - "${MINIO_PORT}:9000"
+    volumes:
+      - minio_store:/export
+    environment:
+      MINIO_ACCESS_KEY: ${AWS_ACCESS_KEY_ID:-root}
+      MINIO_SECRET_KEY: ${AWS_SECRET_ACCESS_KEY:-password}
+    command: server /export
+
   selenium:
     image: selenium/standalone-chrome
     ports:
@@ -87,3 +98,4 @@ services:
 volumes:
   mysql_store:
   redis_store:
+  minio_store:
