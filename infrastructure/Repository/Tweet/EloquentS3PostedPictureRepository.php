@@ -5,13 +5,14 @@ namespace Infrastructure\Repository\Tweet;
 use App\Eloquent\PostedPicture as EloquentPostedPicture;
 use Domain\Model\Entity\Tweet\PostedPicture;
 use Domain\Repository\Contract\Tweet\PostedPictureRepository;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Storage;
 
 class EloquentS3PostedPictureRepository implements PostedPictureRepository
 {
     private EloquentPostedPicture $eloquentPostedPicture;
 
-    private Storage $s3Storage;
+    private Filesystem $s3PostedPicture;
 
     public function __construct(EloquentPostedPicture $eloquentPostedPicture)
     {
@@ -27,7 +28,15 @@ class EloquentS3PostedPictureRepository implements PostedPictureRepository
      */
     public function save(PostedPicture $postedPicture): void
     {
-        // $this->eloquentPostedPicture->save();
-        // $this->s3Storage->put();
+        $now = now();
+        $this->eloquentPostedPicture->insert([
+            'uuid'          => $postedPicture->identifierAsString(),
+            'tweet_uuid'    => $postedPicture->tweetId()->toString(),
+            'path'          => $postedPicture->path(),
+            'updated_at'    => $now,
+            'created_at'    => $now,
+        ]);
+
+        $this->s3PostedPicture->put($postedPicture->path(), $postedPicture->temporaryPath());
     }
 }
