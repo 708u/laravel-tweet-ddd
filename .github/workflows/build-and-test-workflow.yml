@@ -43,7 +43,7 @@ jobs:
       minio:
         image: bitnami/minio:latest
         ports:
-          - $MINIO_PORT:$MINIO_PORT
+          - 9000:9000
         env:
           MINIO_ACCESS_KEY: root
           MINIO_SECRET_KEY: password
