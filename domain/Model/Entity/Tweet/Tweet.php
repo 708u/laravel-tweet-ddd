@@ -5,7 +5,6 @@ namespace Domain\Model\Entity\Tweet;
 use Carbon\CarbonImmutable;
 use Domain\Model\DTO\Tweet\TweetDTO;
 use Domain\Model\Entity\Base\Entity;
-use Domain\Model\Entity\Tweet\PostedPicture;
 use Domain\Model\ValueObject\Tweet\Identifier\TweetId;
 use Domain\Model\ValueObject\Tweet\Identifier\UserId;
 use Domain\Model\ValueObject\Tweet\TweetContent\TweetContent;
