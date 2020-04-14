@@ -42,11 +42,11 @@ jobs:
         image: redis:5.0.7-alpine
       minio:
         image: bitnami/minio:latest
-        ports: "9000:9000"
-      env:
-        MINIO_ACCESS_KEY: root
-        MINIO_SECRET_KEY: password
-        MINIO_DEFAULT_BUCKETS: test
+        ports: 9000
+        env:
+          MINIO_ACCESS_KEY: root
+          MINIO_SECRET_KEY: password
+          MINIO_DEFAULT_BUCKETS: test
     steps:
       - uses: actions/checkout@v2
       - run: cp .env.example .env
