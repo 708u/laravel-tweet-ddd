@@ -20,6 +20,13 @@ jobs:
         MAIL_PORT: 2525
         MAIL_FROM_ADDRESS: from@example.com
         MAIL_FROM_NAME: Laravel-tweet
+        AWS_ACCESS_KEY_ID: root
+        AWS_SECRET_ACCESS_KEY: password
+        AWS_DEFAULT_REGION: us-east-1
+        AWS_BUCKET: test
+        AWS_URL: http://minio:9000
+        AWS_PATH_STYLE_ENDPOINT: true
+        MINIO_PORT: 9000
         REDIS_HOST: redis
         DUSK_BASE_URL: http://localhost:8000
         CHROME_DRIVER_HOST: http://localhost:9515
@@ -33,6 +40,13 @@ jobs:
           MYSQL_ROOT_HOST: "%"
       redis:
         image: redis:5.0.7-alpine
+      minio:
+        image: bitnami/minio:latest
+        ports: "9000:9000"
+      env:
+        MINIO_ACCESS_KEY: root
+        MINIO_SECRET_KEY: password
+        MINIO_DEFAULT_BUCKETS: test
     steps:
       - uses: actions/checkout@v2
       - run: cp .env.example .env
