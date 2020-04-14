@@ -15,9 +15,9 @@ class CreateTweetsTable extends Migration
     {
         Schema::create('tweets', function (Blueprint $table) {
             $table->uuid('uuid')->primary();
-            $table->string('content', 140);
             $table->uuid('user_uuid');
             $table->foreign('user_uuid')->references('uuid')->on('users')->cascadeOnDelete();
+            $table->string('content', 140);
             $table->timestamps();
 
             $table->index(['user_uuid', 'created_at'], 'idx_user_uuid_created_at');

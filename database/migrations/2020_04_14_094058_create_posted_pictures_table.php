@@ -14,9 +14,13 @@ class CreatePostedPicturesTable extends Migration
     public function up()
     {
         Schema::create('posted_pictures', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->uuid('id')->primary();
+            $table->uuid('tweet_uuid');
+            $table->foreign('tweet_uuid')->references('uuid')->on('tweets')->cascadeOnDelete();
             $table->string('path');
+            $table->timestamps();
+
+            $table->index('tweet_uuid');
         });
     }
 
