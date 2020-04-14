@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 /**
@@ -19,5 +20,17 @@ class ExampleTest extends TestCase
         $response = $this->get('/');
 
         $response->assertStatus(200);
+    }
+
+    /**
+     * storage connection test
+     *
+     * @return void
+     */
+    public function testConnectingStorage()
+    {
+        $disk = Storage::disk('s3');
+        $disk->put('hello.json', '{"hello": "world"}');
+        $this->assertTrue($disk->exists('hello.json'));
     }
 }
