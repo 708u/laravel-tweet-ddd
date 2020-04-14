@@ -47,7 +47,7 @@ jobs:
         env:
           MINIO_ACCESS_KEY: root
           MINIO_SECRET_KEY: password
-          MINIO_DEFAULT_BUCKETS: $AWS_BUCKET
+          MINIO_DEFAULT_BUCKETS: test
     steps:
       - uses: actions/checkout@v2
       - run: cp .env.example .env
