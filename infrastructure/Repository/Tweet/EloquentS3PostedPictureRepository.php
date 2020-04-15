@@ -37,6 +37,6 @@ class EloquentS3PostedPictureRepository implements PostedPictureRepository
             'created_at'    => $now,
         ]);
 
-        $this->s3PostedPicture->put($postedPicture->path(), $postedPicture->temporaryPath());
+        $this->s3PostedPicture->put($postedPicture->path(), file_get_contents($postedPicture->temporaryPath()), 'public');
     }
 }
