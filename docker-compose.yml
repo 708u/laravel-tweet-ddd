@@ -80,7 +80,7 @@ services:
     tty: true
 
   minio:
-    image: minio/minio
+    image: bitnami/minio:latest
     ports:
       - "${MINIO_PORT}:9000"
     volumes:
@@ -88,7 +88,7 @@ services:
     environment:
       MINIO_ACCESS_KEY: ${AWS_ACCESS_KEY_ID:-root}
       MINIO_SECRET_KEY: ${AWS_SECRET_ACCESS_KEY:-password}
-    command: server /export
+      MINIO_DEFAULT_BUCKETS: ${AWS_BUCKET}
 
   selenium:
     image: selenium/standalone-chrome
