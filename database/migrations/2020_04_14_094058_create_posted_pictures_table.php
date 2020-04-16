@@ -17,7 +17,7 @@ class CreatePostedPicturesTable extends Migration
             $table->uuid('uuid')->primary();
             $table->uuid('tweet_uuid');
             $table->foreign('tweet_uuid')->references('uuid')->on('tweets')->cascadeOnDelete();
-            $table->string('path');
+            $table->string('name');
             $table->timestamps();
 
             $table->index('tweet_uuid');

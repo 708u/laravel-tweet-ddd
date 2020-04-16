@@ -32,11 +32,11 @@ class EloquentS3PostedPictureRepository implements PostedPictureRepository
         $this->eloquentPostedPicture->insert([
             'uuid'          => $postedPicture->identifierAsString(),
             'tweet_uuid'    => $postedPicture->tweetId()->toString(),
-            'path'          => $postedPicture->path(),
+            'name'          => $postedPicture->name(),
             'updated_at'    => $now,
             'created_at'    => $now,
         ]);
 
-        $this->s3PostedPicture->put($postedPicture->path(), file_get_contents($postedPicture->temporaryPath()), 'public');
+        $this->s3PostedPicture->put($postedPicture->fullPath(), file_get_contents($postedPicture->temporaryPath()), 'public');
     }
 }

@@ -9,21 +9,23 @@ use Domain\Model\ValueObject\Tweet\Identifier\TweetId;
 
 class PostedPicture extends Entity
 {
-    private string $path;
+    private string $name;
 
     private TweetId $tweetId;
 
     private string $temporaryPath;
 
+    public const DIRECTORY_PREFIX = 'posted_pictures';
+
     public function __construct(
         PostedPictureId $postedPictureId,
-        string $path,
         TweetId $tweetId,
+        string $name,
         string $temporaryPath = ''
     ) {
         $this->identifier = $postedPictureId;
-        $this->path = $path;
         $this->tweetId = $tweetId;
+        $this->name = $name;
         $this->temporaryPath = $temporaryPath;
     }
 
@@ -33,13 +35,13 @@ class PostedPicture extends Entity
     }
 
     /**
-     * Get object path.
+     * Get object name.
      *
      * @return string
      */
-    public function path(): string
+    public function name(): string
     {
-        return $this->path;
+        return $this->name;
     }
 
     /**
@@ -60,5 +62,15 @@ class PostedPicture extends Entity
     public function temporaryPath(): string
     {
         return $this->temporaryPath;
+    }
+
+    /**
+     * Get full path for persistence.
+     *
+     * @return string
+     */
+    public function fullPath(): string
+    {
+        return self::DIRECTORY_PREFIX . '/' . $this->identifierAsString() . '/' . $this->name();
     }
 }

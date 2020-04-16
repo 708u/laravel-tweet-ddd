@@ -50,16 +50,16 @@ class Tweet extends Entity
     /**
      * Post Picture
      *
-     * @param string $path
+     * @param string $fileName
      * @param string $temporaryPath
      * @return void
      */
-    public function postPicture(string $path, string $temporaryPath): PostedPicture
+    public function postPicture(string $fileName, string $temporaryPath): PostedPicture
     {
         return new PostedPicture(
             new PostedPictureId(resolve(UuidGeneratable::class)->nextIdentifier()),
-            $path,
             $this->identifier(),
+            $fileName,
             $temporaryPath
         );
     }
