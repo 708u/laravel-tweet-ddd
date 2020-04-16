@@ -2,9 +2,9 @@
 
 namespace App\Eloquent;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Eloquent\UuidModel;
 
-class PostedPicture extends Model
+class PostedPicture extends UuidModel
 {
     //
 }
