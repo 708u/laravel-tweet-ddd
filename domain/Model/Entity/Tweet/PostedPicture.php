@@ -2,7 +2,7 @@
 
 namespace Domain\Model\Entity\Tweet;
 
-use Domain\Model\DTO\Base\DTO;
+use Domain\Model\DTO\Tweet\PostedPictureDTO;
 use Domain\Model\Entity\Base\Entity;
 use Domain\Model\ValueObject\Tweet\Identifier\PostedPictureId;
 use Domain\Model\ValueObject\Tweet\Identifier\TweetId;
@@ -29,9 +29,19 @@ class PostedPicture extends Entity
         $this->temporaryPath = $temporaryPath;
     }
 
-    public function toDTO(): DTO
+    /**
+     * Generate entity to DTO.
+     *
+     * @return PostedPictureDTO
+     */
+    public function toDTO(): PostedPictureDTO
     {
-        //
+        return new PostedPictureDTO(
+            $this->identifierAsString(),
+            $this->tweetId()->toString(),
+            $this->name(),
+            $this->fullPath()
+        );
     }
 
     /**
