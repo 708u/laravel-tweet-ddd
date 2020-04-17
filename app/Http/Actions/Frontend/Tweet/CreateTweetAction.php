@@ -24,9 +24,18 @@ class CreateTweetAction extends Controller
 
     public function __invoke(CreateTweetRequest $request)
     {
+        $postedPictures = [];
+        if ($request->hasFile('posted_picture')) {
+            $postedPictures = [
+                'temporaryPath' => $request->file('posted_picture')->getRealPath(),
+                'originalName'  => $request->file('posted_picture')->getClientOriginalName(),
+            ];
+        }
+        // TODO: should implement domain service
         $this->useCase->execute(
             new UserId(Auth::id()),
-            TweetContent::factory($request->content)
+            TweetContent::factory($request->content),
+            $postedPictures
         );
 
         return $this->responder->toResponse();

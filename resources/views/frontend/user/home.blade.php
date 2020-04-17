@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+<x-partial.title title='Home'/>
+@endsection
+
 @section('content')
 <div class="container my-5">
     <div class="row justify-content-between">
