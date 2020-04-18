@@ -8,8 +8,8 @@ abstract class Responder
 {
     protected ViewFactory $view;
 
-    public function __construct(ViewFactory $view)
+    public function __construct()
     {
-        $this->view = $view;
+        $this->view = app(ViewFactory::class);
     }
 }
