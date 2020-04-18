@@ -2,19 +2,19 @@
 
 namespace App\View\Components\Frontend\Tweets;
 
-use Domain\Model\DTO\Tweet\TweetDTO;
+use Domain\Model\DTO\UI\PostedTweetDTO;
 use Illuminate\View\Component;
 
 class Tweet extends Component
 {
-    public TweetDTO $tweet;
+    public PostedTweetDTO $tweet;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(TweetDTO $tweet)
+    public function __construct(PostedTweetDTO $tweet)
     {
         $this->tweet = $tweet;
     }
