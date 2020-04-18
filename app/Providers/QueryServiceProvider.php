@@ -11,7 +11,7 @@ use Infrastructure\Query\Tweet\EloquentUserQuery;
 class QueryServiceProvider extends ServiceProvider
 {
     public array $bindings = [
-        UserQuery::class => EloquentUserQuery::class,
+        UserQuery::class        => EloquentUserQuery::class,
         PostedTweetQuery::class => EloquentS3PostedTweetQuery::class,
     ];
 
