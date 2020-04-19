@@ -7,6 +7,7 @@ use Domain\Model\Entity\Tweet\PostedPicture;
 use Domain\Repository\Contract\Tweet\PostedPictureRepository;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class EloquentS3PostedPictureRepository implements PostedPictureRepository
 {
@@ -37,6 +38,9 @@ class EloquentS3PostedPictureRepository implements PostedPictureRepository
             'created_at'    => $now,
         ]);
 
-        $this->s3PostedPicture->put($postedPicture->fullPath(), file_get_contents($postedPicture->temporaryPath()), 'public');
+        $resizedPostedPicture = Image::make(file_get_contents($postedPicture->temporaryPath()))
+            ->resize(300, null, fn ($constraint) => $constraint->aspectRatio());
+
+        $this->s3PostedPicture->put($postedPicture->fullPath(), (string) $resizedPostedPicture->encode(), 'public');
     }
 }
