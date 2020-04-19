@@ -25,7 +25,8 @@ class CreateTweetRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => 'required|max:' . TweetContent::CONTENT_MAX_LENGTH,
+            'content'        => 'required|max:' . TweetContent::CONTENT_MAX_LENGTH,
+            'posted_picture' => 'present|max:5120|image',
         ];
     }
 
@@ -37,8 +38,10 @@ class CreateTweetRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'content.required' => 'つぶやきは最低1文字以上必要です',
-            'content.max'      => 'つぶやきは140文字以内までです',
+            'content.required'     => 'つぶやきは最低1文字以上必要です',
+            'content.max'          => 'つぶやきは140文字以内までです',
+            'posted_picture.image' => '投稿できるファイルは画像のみです',
+            'posted_picture.max'   => '投稿できる画像サイズは5MBまでです',
         ];
     }
 }
