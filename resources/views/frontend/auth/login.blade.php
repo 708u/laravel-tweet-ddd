@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="uk-flex uk-flex-center uk-margin-large-top uk-margin-large-bottom" uk-grid>
-    <div class="uk-card uk-card-default uk-width-xlarge@s">
+<div class="uk-margin-large-top uk-margin-large-bottom" uk-grid>
+    <div class="uk-card uk-card-default uk-width-xlarge@s uk-margin-auto">
         <div class="uk-card-header">
             <h3 class="uk-card-title uk-text-lead">{{ __('Login') }}</h3>
         </div>
@@ -44,18 +44,16 @@
                         </label>
                     </div>
                 </div>
-                <div class="uk-margin">
-                    <div class="uk-form-controls">
-                        <button type="submit" class="uk-form-width-medium uk-button uk-button-primary uk-width-1-1">
-                            {{ __('Login') }}
-                        </button>
+                <div class="uk-form-controls">
+                    <button type="submit" class="uk-form-width-medium uk-button uk-button-primary uk-width-1-1">
+                        {{ __('Login') }}
+                    </button>
 
-                        @if (Route::has('password.request'))
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                {{ __('Forgot Your Password?') }}
-                            </a>
-                        @endif
-                    </div>
+                    @if (Route::has('password.request'))
+                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                            {{ __('Forgot Your Password?') }}
+                        </a>
+                    @endif
                 </div>
             </form>
         </div>
