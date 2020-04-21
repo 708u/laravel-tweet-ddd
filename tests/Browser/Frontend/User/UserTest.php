@@ -97,7 +97,7 @@ class UserTest extends DuskTestCase
                     ->visit('/login')
                     ->type('email', $newEmail) // Determine if user can login with using new email and password
                     ->type('password', $newPassword)
-                    ->press('Login')
+                    ->press('LOGIN') // upper case
                     ->assertRouteIs('frontend.user.home');
         });
     }
