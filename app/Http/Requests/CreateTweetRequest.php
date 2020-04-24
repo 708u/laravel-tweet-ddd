@@ -27,7 +27,7 @@ class CreateTweetRequest extends FormRequest
     {
         return [
             'content'        => 'required|max:' . TweetContent::CONTENT_MAX_LENGTH,
-            'posted_picture' => 'present|max:' . PostedPicture::MAX_UPLOADING_IMAGE_SIZE . '|image',
+            'posted_picture' => 'max:' . PostedPicture::MAX_UPLOADING_IMAGE_SIZE . '|image',
         ];
     }
 
