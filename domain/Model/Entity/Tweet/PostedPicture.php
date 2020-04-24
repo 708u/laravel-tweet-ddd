@@ -17,7 +17,7 @@ class PostedPicture extends Entity
 
     public const DIRECTORY_PREFIX = 'posted_pictures';
 
-    public const MAX_UPLOADING_IMAGE_SIZE = '5120';
+    public const MAX_UPLOADING_IMAGE_SIZE_KB = '5120';
 
     public function __construct(
         PostedPictureId $postedPictureId,
