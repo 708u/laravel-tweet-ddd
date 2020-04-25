@@ -32,7 +32,7 @@ class SignUpTest extends DuskTestCase
                 ->type('email', $email)
                 ->type('password', $password)
                 ->type('password_confirmation', $password)
-                ->press('Register')
+                ->press('REGISTER')
                 ->assertRouteIs('frontend.verification.notice')
                 ->assertAuthenticated();
 
