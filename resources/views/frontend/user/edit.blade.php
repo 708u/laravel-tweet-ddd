@@ -8,7 +8,7 @@
 @section('content')
 <div class="container padding mt-3">
     <h1 class="text-center">Update your profile</h1>
-    <div class="row justify-content-center">
+    <div class="uk-margin-large-top uk-margin-large-bottom uk-flex uk-flex-center">
         <x-frontend.user.profile profileCardName="Edit" actionButton="Save Changes" :userName="$user->userName" :email="$user->email">
             <x-slot name="formAction">
                 {{ route('frontend.user.update', ['uuid' => $uuid]) }}

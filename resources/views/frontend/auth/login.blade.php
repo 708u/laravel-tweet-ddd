@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="uk-margin-large-top uk-margin-large-bottom" uk-grid>
+<div class="uk-margin-large-top uk-margin-large-bottom uk-flex uk-flex-center">
     <div class="uk-card uk-card-default uk-width-xlarge@s uk-margin-auto">
         <div class="uk-card-header">
             <h3 class="uk-card-title uk-text-lead">{{ __('Login') }}</h3>
