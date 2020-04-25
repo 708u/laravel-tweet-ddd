@@ -1,60 +1,25 @@
-<nav class="navbar navbar-expand-md sticky-top navbar-dark bg-dark shadow-sm">
-    <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav mr-auto">
-
-            </ul>
-
-            <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
-                <!-- Authentication Links -->
-                @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('frontend.static.home') }}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('frontend.static.help') }}">Help</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('frontend.auth.login') }}">{{ __('Login') }}</a>
-                    </li>
-                @else
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('frontend.user.index')}}">
-                                Users
-                            </a>
-                            <a class="dropdown-item" href="{{ route('frontend.user.edit', ['uuid' => Auth::user()->uuid]) }}">
-                                Profile
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                Settings
-                            </a>
-                            <hr>
-                            <a class="dropdown-item" href="{{ route('frontend.auth.logout') }}"
-                                onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('frontend.auth.logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                @endguest
+<nav class="uk-section-primary uk-navbar">
+    <div class="uk-navbar-left uk-margin-small-left">
+        <ul class="uk-navbar-nav">
+            <li class="uk-active"><a href="/">Laravel-tweet-ddd</a></li>
+        </ul>
+    </div>
+    {{-- navbar for PC --}}
+    <div class="uk-navbar-right uk-margin-right uk-visible@m">
+        <ul class="uk-navbar-nav">
+            <x-partial.header-nav/>
+        </ul>
+    </div>
+    {{-- navbar for less than 960px --}}
+    <div class="uk-navbar-right uk-margin-right uk-hidden@m" uk-toggle="target: #offcanvas-overlay">
+        <a class="uk-navbar-toggle" uk-navbar-toggle-icon href="#"></a>
+    </div>
+    <div id="offcanvas-overlay" class="uk-hidden@m" uk-offcanvas="overlay: true">
+        <div class="uk-offcanvas-bar">
+            <button class="uk-offcanvas-close" type="button" uk-close></button>
+            <ul class="uk-nav uk-nav-default">
+                <li class="uk-nav-header">Menu</li>
+                <x-partial.header-nav/>
             </ul>
         </div>
     </div>

@@ -4,7 +4,15 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+import UIkit from 'uikit';
+import Icons from 'uikit/dist/js/uikit-icons';
+
+// loads the Icon plugin
+UIkit.use(Icons);
+
+// require('./bootstrap');
+require('../../node_modules/uikit/dist/js/uikit.min.js');
+require('../../node_modules/uikit/dist/js/uikit-icons.min.js');
 
 window.Vue = require('vue');
 
