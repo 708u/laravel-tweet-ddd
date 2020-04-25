@@ -55,7 +55,7 @@ class VerifyAction extends Controller
                     ? new Response('', 204)
                     : redirect()->route('frontend.user.home')
                         ->with('verified', true)
-                        ->with('alert-primary', 'Welcome! Your Account Successfully Confirmed!');
+                        ->with('uk-alert-primary', 'Welcome! Your Account Successfully Confirmed!');
     }
 
     /**

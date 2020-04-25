@@ -24,7 +24,7 @@ class DestroyTweetAction extends Controller
         $this->useCase->execute($tweetUuid, Auth::id());
 
         return $this->responder
-            ->setAlertType('alert-success')
+            ->setAlertType('uk-alert-success')
             ->setAlertContext('Tweet is deleted.')
             ->toResponse();
     }
