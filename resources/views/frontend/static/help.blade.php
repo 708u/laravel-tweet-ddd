@@ -10,7 +10,7 @@
     <hr>
     <p class="text-center">
         このアプリケーションは<a href="https://github.com/naoyaUda/laravel-tweet-ddd">このgithubリポジトリ</a>にて管理しています。
-        バグ等ありましたらこちらのissue等に立てていただけると幸いです。
+        バグ等にお気づきになりましたら、こちらにissue等に立てていただけると幸いです。
     </p>
 </div>
 @endsection
