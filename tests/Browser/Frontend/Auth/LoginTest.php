@@ -38,7 +38,6 @@ class LoginPageTest extends DuskTestCase
                 ->type('password', $plainPassword)
                 ->press('LOGIN')
                 ->assertRouteIs('frontend.user.home')
-                ->click('#navbarDropdown')
                 ->assertSeeLink('Profile') // Can see dropdown menu after logged in.
                 ->assertSeeLink('Settings')
                 ->assertSeeLink('Logout')
