@@ -18,7 +18,7 @@
         <div class="uk-offcanvas-bar">
             <button class="uk-offcanvas-close" type="button" uk-close></button>
             <ul class="uk-nav uk-nav-default">
-                <li class="uk-nav-header">Menu</li>
+                <li class="uk-nav-header uk-margin-small-bottom">Menu</li>
                 <x-partial.header-nav/>
             </ul>
         </div>
