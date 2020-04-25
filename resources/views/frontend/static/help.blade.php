@@ -5,8 +5,12 @@
 @endsection
 
 @section('content')
-<h1 class="text-center">Help</h1>
-<p class="text-center">
-    このアプリケーションは<a href="https://github.com/naoyaUda/laravel-tweet-ddd">このgithubリポジトリ</a>にて管理しています。
-</p>
+<div class="uk-section uk-section-large uk-section-muted uk-padding-large">
+    <h1 class="text-center">Help</h1>
+    <hr>
+    <p class="text-center">
+        このアプリケーションは<a href="https://github.com/naoyaUda/laravel-tweet-ddd">このgithubリポジトリ</a>にて管理しています。
+        バグ等ありましたらこちらのissue等に立てていただけると幸いです。
+    </p>
+</div>
 @endsection
