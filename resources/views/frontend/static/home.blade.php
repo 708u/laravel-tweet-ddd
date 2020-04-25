@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="center jumbotron jumbotron-fluid">
+<div class="uk-section uk-section-large uk-section-muted">
     <h1 class="text-center">Welcome to Laravel tweet</h1>
     <hr class="my-4">
     <p class="text-center">
