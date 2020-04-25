@@ -37,8 +37,6 @@ class VerifyAction extends Controller
             throw new AuthorizationException();
         }
 
-        $uuid = $request->user()->uuid;
-
         if ($request->user()->hasVerifiedEmail()) {
             return $request->wantsJson()
                         ? new Response('', 204)

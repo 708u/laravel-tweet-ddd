@@ -89,7 +89,7 @@ class UserTest extends DuskTestCase
                     ->type('email', $newEmail = 'foobar@example.com')
                     ->type('password', $newPassword = 'aaaaaaaa')
                     ->type('password_confirmation', $newPassword)
-                    ->press('Save Changes')
+                    ->press('SAVE CHANGES')
                     ->assertRouteIs('frontend.user.edit', ['uuid' => $user->uuid]) // Determine page redirected
                     ->assertInputValue('name', $newName) // Input Value changed to new name and email
                     ->assertInputValue('email', $newEmail)
