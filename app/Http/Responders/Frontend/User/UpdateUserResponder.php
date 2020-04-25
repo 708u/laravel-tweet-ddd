@@ -14,6 +14,6 @@ class UpdateUserResponder
      */
     public function toResponse(): RedirectResponse
     {
-        return back()->with('alert-primary', 'Update successfully!');
+        return back()->with('uk-alert-primary', 'Update successfully!');
     }
 }

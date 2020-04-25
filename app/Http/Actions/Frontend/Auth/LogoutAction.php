@@ -25,6 +25,8 @@ class LogoutAction extends Controller
 
         $request->session()->regenerateToken();
 
+        $request->session()->flash('uk-alert-primary', 'You are logged out.');
+
         if ($response = $this->loggedOut($request)) {
             return $response;
         }

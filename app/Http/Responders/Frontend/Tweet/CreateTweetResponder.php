@@ -15,6 +15,6 @@ class CreateTweetResponder
     {
         return redirect()
             ->route('frontend.user.home')
-            ->with('alert-primary', 'Tweet successfully created!');
+            ->with('uk-alert-primary', 'Tweet successfully created!');
     }
 }
