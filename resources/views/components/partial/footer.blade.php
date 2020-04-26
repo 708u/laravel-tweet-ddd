@@ -1,5 +1,4 @@
 <footer>
-    <hr>
     <nav class="uk-navbar-container" uk-navbar>
         <div class="uk-navbar-left uk-margin-left">
             <ul class="uk-navbar-nav">
