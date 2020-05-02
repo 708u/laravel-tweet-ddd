@@ -159,7 +159,16 @@
 ```php
 class InMemoryTweetRepository extends InMemoryRepository implements TweetRepository
 {
-    // implement methods from TweetRepository...
+    /**
+     * save Tweet entity.
+     *
+     * @param Tweet $tweet
+     * @return void
+     */
+    public function save(Tweet $tweet): void
+    {
+        $this->saveInMemory($tweet);
+    }
 }
 ```
 
