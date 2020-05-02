@@ -3,7 +3,7 @@
 - twitter風アプリケーションをDDD(ドメイン駆動設計)のアーキテクチャに乗せて実装するプロジェクト
 
 <p align="center">
-<a href="https://github.com/naoyaUda/laravel-tweet-ddd/actions"><img src="https://github.com/naoyaUda/laravel-tweet-ddd/workflows/laravel-tweet-ddd/badge.svg" alt="Build Status"></a>
+<a href="https://github.com/naoyaUda/laravel-tweet-ddd/actions"><img src="https://github.com/naoyaUda/laravel-tweet-ddd/workflows/build-and-test/badge.svg" alt="Build Status"></a>
 <a href="https://dependabot.com"><img src="https://api.dependabot.com/badges/status?host=github&repo=naoyaUda/laravel-tweet-ddd" alt="Deppendabot Status"></a>
 </p>
 
@@ -153,7 +153,7 @@
     - また、特定のロジックに対して細かくtestを書きすぎると、コード全体の保守性が下がっていく為。
 - 純粋なDomain知識に対してtestを行う為、infrastructureを全て隠蔽し、各interfaceに対してtestを行う。
     - LaravelのDIコンテナを利用して、entityの永続化先を全てInMemoryに差し替えることで上記を解決する。
-    - Testing用DBの存在を意識せずにtest実装が可能になる。
+    - Testing用DBの存在を意識せずに、test実装が可能になる。
     - 参考 `infrastructure/Repository/Base/InMemoryRepository.php`
 
 ```php
