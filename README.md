@@ -150,10 +150,10 @@
 - UseCase単位 = 1Actionに対するtestを実装する。
     - test自体がEntity、ValueObject、DomainServiceが持つドメイン知識のドキュメントになる。
     - UseCase程度の粒度に対して動作を担保すれば、test設計コストに対するcoverageを最大化できると判断している。
-    - また、特定のロジックに対してあまり細かくtestを書きすぎると、コード全体の保守性が下がっていく為。
+    - また、特定のロジックに対して細かくtestを書きすぎると、コード全体の保守性が下がっていく為。
 - 純粋なDomain知識に対してtestを行う為、infrastructureを全て隠蔽し、各interfaceに対してtestを行う。
     - LaravelのDIコンテナを利用して、entityの永続化先を全てInMemoryに差し替えることで上記を解決する。
-    - これにより、Testing用DBの存在を意識せずにtest実装が可能になる。
+    - Testing用DBの存在を意識せずにtest実装が可能になる。
     - 参考 `infrastructure/Repository/Base/InMemoryRepository.php`
 
 ```php
