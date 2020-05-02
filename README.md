@@ -139,13 +139,13 @@
 
 ### Testing Architecture
 
-- Unit testとE2Eテストを用いて動作を担保する。
-    - Unit test: phpunit
-    - E2E test: Laravel Dusk
+- Unit TestとE2E Testを用いて動作を担保する。
+    - Unit Test: phpunit
+    - E2E Test: Laravel Dusk
 - 全体のテスト設計比率としては、 `UnitTest:E2E = 8:2`程度を想定する。
     - 実装依存するE2Eテストは壊れやすい為、比率を少なくしている。
 
-#### Unit Test 基本方針
+#### Unit Test Policy
 
 - UseCase単位 = 1Actionに対するtestを実装する。
     - test自体がEntity、ValueObject、DomainServiceが持つドメイン知識のドキュメントになる。
@@ -172,7 +172,7 @@ class InMemoryTweetRepository extends InMemoryRepository implements TweetReposit
 }
 ```
 
-#### E2E Test 基本方針
+#### E2E Test Policy
 
 - infrastructureレベルで期待する動作が担保されているかを検査する。
     - e.g. RDBMS, S3, Redis, etc...
