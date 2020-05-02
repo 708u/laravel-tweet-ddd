@@ -32,8 +32,8 @@ class EloquentPostedTweetQuery implements PostedTweetQuery
      */
     public function postedTweets(UserId $userId): array
     {
-        return $this->tweet::with(['postedPicture'])
-            ->postedBy($userId->toString())
+        return $this->tweet::with(['user', 'postedPicture'])
+            ->postedBy($userId)
             ->latest()
             ->get()
             ->map(function ($tweet) {

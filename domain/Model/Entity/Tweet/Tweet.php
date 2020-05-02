@@ -21,14 +21,22 @@ class Tweet extends Entity
 
     private CarbonImmutable $timestamp;
 
+    private array $postedPictures = [];
+
     public function __construct(
-        TweetId $tweetId, UserId $userId, string $username, TweetContent $tweetContent, CarbonImmutable $timestamp
+        TweetId $tweetId,
+        UserId $userId,
+        string $username,
+        TweetContent $tweetContent,
+        CarbonImmutable $timestamp,
+        array $postedPictures = []
     ) {
         $this->identifier = $tweetId;
         $this->userId = $userId;
         $this->username = $username;
         $this->tweetContent = $tweetContent;
         $this->timestamp = $timestamp;
+        $this->postedPictures = $postedPictures;
     }
 
     /**
@@ -56,12 +64,26 @@ class Tweet extends Entity
      */
     public function postPicture(string $fileName, string $temporaryPath): PostedPicture
     {
-        return new PostedPicture(
+        $postedPicture = new PostedPicture(
             new PostedPictureId(resolve(UuidGeneratable::class)->nextIdentifier()),
             $this->identifier(),
             $fileName,
             $temporaryPath
         );
+
+        $this->postedPictures[] = $postedPicture;
+
+        return $postedPicture;
+    }
+
+    /**
+     * get Posted pictures.
+     *
+     * @return array
+     */
+    public function postedPictures(): array
+    {
+        return $this->postedPictures;
     }
 
     /**
