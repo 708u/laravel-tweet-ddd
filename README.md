@@ -137,6 +137,38 @@
 
 - [Link](http://pmjones.io/adr/)
 
+### Testing Architecture
+
+- Unit testとE2Eテストを用いて動作を担保する。
+    - Unit test: phpunit
+    - E2E test: Laravel Dusk
+- 全体のテスト設計比率としては、 `UnitTest:E2E = 8:2`程度を想定する。
+    - 実装依存するE2Eテストは壊れやすい為、比率を少なくしている。
+
+#### Unit Test 基本方針
+
+- UseCase単位 = 1Actionに対するtestを実装する。
+    - test自体がEntity、ValueObject、DomainServiceが持つドメイン知識のドキュメントになる。
+    - UseCase程度の粒度に対して動作を担保すれば、test設計コストに対するcoverageを最大化できると判断している。
+    - また、特定のロジックに対してあまり細かくtestを書きすぎると、コード全体の保守性が下がっていく為。
+- 純粋なDomain知識に対してtestを行う為、infrastructureを全て隠蔽し、各interfaceに対してtestを行う。
+    - LaravelのDIコンテナを利用して、entityの永続化先を全てInMemoryに差し替えることで上記を解決する。
+    - これにより、Testing用DBの存在を意識せずにtest実装が可能になる。
+    - 参考 `infrastructure/Repository/Base/InMemoryRepository.php`
+
+```php
+class InMemoryTweetRepository extends InMemoryRepository implements TweetRepository
+{
+    // implement methods from TweetRepository...
+}
+```
+
+#### E2E Test 基本方針
+
+- infrastructureレベルで期待する動作が担保されているかを検査する。
+    - e.g. RDBMS, S3, Redis, etc...
+    - unit testで抽象化されたDomainを検査済みの為、具象レベルでの担保はこちらで行う。
+
 ## Installation
 
 - dockerを予めインストールしてください。
