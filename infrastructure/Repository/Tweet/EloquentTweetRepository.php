@@ -57,7 +57,7 @@ class EloquentTweetRepository implements TweetRepository
      */
     public function find(TweetId $tweetId): Tweet
     {
-        $eloquentTweet = $this->eloquentTweet->findOrFail($tweetId->toString());
+        $eloquentTweet = $this->eloquentTweet::with(['user', 'postedPicture'])->findOrFail($tweetId);
 
         return $this->generateTweet($eloquentTweet);
     }
@@ -70,12 +70,10 @@ class EloquentTweetRepository implements TweetRepository
      */
     public function findByUserId(UserId $userId): Collection
     {
-        return $this->eloquentTweet::with(['user'])
+        return $this->eloquentTweet::with(['user', 'postedPicture'])
             ->where('user_uuid', $userId)
             ->get()
-            ->map(function ($tweet) {
-                return $this->generateTweet($tweet);
-            });
+            ->map(fn ($tweet) => $this->generateTweet($tweet));
     }
 
     /**
