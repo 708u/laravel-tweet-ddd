@@ -22,6 +22,10 @@
 - node.js(assetビルド)
     - パッケージ管理: yarn
 
+## Infrastructure
+
+- このアプリケーションのインフラ構成は[こちらのリポジトリ](https://github.com/naoyaUda/laravel-tweet-ddd-infrastructure)でterraformで管理しています
+
 ## Architecture
 
 ### Onion Architecture
