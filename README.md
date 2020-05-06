@@ -185,7 +185,7 @@ class InMemoryTweetRepository extends InMemoryRepository implements TweetReposit
 - clone
 
 ```bash
-git clone git@github.com:naoyaUda/laravel-tweet-ddd.git
+git clone https://github.com/naoyaUda/laravel-tweet-ddd.git
 ```
 
 - install
@@ -195,8 +195,8 @@ git clone git@github.com:naoyaUda/laravel-tweet-ddd.git
 make install
 
 # permission変更
-chown -R 777 storage
-chown -R 777 bootstrap/cache
+chmod -R 777 storage
+chmod -R 777 bootstrap/cache
 ```
 
 ## How to
