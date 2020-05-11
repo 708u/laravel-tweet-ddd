@@ -16,6 +16,7 @@
 ## Environments
 
 - Laravel 7.x
+- PHP 7.4.3
 - Mysql 5.7
 - Redis 5.0.7
 - Docker
