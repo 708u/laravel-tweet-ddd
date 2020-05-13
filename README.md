@@ -19,6 +19,8 @@
 - PHP 7.4.3
 - Mysql 5.7
 - Redis 5.0.7
+- MinIO
+    - S3のMock Storageとして使用
 - Docker
 - node.js(assetビルド)
     - パッケージ管理: yarn
