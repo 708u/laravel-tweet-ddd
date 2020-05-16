@@ -10,6 +10,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Cache composer vendor
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-composer-vendor-for-deploy
+        with:
+          path: vendor
+          key: ${{ runner.os }}-${{ env.cache-name }}-v1-${{ hashFiles('**/composer.lock') }}
+
+      - run: composer install --no-progress
+
       - name: Cache node_modules
         uses: actions/cache@v1
         env:
@@ -55,7 +65,7 @@ jobs:
           ECR_REPOSITORY: laravel-tweet-ddd-nginx
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:latest ./docker/nginx
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
 
