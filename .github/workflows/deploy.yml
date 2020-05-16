@@ -17,6 +17,7 @@ jobs:
           aws-region: ap-northeast-1
 
       - name: ECR login
+        id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: Build imaged and push them to ECR
