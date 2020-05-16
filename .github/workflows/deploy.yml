@@ -10,6 +10,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Cache node_modules
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-node-modules-for-deploy
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ env.cache-name }}-v1-${{ hashFiles('**/yarn.lock') }}
+
       - name: yarn install
         uses: borales/actions-yarn@v2.0.0
         with:
@@ -44,10 +52,10 @@ jobs:
       - name: Build nginx image and push it to ECR
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: laravel-tweet-nginx
+          ECR_REPOSITORY: laravel-tweet-ddd-nginx
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:latest ./docker/nginx
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
 
