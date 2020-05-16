@@ -1,4 +1,4 @@
-FROM 708u/laravel-alpine:7.4.4 FROM stag
+FROM 708u/laravel-alpine:7.4.4
 
 WORKDIR /app
 
