@@ -7,10 +7,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-      ECR_REPOSITORY: my-ecr-repo
-      IMAGE_TAG: ${{ github.sha }}
     steps:
       - uses: actions/checkout@v2
       - name: Configure AWS Credentials
@@ -23,7 +19,12 @@ jobs:
       - name: ECR login
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build and push docker images
+      - name: Build imaged and push them to ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: laravel-tweet-ddd
+          IMAGE_TAG: ${{ github.sha }}
+
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
