@@ -142,7 +142,7 @@ jobs:
       - name: yarn install
         uses: borales/actions-yarn@v2.0.0
         with:
-          cmd: install --prod
+          cmd: install
 
       - name: Build minified js/css files
         uses: borales/actions-yarn@v2.0.0
@@ -202,7 +202,7 @@ jobs:
       - name: yarn install
         uses: borales/actions-yarn@v2.0.0
         with:
-          cmd: install --prod
+          cmd: install
 
       - name: Build minified js/css files
         uses: borales/actions-yarn@v2.0.0
