@@ -116,7 +116,7 @@ jobs:
 
   build-and-push-app:
     needs: build-and-test
-    # if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -139,15 +139,10 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-${{ env.cache-name }}-v1-${{ hashFiles('**/yarn.lock') }}
 
-      - name: yarn config set
-        uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: config set scripts-prepend-node-path true
-
       - name: yarn install
         uses: borales/actions-yarn@v2.0.0
         with:
-          cmd: install --prod
+          cmd: install
 
       - name: Build minified js/css files
         uses: borales/actions-yarn@v2.0.0
@@ -207,7 +202,7 @@ jobs:
       - name: yarn install
         uses: borales/actions-yarn@v2.0.0
         with:
-          cmd: install --prod
+          cmd: install
 
       - name: Build minified js/css files
         uses: borales/actions-yarn@v2.0.0
