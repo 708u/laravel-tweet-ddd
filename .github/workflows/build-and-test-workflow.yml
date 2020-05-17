@@ -125,3 +125,4 @@ jobs:
           repository: naoyaUda/laravel-tweet-ddd
           event-type: deploy
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+        if: github.ref == 'refs/heads/master'
