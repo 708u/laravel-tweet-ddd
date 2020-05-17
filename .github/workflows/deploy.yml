@@ -2,9 +2,9 @@ name: deploy
 on:
   repository_dispatch:
     types: [deploy]
-  # push:
-  #   branches:
-  #     - feature/devide-deploy-workflow
+  push:
+    branches:
+      - feature/devide-deploy-workflow
 
 jobs:
   deploy:
