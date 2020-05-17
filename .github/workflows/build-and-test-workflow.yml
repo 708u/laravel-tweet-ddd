@@ -113,3 +113,16 @@ jobs:
           author_name: Integration Test
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }} # required
+
+  repository-dispatch:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1.1.0
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          repository: naoyaUda/laravel-tweet-ddd
+          event-type: deploy
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+        if: github.ref == 'refs/heads/master'
