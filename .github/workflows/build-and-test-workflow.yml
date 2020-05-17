@@ -115,6 +115,7 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }} # required
 
   repository-dispatch:
+    needs: build-and-test
     runs-on: ubuntu-latest
     steps:
       - name: Repository Dispatch
