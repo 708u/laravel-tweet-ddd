@@ -50,6 +50,14 @@ jobs:
           MINIO_DEFAULT_BUCKETS: test
     steps:
       - uses: actions/checkout@v2
+
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1.1
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          repository: naoyaUda/laravel-tweet-ddd
+          event-type: deploy
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
       - run: cp .env.example .env
 
       # Install dependencies
