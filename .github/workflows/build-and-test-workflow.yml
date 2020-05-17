@@ -129,7 +129,7 @@ jobs:
           path: vendor
           key: ${{ runner.os }}-${{ env.cache-name }}-v1-${{ hashFiles('**/composer.lock') }}
 
-      - run: composer install --no-progress
+      - run: composer install --no-progress --no-dev
 
       - name: Cache node_modules
         uses: actions/cache@v1
@@ -202,7 +202,7 @@ jobs:
       - name: yarn install
         uses: borales/actions-yarn@v2.0.0
         with:
-          cmd: install
+          cmd: install --prod
 
       - name: Build minified js/css files
         uses: borales/actions-yarn@v2.0.0
