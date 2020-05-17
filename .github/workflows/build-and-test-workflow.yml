@@ -52,7 +52,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Repository Dispatch
-        uses: peter-evans/repository-dispatch@v1.1
+        uses: peter-evans/repository-dispatch@v1.1.0
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: naoyaUda/laravel-tweet-ddd
