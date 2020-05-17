@@ -139,10 +139,10 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-${{ env.cache-name }}-v1-${{ hashFiles('**/yarn.lock') }}
 
-      - name: yarn install --prod
+      - name: yarn install
         uses: borales/actions-yarn@v2.0.0
         with:
-          cmd: install
+          cmd: install --prod
 
       - name: Build minified js/css files
         uses: borales/actions-yarn@v2.0.0
