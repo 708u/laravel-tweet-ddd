@@ -189,7 +189,7 @@ jobs:
           path: vendor
           key: ${{ runner.os }}-${{ env.cache-name }}-v1-${{ hashFiles('**/composer.lock') }}
 
-      - run: composer install --no-progress
+      - run: composer install --no-progress --no-dev
 
       - name: Cache node_modules
         uses: actions/cache@v1
