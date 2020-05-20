@@ -115,8 +115,8 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }} # required
 
   build-and-push-app:
-    needs: build-and-test
-    if: github.ref == 'refs/heads/master'
+    # needs: build-and-test
+    # if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
