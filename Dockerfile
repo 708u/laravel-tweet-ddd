@@ -1,7 +1,7 @@
 FROM 708u/laravel-alpine:7.4.4
 
 WORKDIR /app
-
+#
 COPY . /app
 
 RUN set -x \
