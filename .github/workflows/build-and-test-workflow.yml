@@ -175,8 +175,8 @@ jobs:
         run: docker logout ${{ steps.login-ecr.outputs.registry }}
 
   build-and-push-nginx:
-    if: github.ref == 'refs/heads/master'
-    needs: build-and-test
+    # if: github.ref == 'refs/heads/master'
+    # needs: build-and-test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
