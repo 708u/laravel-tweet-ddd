@@ -144,6 +144,12 @@ jobs:
           name: public
           path: public
 
+      - name: Upload manifest.json for image build
+        uses: actions/upload-artifact@v2
+        with:
+          name: mix-manifest
+          path: public/mix-manifest.json
+
   upload-assets-to-S3:
     needs: [build-and-test, prepare-assets-for-deployment]
     if: github.ref == 'refs/heads/master'
@@ -167,6 +173,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Download mix-manifest.json
+        uses: actions/download-artifact@v2
+        with:
+          name: mix-manifest
+          path: public
 
       - name: Cache composer vendor
         uses: actions/cache@v1
