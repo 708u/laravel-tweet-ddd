@@ -217,7 +217,7 @@ jobs:
 
       - name: Update ECS service
         run: |
-          aws ecs update-service --service ${{ secrets.ECR_SERVICE }} laravel-tweet-ddd-service --cluster ${{ secrets.ECR_CLUSTER }} --force-new-deployment
+          aws ecs update-service --service ${{ secrets.ECR_SERVICE }} --cluster ${{ secrets.ECR_CLUSTER }} --force-new-deployment
 
       - name: Logout of Amazon ECR
         if: always()
