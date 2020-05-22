@@ -87,7 +87,7 @@ jobs:
       - run: php artisan migrate
       - run: vendor/bin/phpunit
 
-      # E2E test with dusk. Comment in these run if you use it.
+      # E2E test with dusk.
       - run: chromedriver --whitelisted-ips > /dev/null 2>&1 &
       - run: php artisan serve > /dev/null 2>&1 &
       - run: php artisan dusk
@@ -112,10 +112,10 @@ jobs:
           status: ${{ job.status }}
           author_name: Integration Test
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }} # required
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
 
   prepare-assets-for-deployment:
-    # if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -138,7 +138,7 @@ jobs:
         with:
           cmd: prod
 
-      - name: Upload assets
+      - name: Upload assets as github artifacts
         uses: actions/upload-artifact@v2
         with:
           name: public
@@ -146,12 +146,13 @@ jobs:
 
   upload-assets-to-S3:
     needs: prepare-assets-for-deployment
-    # if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v2
+      - name: Download compiled assets
+        uses: actions/download-artifact@v2
 
-      - name: upload assets
+      - name: Upload assets to S3
         uses: jakejarvis/s3-sync-action@v0.5.1
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_ASSETS_BUCKET }}
@@ -161,7 +162,7 @@ jobs:
           SOURCE_DIR: 'public/'
 
   build-and-push-images:
-    needs: build-and-test
+    needs: [build-and-test, prepare-assets-for-deployment]
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
