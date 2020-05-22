@@ -114,6 +114,52 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }} # required
 
+  prepare-assets-for-deployment:
+    # if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache node_modules
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-node-modules-for-deploy
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ env.cache-name }}-v1-${{ hashFiles('**/yarn.lock') }}
+
+      - name: yarn install
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: install
+
+      - name: Compile js/css files
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: prod
+
+      - name: Upload assets
+        uses: actions/upload-artifact@v2
+        with:
+          name: public
+          path: public
+
+  upload-assets-to-S3:
+    needs: prepare-assets-for-deployment
+    # if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+
+      - name: upload assets
+        uses: jakejarvis/s3-sync-action@v0.5.1
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_ASSETS_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ECR_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_ECR_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          SOURCE_DIR: 'public/'
+
   build-and-push-images:
     needs: build-and-test
     if: github.ref == 'refs/heads/master'
@@ -135,24 +181,6 @@ jobs:
           key: ${{ runner.os }}-${{ env.cache-name }}-v1-${{ hashFiles('**/composer.lock') }}
 
       - run: composer install --no-progress --no-dev
-
-      - name: Cache node_modules
-        uses: actions/cache@v1
-        env:
-          cache-name: cache-node-modules-for-deploy
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-${{ env.cache-name }}-v1-${{ hashFiles('**/yarn.lock') }}
-
-      - name: yarn install
-        uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: install
-
-      - name: Build minified js/css files
-        uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: prod
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -189,72 +217,3 @@ jobs:
       - name: Logout of Amazon ECR
         if: always()
         run: docker logout ${{ steps.login-ecr.outputs.registry }}
-
-  prepare-assets-for-deployment:
-    # if: github.ref == 'refs/heads/master'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Cache composer vendor
-        uses: actions/cache@v1
-        env:
-          cache-name: cache-composer-vendor-for-deploy
-        with:
-          path: vendor
-          key: ${{ runner.os }}-${{ env.cache-name }}-v1-${{ hashFiles('**/composer.lock') }}
-
-      - run: composer install --no-progress --no-dev
-
-      - name: Cache node_modules
-        uses: actions/cache@v1
-        env:
-          cache-name: cache-node-modules-for-deploy
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-${{ env.cache-name }}-v1-${{ hashFiles('**/yarn.lock') }}
-
-      - name: yarn install
-        uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: install
-
-      - name: Compile js/css files
-        uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: prod
-
-      - name: Upload composer vendor
-        uses: actions/upload-artifact@v2
-        with:
-          name: vendor
-          path: vendor
-
-      - name: Upload npm node_modules
-        uses: actions/upload-artifact@v2
-        with:
-          name: node_modules
-          path: node_modules
-
-      - name: Upload assets
-        uses: actions/upload-artifact@v2
-        with:
-          name: public
-          path: public
-
-  upload-assets-to-S3:
-    needs: prepare-assets-for-deployment
-    # needs: build-and-test
-    # if: github.ref == 'refs/heads/master'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v2
-      - run: ls -la
-      - name: upload assets
-        uses: jakejarvis/s3-sync-action@v0.5.1
-        env:
-          AWS_S3_BUCKET: ${{ secrets.AWS_S3_ASSETS_BUCKET }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ECR_ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_ECR_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-          SOURCE_DIR: 'public/'
