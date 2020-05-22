@@ -115,7 +115,7 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
 
   prepare-assets-for-deployment:
-    if: github.ref == 'refs/heads/master'
+    # if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -146,7 +146,7 @@ jobs:
 
   upload-assets-to-S3:
     needs: [build-and-test, prepare-assets-for-deployment]
-    if: github.ref == 'refs/heads/master'
+    # if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - name: Download compiled assets
@@ -161,17 +161,12 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
           SOURCE_DIR: 'public/'
 
-  build-and-push-images:
+  build-push-app-image:
     # needs: [build-and-test, prepare-assets-for-deployment]
     # if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Get Diff Action
-        uses: technote-space/get-diff-action@v1.2.8
-        id: git_diff
-        with:
-          PREFIX_FILTER: docker/nginx
 
       - name: Cache composer vendor
         uses: actions/cache@v1
@@ -204,6 +199,34 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
 
+      - name: Logout of Amazon ECR
+        if: always()
+        run: docker logout ${{ steps.login-ecr.outputs.registry }}
+
+  build-push-nginx-image-if-some-change-detected:
+    # needs: [build-and-test, prepare-assets-for-deployment]
+    # if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ECR_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_ECR_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: ECR login
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+     - name: Detect git diff for nginx image build
+        uses: technote-space/get-diff-action@v1.2.8
+        id: git_diff
+        with:
+          PREFIX_FILTER: docker/nginx
+
       - name: Build nginx image and push it to ECR If some changes detected
         if: ${{ steps.git_diff.outputs.count > 0}}
         env:
@@ -214,6 +237,22 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:latest ./docker/nginx
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+
+      - name: Logout of Amazon ECR
+        if: always()
+        run: docker logout ${{ steps.login-ecr.outputs.registry }}
+
+  update-ecs-service:
+    needs: [upload-assets-to-S3, build-push-app-image, build-push-nginx-image-if-some-change-detected]
+    # if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ECR_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_ECR_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Update ECS service
         run: |
