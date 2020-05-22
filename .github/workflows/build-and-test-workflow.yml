@@ -1,8 +1,8 @@
-name: build-and-test
+name: test-build-deploy
 on: [push]
 
 jobs:
-  test-build-deploy:
+  build-and-test:
     runs-on: ubuntu-latest
     container:
       image: 708u/laravel-alpine:7.4.3-node-browsers
