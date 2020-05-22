@@ -215,6 +215,10 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
 
+      - name: Update ECS service
+        run: |
+          aws ecs update-service --service ${{ secrets.ECR_SERVICE }} laravel-tweet-ddd-service --cluster ${{ secrets.ECR_CLUSTER }} --force-new-deployment
+
       - name: Logout of Amazon ECR
         if: always()
         run: docker logout ${{ steps.login-ecr.outputs.registry }}
