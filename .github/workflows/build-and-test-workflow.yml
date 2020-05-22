@@ -162,8 +162,8 @@ jobs:
           SOURCE_DIR: 'public/'
 
   build-and-push-images:
-    needs: [build-and-test, prepare-assets-for-deployment]
-    if: github.ref == 'refs/heads/master'
+    # needs: [build-and-test, prepare-assets-for-deployment]
+    # if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
