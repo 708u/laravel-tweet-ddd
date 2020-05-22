@@ -211,7 +211,7 @@ jobs:
           ECR_REPOSITORY: laravel-tweet-ddd-nginx
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -f ./Dockerfile.nginx -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:latest ./docker/nginx
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
 
