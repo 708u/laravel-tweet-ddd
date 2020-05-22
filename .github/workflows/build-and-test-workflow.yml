@@ -94,13 +94,13 @@ jobs:
 
       # Archive Artifacts
       - name: Archive screenshots
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         if: always()
         with:
           name: e2e-screenshots
           path: tests/Browser/screenshots
       - name: Archive laravel log
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         if: always()
         with:
           name: laravel-log
@@ -190,12 +190,66 @@ jobs:
         if: always()
         run: docker logout ${{ steps.login-ecr.outputs.registry }}
 
+  prepare-assets-for-deployment:
+    # if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache composer vendor
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-composer-vendor-for-deploy
+        with:
+          path: vendor
+          key: ${{ runner.os }}-${{ env.cache-name }}-v1-${{ hashFiles('**/composer.lock') }}
+
+      - run: composer install --no-progress --no-dev
+
+      - name: Cache node_modules
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-node-modules-for-deploy
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ env.cache-name }}-v1-${{ hashFiles('**/yarn.lock') }}
+
+      - name: yarn install
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: install
+
+      - name: Compile js/css files
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: prod
+
+      - name: Upload composer vendor
+        uses: actions/upload-artifact@v2
+        with:
+          name: vendor
+          path: vendor
+
+      - name: Upload npm node_modules
+        uses: actions/upload-artifact@v2
+        with:
+          name: node_modules
+          path: node_modules
+
+      - name: Upload assets
+        uses: actions/upload-artifact@v2
+        with:
+          name: public
+          path: public
+
   upload-assets-to-S3:
+    needs: prepare-assets-for-deployment
     # needs: build-and-test
     # if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
-      - run: mkdir public && echo 'hello' >> public/test.txt
+      - uses: actions/download-artifact@v2
+      - run: ls -la
       - name: upload assets
         uses: jakejarvis/s3-sync-action@v0.5.1
         env:
