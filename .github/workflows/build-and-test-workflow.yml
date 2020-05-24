@@ -159,6 +159,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: public
+          path: public
 
       - name: Upload assets to S3
         uses: jakejarvis/s3-sync-action@v0.5.1
