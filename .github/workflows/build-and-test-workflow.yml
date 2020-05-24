@@ -115,7 +115,7 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
 
   prepare-assets-for-deployment:
-    if: github.ref == 'refs/heads/master'
+    # if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -152,7 +152,7 @@ jobs:
 
   upload-assets-to-S3:
     needs: [build-and-test, prepare-assets-for-deployment]
-    if: github.ref == 'refs/heads/master'
+    # if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - name: Download compiled assets
@@ -172,7 +172,7 @@ jobs:
 
   build-push-app-image:
     needs: [build-and-test, prepare-assets-for-deployment]
-    if: github.ref == 'refs/heads/master'
+    # if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -220,7 +220,7 @@ jobs:
 
   build-push-nginx-image-if-some-change-detected:
     needs: [build-and-test, prepare-assets-for-deployment]
-    if: github.ref == 'refs/heads/master'
+    # if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -264,7 +264,7 @@ jobs:
         build-push-app-image,
         build-push-nginx-image-if-some-change-detected,
       ]
-    if: github.ref == 'refs/heads/master'
+    # if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - name: Configure AWS Credentials
