@@ -9,7 +9,7 @@
     <div class="row justify-content-between">
         <aside class="col-md-4 col-md-offset-1">
             <section class="user_info">
-                <h1>{{ $user->userName }} {{ $user->email }}</h1>
+                <h1>{{ $user->userName }}</h1>
             </section>
         </aside>
         <div class="col-md-7">
