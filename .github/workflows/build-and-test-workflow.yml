@@ -219,8 +219,8 @@ jobs:
         run: docker logout ${{ steps.login-ecr.outputs.registry }}
 
   build-push-nginx-image-if-some-change-detected:
-    # needs: [build-and-test, prepare-assets-for-deployment]
-    # if: github.ref == 'refs/heads/master'
+    needs: [build-and-test, prepare-assets-for-deployment]
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
