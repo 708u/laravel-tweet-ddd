@@ -4,7 +4,6 @@
 .php*
 .styleci.yml
 .vscode
-composer*
 docker-compose.yml
 Makefile
 
