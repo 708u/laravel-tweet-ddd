@@ -5,7 +5,7 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     container:
-      image: 708u/laravel-alpine:7.4.3-node-browsers
+      image: 708u/laravel-alpine:7.4.4-node-browsers
       env:
         APP_ENV: testing
         APP_URL: http://localhost
