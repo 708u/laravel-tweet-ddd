@@ -1,6 +1,23 @@
-.git
-.github
+# conf/utils
+.editorconfig
+.git*
+.php*
+.styleci.yml
 .vscode
-tests
+composer*
+docker-compose.yml
+Makefile
+
+# docs
 docs
+README.md
+
+# tests
+phpunit.xml
+tests
+
+# js/css
 node_modules
+package.json
+yarn.lock
+webpack.mix.js
