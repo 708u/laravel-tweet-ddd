@@ -12,19 +12,19 @@
 
 - DDDのコンテキストによる実装
 - オーバーエンジニアリングを許容する
-    - あくまで個人的な技術アウトプットの場のため
+  - あくまで個人的な技術アウトプットの場のため
 
 ## Environments
 
 - Laravel 7.x
-- PHP 7.4.3
+- PHP 7.4.4
 - Mysql 5.7
 - Redis 5.0.7
 - MinIO
-    - S3のMock Storageとして使用
+  - S3のMock Storageとして使用
 - Docker
 - node.js(assetビルド)
-    - パッケージ管理: yarn
+  - パッケージ管理: yarn
 
 ## Infrastructure
 
@@ -148,21 +148,21 @@
 ### Testing Architecture
 
 - Unit TestとE2E Testを用いて動作を担保する。
-    - Unit Test: phpunit
-    - E2E Test: Laravel Dusk
+  - Unit Test: phpunit
+  - E2E Test: Laravel Dusk
 - 全体のテスト設計比率としては、 `UnitTest:E2E = 8:2`程度を想定する。
-    - 実装依存するE2Eテストは壊れやすい為、比率を少なくしている。
+  - 実装依存するE2Eテストは壊れやすい為、比率を少なくしている。
 
 #### Unit Test Policy
 
 - UseCase単位 = 1Actionに対するtestを実装する。
-    - test自体がEntity、ValueObject、DomainServiceが持つドメイン知識のドキュメントになる。
-    - UseCase程度の粒度に対して動作を担保すれば、test設計コストに対するcoverageを最大化できると判断している。
-    - また、特定のロジックに対して細かくtestを書きすぎると、コード全体の保守性が下がっていく為。
+  - test自体がEntity、ValueObject、DomainServiceが持つドメイン知識のドキュメントになる。
+  - UseCase程度の粒度に対して動作を担保すれば、test設計コストに対するcoverageを最大化できると判断している。
+  - また、特定のロジックに対して細かくtestを書きすぎると、コード全体の保守性が下がっていく為。
 - 純粋なDomain知識に対してtestを行う為、infrastructureを全て隠蔽し、各interfaceに対してtestを行う。
-    - LaravelのDIコンテナを利用して、entityの永続化先を全てInMemoryに差し替えることで上記を解決する。
-    - Testing用DBの存在を意識せずに、test実装が可能になる。
-    - 参考 `infrastructure/Repository/Base/InMemoryRepository.php`
+  - LaravelのDIコンテナを利用して、entityの永続化先を全てInMemoryに差し替えることで上記を解決する。
+  - Testing用DBの存在を意識せずに、test実装が可能になる。
+  - 参考 `infrastructure/Repository/Base/InMemoryRepository.php`
 
 ```php
 class InMemoryTweetRepository extends InMemoryRepository implements TweetRepository
@@ -183,8 +183,8 @@ class InMemoryTweetRepository extends InMemoryRepository implements TweetReposit
 #### E2E Test Policy
 
 - infrastructureレベルで期待する動作が担保されているかを検査する。
-    - e.g. RDBMS, S3, Redis, etc...
-    - unit testで抽象化されたDomainを検査済みの為、具象レベルでの担保はこちらで行う。
+  - e.g. RDBMS, S3, Redis, etc...
+  - unit testで抽象化されたDomainを検査済みの為、具象レベルでの担保はこちらで行う。
 
 ## Installation
 
