@@ -240,7 +240,7 @@ jobs:
         uses: technote-space/get-diff-action@v1.2.8
         id: git_diff
         with:
-          PREFIX_FILTER: docker/nginx
+          PREFIX_FILTER: .docker/nginx
 
       - name: Build nginx image and push it to ECR If some changes detected
         if: ${{ steps.git_diff.outputs.count > 0}}
@@ -249,7 +249,7 @@ jobs:
           ECR_REPOSITORY: laravel-tweet-ddd-nginx
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:latest ./docker/nginx
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:latest ./.docker/nginx
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
 
