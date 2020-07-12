@@ -1,4 +1,4 @@
-FROM 708u/laravel-alpine:7.4.4
+FROM 708u/laravel-alpine:7.4.7
 
 WORKDIR /app
 

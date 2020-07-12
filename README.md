@@ -17,7 +17,7 @@
 ## Environments
 
 - Laravel 7.x
-- PHP 7.4.4
+- PHP 7.4.7
 - Mysql 5.7
 - Redis 5.0.7
 - MinIO

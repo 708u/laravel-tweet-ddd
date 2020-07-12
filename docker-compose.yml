@@ -1,7 +1,7 @@
 version: "3.7"
 
 x-environment: &app
-  image: 708u/laravel-alpine:7.4.4-xdebug
+  image: 708u/laravel-alpine:7.4.7-xdebug
   working_dir: "/app"
   environment:
     - DB_CONNECTION=mysql
