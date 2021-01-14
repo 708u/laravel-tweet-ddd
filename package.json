@@ -26,6 +26,6 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "uikit": "^3.5.5"
+        "uikit": "^3.6.11"
     }
 }
