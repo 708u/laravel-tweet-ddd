@@ -7364,10 +7364,10 @@ uglify-js@3.4.x:
     commander "~2.19.0"
     source-map "~0.6.1"
 
-uikit@^3.5.5:
-  version "3.5.5"
-  resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.5.5.tgz#711053f228c67b478b24d13ef2d073b6c0c8589d"
-  integrity sha512-10Wm7wzL7Ukuc9fHMukL/uEEulUj8qg4zVqR4eYTC+86ytJTP9x6/2T5QhV8oUc5S1lS6Ft1oURGZRINY7q7gg==
+uikit@^3.6.22:
+  version "3.6.22"
+  resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.6.22.tgz#bbf3d64f9715ec09b3dead80845f2784447d7048"
+  integrity sha512-c8jz0lzvGPrPbOG4K5HvOCgUe7i9A6blZmMq2M/EYqoY7FT9dBayGFZYbBeio2s9WCpADIcCAj2QX/5L3EByOQ==
 
 ultron@~1.1.0:
   version "1.1.1"
